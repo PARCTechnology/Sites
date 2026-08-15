@@ -1,1 +1,2663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PARC Labs | TXSE Protocol Simulation Research</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-primary: #070a11;
+      --bg-card: #0f172a;
+      --bg-panel: #0b1120;
+      --bg-terminal: #030712;
+
+      --border-primary: #1e293b;
+      --border-secondary: #334155;
+      --border-control: #475569;
+
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --cyan: #38bdf8;
+      --cyan-dark: #0284c7;
+
+      --green: #10b981;
+      --orange: #f97316;
+      --orange-light: #fb923c;
+      --purple: #a855f7;
+      --yellow: #f59e0b;
+      --red: #ef4444;
+      --red-light: #f87171;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: #e2e8f0;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+      min-height: 100vh;
+
+      padding: 40px 20px;
+
+      display: flex;
+      justify-content: center;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
+    }
+
+    .wrapper {
+      max-width: 960px;
+      width: 100%;
+    }
+
+
+    /* =========================================================
+       TOP NAVIGATION
+       ========================================================= */
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 16px;
+
+      margin-bottom: 24px;
+
+      font-size: 13px;
+    }
+
+    .top-nav a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    .top-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .nav-status {
+      display: flex;
+      align-items: center;
+
+      gap: 7px;
+
+      color: var(--text-muted);
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+
+      font-size: 12px;
+
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+
+      background: var(--green);
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 8px rgba(16, 185, 129, 0.75);
+    }
+
+
+    /* =========================================================
+       MAIN LAB CARD
+       ========================================================= */
+
+    .lab-card {
+      background: rgba(15, 23, 42, 0.95);
+
+      border: 1px solid var(--border-primary);
+      border-radius: 12px;
+
+      padding: 36px;
+
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .lab-badge {
+      display: inline-block;
+
+      background: #451a03;
+      color: var(--orange-light);
+
+      border: 1px solid #c2410c;
+      border-radius: 6px;
+
+      padding: 4px 10px;
+
+      font-size: 11px;
+      font-weight: 700;
+
+      letter-spacing: 1px;
+
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      color: #ffffff;
+
+      font-size: 30px;
+
+      letter-spacing: -0.5px;
+
+      margin-bottom: 6px;
+    }
+
+    .subhead {
+      color: var(--text-muted);
+
+      font-size: 14px;
+
+      text-transform: uppercase;
+      letter-spacing: 1px;
+
+      margin-bottom: 20px;
+    }
+
+    .lead {
+      color: var(--text-secondary);
+
+      font-size: 15px;
+      line-height: 1.7;
+
+      margin-bottom: 18px;
+    }
+
+
+    /* =========================================================
+       LAB STATUS
+       ========================================================= */
+
+    .lab-status-note {
+      background: rgba(56, 189, 248, 0.04);
+
+      border-left: 3px solid var(--cyan);
+      border-radius: 4px;
+
+      padding: 12px 14px;
+
+      margin-bottom: 28px;
+
+      color: var(--text-muted);
+
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .lab-status-note strong {
+      color: var(--cyan);
+    }
+
+
+    /* =========================================================
+       RESEARCH AREAS
+       ========================================================= */
+
+    .research-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 16px;
+
+      margin: 28px 0 18px;
+    }
+
+    .research-item {
+      background: var(--bg-panel);
+
+      border: 1px solid var(--border-primary);
+      border-radius: 8px;
+
+      padding: 16px;
+    }
+
+    .research-item h3 {
+      color: var(--cyan);
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+
+      font-size: 13px;
+
+      margin-bottom: 8px;
+    }
+
+    .research-item p {
+      color: var(--text-muted);
+
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+
+    /* =========================================================
+       COVERAGE STATUS
+       ========================================================= */
+
+    .coverage-strip {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-bottom: 28px;
+    }
+
+    .coverage-chip {
+      border: 1px solid var(--border-secondary);
+
+      background: #08101d;
+      color: var(--text-muted);
+
+      border-radius: 999px;
+
+      padding: 5px 9px;
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+      font-size: 10px;
+
+      letter-spacing: 0.25px;
+    }
+
+    .coverage-chip.ready {
+      border-color: rgba(16, 185, 129, 0.55);
+      color: #86efac;
+    }
+
+    .coverage-chip.partial {
+      border-color: rgba(245, 158, 11, 0.55);
+      color: #fbbf24;
+    }
+
+    .coverage-chip.roadmap {
+      border-color: rgba(56, 189, 248, 0.45);
+      color: #7dd3fc;
+    }
+
+
+    /* =========================================================
+       SIMULATION TESTBED
+       ========================================================= */
+
+    .sim-box {
+      background: #020617;
+
+      border: 1px solid var(--border-secondary);
+      border-radius: 8px;
+
+      padding: 20px;
+
+      margin: 30px 0 16px;
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+
+      box-shadow:
+        inset 0 0 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 14px;
+
+      border-bottom: 1px solid var(--border-primary);
+
+      padding-bottom: 10px;
+
+      margin-bottom: 14px;
+    }
+
+    .sim-title {
+      color: var(--text-secondary);
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 0.4px;
+    }
+
+    .active-target {
+      color: var(--text-dim);
+
+      font-size: 11px;
+
+      text-align: right;
+    }
+
+
+    /* =========================================================
+       PROTOCOL TABS
+       ========================================================= */
+
+    .proto-tabs {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      border-bottom: 1px solid var(--border-primary);
+
+      padding-bottom: 10px;
+
+      margin-bottom: 14px;
+    }
+
+    .proto-tab {
+      background: var(--bg-card);
+      color: var(--text-muted);
+
+      border: 1px solid var(--border-secondary);
+      border-radius: 4px;
+
+      padding: 7px 14px;
+
+      cursor: pointer;
+
+      font-family: inherit;
+      font-size: 12px;
+    }
+
+    .proto-tab:hover {
+      color: var(--text-primary);
+      border-color: var(--border-control);
+    }
+
+    .proto-tab.active {
+      background: var(--cyan-dark);
+      color: #ffffff;
+
+      border-color: var(--cyan);
+
+      font-weight: 700;
+    }
+
+
+    /* =========================================================
+       WIRE FORMAT NOTE
+       ========================================================= */
+
+    .wire-note {
+      border: 1px solid var(--border-primary);
+
+      background: #050b15;
+
+      border-radius: 5px;
+
+      padding: 10px 12px;
+
+      margin-bottom: 14px;
+
+      color: var(--text-dim);
+
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+
+    /* =========================================================
+       TELEMETRY
+       ========================================================= */
+
+    .telemetry {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 8px;
+
+      margin-bottom: 16px;
+    }
+
+    .metric {
+      background: #070d19;
+
+      border: 1px solid var(--border-primary);
+      border-radius: 4px;
+
+      padding: 10px 11px;
+    }
+
+    .metric-label {
+      display: block;
+
+      color: var(--text-dim);
+
+      font-size: 9px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.8px;
+
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      display: block;
+
+      color: var(--text-secondary);
+
+      font-size: 12px;
+
+      overflow-wrap: anywhere;
+    }
+
+    .good {
+      color: var(--green) !important;
+    }
+
+    .info {
+      color: var(--cyan) !important;
+    }
+
+    .warn {
+      color: var(--yellow) !important;
+    }
+
+
+    /* =========================================================
+       CONTROLS
+       ========================================================= */
+
+    .sim-controls {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      margin-bottom: 14px;
+    }
+
+    .sim-btn {
+      background: #1e293b;
+      color: var(--text-primary);
+
+      border: 1px solid var(--border-control);
+      border-radius: 4px;
+
+      padding: 7px 12px;
+
+      font-family: inherit;
+      font-size: 12px;
+
+      cursor: pointer;
+    }
+
+    .sim-btn:hover {
+      background: var(--border-secondary);
+    }
+
+    .sim-btn.accent {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .sim-btn.danger {
+      border-color: var(--red);
+      color: var(--red-light);
+    }
+
+
+    /* =========================================================
+       TERMINAL
+       ========================================================= */
+
+    .sim-terminal {
+      height: 270px;
+
+      overflow-y: auto;
+
+      background: var(--bg-terminal);
+
+      border: 1px solid #111827;
+      border-radius: 4px;
+
+      padding: 12px;
+
+      font-size: 11px;
+      line-height: 1.65;
+
+      color: var(--text-muted);
+
+      box-shadow:
+        inset 0 0 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .terminal-line {
+      margin-bottom: 7px;
+      overflow-wrap: anywhere;
+    }
+
+    .rec-ok {
+      color: var(--green);
+    }
+
+    .rec-info {
+      color: var(--cyan);
+    }
+
+    .rec-seed {
+      color: var(--purple);
+    }
+
+    .rec-rake {
+      color: var(--orange);
+    }
+
+    .rec-warn {
+      color: var(--yellow);
+    }
+
+    .rec-drop {
+      color: var(--red);
+    }
+
+    .rec-dim {
+      color: var(--text-dim);
+    }
+
+    .wire {
+      color: #dbeafe;
+    }
+
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    .lab-footer {
+      display: flex;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      border-top: 1px solid var(--border-primary);
+
+      padding-top: 20px;
+
+      margin-top: 32px;
+
+      color: var(--text-dim);
+
+      font-size: 13px;
+    }
+
+    .lab-footer a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE DESIGN
+       ========================================================= */
+
+    @media (max-width: 760px) {
+
+      body {
+        padding: 24px 14px;
+      }
+
+      .lab-card {
+        padding: 26px 20px;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .telemetry {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+      .top-nav {
+        align-items: flex-start;
+      }
+
+      .nav-status {
+        white-space: normal;
+        text-align: right;
+      }
+    }
+
+
+    @media (max-width: 560px) {
+
+      .top-nav,
+      .sim-header,
+      .lab-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-status,
+      .active-target {
+        text-align: left;
+      }
+
+      .proto-tab {
+        flex: 1 1 auto;
+      }
+
+      .sim-controls {
+        flex-direction: column;
+      }
+
+      .sim-btn {
+        width: 100%;
+        text-align: left;
+      }
+
+      .telemetry {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .sim-terminal {
+        height: 330px;
+      }
+    }
+
+
+    @media (max-width: 400px) {
+
+      .telemetry {
+        grid-template-columns: 1fr;
+      }
+
+      .lab-card {
+        padding: 22px 16px;
+      }
+
+      .sim-box {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="wrapper">
+
+    <!-- ======================================================
+         TOP NAVIGATION
+         ====================================================== -->
+
+    <nav
+      class="top-nav"
+      aria-label="Laboratory navigation"
+    >
+
+      <a href="https://parctechnology.com">
+        ← Back to Commercial Gateway (PARCTechnology.com)
+      </a>
+
+      <div class="nav-status">
+
+        <span
+          class="status-dot"
+          aria-hidden="true"
+        ></span>
+
+        <span>
+          SPEC-DRIVEN SIMULATION • TXSE PUBLIC SPEC BASELINE
+        </span>
+
+      </div>
+
+    </nav>
+
+
+    <!-- ======================================================
+         MAIN LAB CARD
+         ====================================================== -->
+
+    <section class="lab-card">
+
+      <div class="lab-badge">
+        APPLIED SYSTEMS LAB • R&amp;D ARM
+      </div>
+
+      <h1>PARC Labs</h1>
+
+      <div class="subhead">
+        TXSE Protocol Modeling, Order-State Research &amp;
+        Stream Reconciliation
+      </div>
+
+
+      <p class="lead">
+        PARC Labs is an independently developed simulation environment
+        for studying exchange protocol behavior, binary message encoding,
+        order-state transitions, session framing, and market-data
+        workflows using publicly available technical specifications.
+      </p>
+
+
+      <!-- ====================================================
+           STATUS DISCLOSURE
+           ==================================================== -->
+
+      <div class="lab-status-note">
+
+        <strong>Current Lab Status:</strong>
+
+        This environment is not connected to, sponsored by, or certified
+        by the Texas Stock Exchange. FIX and SEED application-message
+        behavior is modeled from public TXSE specifications.
+
+        RAKE is represented only at the session/framing role level until
+        its complete framing specification is loaded into the simulator.
+
+        The PARC symbol and simulator identifiers shown below are local
+        laboratory fixtures and do not represent live TXSE instruments.
+
+      </div>
+
+
+      <!-- ====================================================
+           RESEARCH AREAS
+           ==================================================== -->
+
+      <div class="research-grid">
+
+        <article class="research-item">
+
+          <h3>
+            01. FIX 5.0 SP2
+          </h3>
+
+          <p>
+            Order-entry and drop-copy application messages modeled
+            using TXSE-defined FIX tags, message types, enumerations,
+            and exchange-specific fields.
+          </p>
+
+        </article>
+
+
+        <article class="research-item">
+
+          <h3>
+            02. SEED Binary Order Entry
+          </h3>
+
+          <p>
+            Little-endian binary payload construction using TXSE
+            field offsets, presence bits, fixed-width integers,
+            bitfields, and scaled prices.
+          </p>
+
+        </article>
+
+
+        <article class="research-item">
+
+          <h3>
+            03. RAKE Session &amp; Framing
+          </h3>
+
+          <p>
+            Transport/session research for the payload-agnostic
+            TCP/UDP framing layer used with protocols such as SEED
+            and TXSE market-data feeds.
+          </p>
+
+        </article>
+
+      </div>
+
+
+      <!-- ====================================================
+           IMPLEMENTATION COVERAGE
+           ==================================================== -->
+
+      <div
+        class="coverage-strip"
+        aria-label="Protocol coverage status"
+      >
+
+        <span class="coverage-chip ready">
+          FIX APP LAYER • MODELED
+        </span>
+
+        <span class="coverage-chip ready">
+          SEED PAYLOAD • MODELED
+        </span>
+
+        <span class="coverage-chip partial">
+          FIX SESSION • SPEC REQUIRED
+        </span>
+
+        <span class="coverage-chip partial">
+          RAKE FRAMING • SPEC REQUIRED
+        </span>
+
+        <span class="coverage-chip roadmap">
+          FEED • ROADMAP
+        </span>
+
+        <span class="coverage-chip roadmap">
+          BALE • ROADMAP
+        </span>
+
+      </div>
+
+
+      <!-- ====================================================
+           PROTOCOL TESTBED
+           ==================================================== -->
+
+      <section
+        class="sim-box"
+        aria-labelledby="testbed-title"
+      >
+
+        <div class="sim-header">
+
+          <span
+            class="sim-title"
+            id="testbed-title"
+          >
+            PROTOCOL TESTBED // SPECIFICATION-DRIVEN SIMULATOR
+          </span>
+
+          <span
+            class="active-target"
+            id="active-target"
+          >
+            SIMULATED ADAPTER: FIX 5.0 SP2 ORDER ENTRY
+          </span>
+
+        </div>
+
+
+        <!-- ==================================================
+             PROTOCOL TABS
+             ================================================== -->
+
+        <div
+          class="proto-tabs"
+          role="tablist"
+          aria-label="Protocol adapters"
+        >
+
+          <button
+            class="proto-tab active"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            onclick="switchProto('FIX', this)"
+          >
+            FIX 5.0 SP2
+          </button>
+
+
+          <button
+            class="proto-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            onclick="switchProto('SEED', this)"
+          >
+            SEED Binary
+          </button>
+
+
+          <button
+            class="proto-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            onclick="switchProto('RAKE', this)"
+          >
+            RAKE Session
+          </button>
+
+        </div>
+
+
+        <!-- ==================================================
+             PROTOCOL FORMAT NOTE
+             ================================================== -->
+
+        <div
+          class="wire-note"
+          id="wire-note"
+        ></div>
+
+
+        <!-- ==================================================
+             TELEMETRY
+             ================================================== -->
+
+        <div
+          class="telemetry"
+          id="telemetry"
+          aria-live="polite"
+        ></div>
+
+
+        <!-- ==================================================
+             CONTROLS
+             ================================================== -->
+
+        <div
+          class="sim-controls"
+          id="controls"
+        ></div>
+
+
+        <!-- ==================================================
+             TERMINAL
+             ================================================== -->
+
+        <div
+          class="sim-terminal"
+          id="terminal"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
+        >
+
+          <div class="terminal-line">
+
+            <span class="rec-ok">
+              [SIMULATOR INITIALIZED]
+            </span>
+
+            Public-spec research mode active.
+
+          </div>
+
+
+          <div class="terminal-line">
+
+            <span class="rec-dim">
+              [FORMAT NOTE]
+            </span>
+
+            FIX output below is an application-layer tag/value view;
+            the display character
+
+            <span class="wire">|</span>
+
+            stands in for FIX SOH.
+
+            SEED output is shown as raw payload hex plus a decoded
+            field view.
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ====================================================
+           FOOTER
+           ==================================================== -->
+
+      <footer class="lab-footer">
+
+        <div>
+          PARC Labs • Independent Applied Systems Research
+        </div>
+
+        <div>
+          Research Contact:
+          <a href="mailto:labs@parctechnology.com">
+            labs@parctechnology.com
+          </a>
+        </div>
+
+      </footer>
+
+    </section>
+
+  </main>
+
+
+  <script>
+    /* =========================================================
+       SIMULATOR STATE
+       ========================================================= */
+
+    let currentProto = "FIX";
+
+
+    let fixClOrd = 100000;
+    let fixOrderId = 700000;
+    let fixExecId = 900000;
+    let fixMessages = 0;
+
+
+    let seedClOrd = 48002n;
+    let seedOrderId = 700002n;
+    let seedMessages = 0;
+
+
+    let rakeScenarioCount = 0;
+
+
+    /* =========================================================
+       DOM REFERENCES
+       ========================================================= */
+
+    const terminal =
+      document.getElementById("terminal");
+
+    const targetLabel =
+      document.getElementById("active-target");
+
+    const controlsDiv =
+      document.getElementById("controls");
+
+    const telemetryDiv =
+      document.getElementById("telemetry");
+
+    const wireNote =
+      document.getElementById("wire-note");
+
+
+    /* =========================================================
+       TERMINAL
+       ========================================================= */
+
+    function logMessage(html) {
+
+      const line =
+        document.createElement("div");
+
+      line.className =
+        "terminal-line";
+
+      line.innerHTML =
+        html;
+
+      terminal.appendChild(line);
+
+      terminal.scrollTop =
+        terminal.scrollHeight;
+    }
+
+
+    function clearLog() {
+
+      terminal.innerHTML = `
+        <div class="terminal-line">
+
+          <span class="rec-info">
+            [LOG CLEARED]
+          </span>
+
+          Ready for the next specification-driven scenario.
+
+        </div>
+      `;
+    }
+
+
+    /* =========================================================
+       PROTOCOL SWITCHER
+       ========================================================= */
+
+    function switchProto(proto, button) {
+
+      currentProto = proto;
+
+
+      document
+        .querySelectorAll(".proto-tab")
+        .forEach(tab => {
+
+          tab.classList.remove("active");
+
+          tab.setAttribute(
+            "aria-selected",
+            "false"
+          );
+
+        });
+
+
+      button.classList.add("active");
+
+      button.setAttribute(
+        "aria-selected",
+        "true"
+      );
+
+
+      renderInterface();
+
+
+      logMessage(`
+        <span class="rec-info">
+          [ADAPTER SWITCH]
+        </span>
+
+        ${proto} simulator selected.
+      `);
+    }
+
+
+    /* =========================================================
+       METRIC COMPONENT
+       ========================================================= */
+
+    function metric(
+      label,
+      value,
+      valueClass = ""
+    ) {
+
+      return `
+        <div class="metric">
+
+          <span class="metric-label">
+            ${label}
+          </span>
+
+          <span class="metric-value ${valueClass}">
+            ${value}
+          </span>
+
+        </div>
+      `;
+    }
+
+
+    /* =========================================================
+       INTERFACE RENDER
+       ========================================================= */
+
+    function renderInterface() {
+
+      renderControls();
+
+      renderTelemetry();
+
+      renderWireNote();
+    }
+
+
+    /* =========================================================
+       FORMAT NOTES
+       ========================================================= */
+
+    function renderWireNote() {
+
+      if (currentProto === "FIX") {
+
+        wireNote.innerHTML = `
+          <strong>Display mode:</strong>
+          TXSE FIX application-layer fields.
+
+          <span class="wire">|</span>
+          is used in place of the non-printing SOH delimiter.
+
+          Session header/trailer fields are intentionally not invented
+          here; those should be added only from the TXSE FIX Session
+          Protocol specification.
+        `;
+
+      }
+
+      else if (currentProto === "SEED") {
+
+        wireNote.innerHTML = `
+          <strong>Display mode:</strong>
+          SEED payload bytes plus decoded fields.
+
+          Numeric fields are written little-endian.
+
+          Prices use an implied scale of 100,000,000.
+
+          Timestamps are represented as nanoseconds since Unix epoch.
+        `;
+
+      }
+
+      else {
+
+        wireNote.innerHTML = `
+          <strong>Display mode:</strong>
+          RAKE architecture placeholder.
+
+          The simulator models RAKE's role as the payload-agnostic
+          TCP/UDP session and framing layer, but it does not emit
+          fabricated RAKE frame bytes without the complete framing
+          specification.
+        `;
+
+      }
+    }
+
+
+    /* =========================================================
+       CONTROLS
+       ========================================================= */
+
+    function renderControls() {
+
+      if (currentProto === "FIX") {
+
+        targetLabel.innerText =
+          "SIMULATED ADAPTER: FIX 5.0 SP2 ORDER ENTRY";
+
+
+        controlsDiv.innerHTML = `
+
+          <button
+            class="sim-btn accent"
+            type="button"
+            onclick="emitFIXLimitOrder()"
+          >
+            + Emit NewLimitOrderSingle
+          </button>
+
+
+          <button
+            class="sim-btn danger"
+            type="button"
+            onclick="emitFIXReject()"
+          >
+            ⚠ Simulate Unknown-Symbol Reject
+          </button>
+
+
+          <button
+            class="sim-btn"
+            type="button"
+            onclick="explainFIXSessionGap()"
+          >
+            Session Gap Scope
+          </button>
+
+
+          <button
+            class="sim-btn"
+            type="button"
+            onclick="clearLog()"
+          >
+            Clear
+          </button>
+
+        `;
+      }
+
+
+      else if (currentProto === "SEED") {
+
+        targetLabel.innerText =
+          "SIMULATED ADAPTER: SEED BINARY ORDER ENTRY";
+
+
+        controlsDiv.innerHTML = `
+
+          <button
+            class="sim-btn accent"
+            type="button"
+            onclick="emitSEEDLimitOrder()"
+          >
+            + Encode LimitOrder ('L')
+          </button>
+
+
+          <button
+            class="sim-btn"
+            type="button"
+            onclick="emitSEEDBurst()"
+          >
+            Encode 10 LimitOrder Payloads
+          </button>
+
+
+          <button
+            class="sim-btn"
+            type="button"
+            onclick="clearLog()"
+          >
+            Clear
+          </button>
+
+        `;
+      }
+
+
+      else {
+
+        targetLabel.innerText =
+          "SIMULATED LAYER: RAKE TCP/UDP SESSION & FRAMING";
+
+
+        controlsDiv.innerHTML = `
+
+          <button
+            class="sim-btn accent"
+            type="button"
+            onclick="showRAKERole()"
+          >
+            Show SEED → RAKE → TCP Flow
+          </button>
+
+
+          <button
+            class="sim-btn"
+            type="button"
+            onclick="showRAKEBoundary()"
+          >
+            Show Conformance Boundary
+          </button>
+
+
+          <button
+            class="sim-btn"
+            type="button"
+            onclick="clearLog()"
+          >
+            Clear
+          </button>
+
+        `;
+      }
+    }
+
+
+    /* =========================================================
+       TELEMETRY
+       ========================================================= */
+
+    function renderTelemetry() {
+
+      if (currentProto === "FIX") {
+
+        telemetryDiv.innerHTML =
+
+          metric(
+            "Protocol",
+            "FIX 5.0 SP2",
+            "info"
+          )
+
+          +
+
+          metric(
+            "Scope",
+            "APPLICATION",
+            "good"
+          )
+
+          +
+
+          metric(
+            "MsgType",
+            "D / 8"
+          )
+
+          +
+
+          metric(
+            "Messages",
+            fixMessages
+          )
+
+          +
+
+          metric(
+            "Session Framing",
+            "PENDING SPEC",
+            "warn"
+          )
+
+          +
+
+          metric(
+            "TXSE Connection",
+            "NONE"
+          );
+
+      }
+
+
+      else if (currentProto === "SEED") {
+
+        telemetryDiv.innerHTML =
+
+          metric(
+            "Protocol",
+            "SEED",
+            "info"
+          )
+
+          +
+
+          metric(
+            "Encoding",
+            "LITTLE-ENDIAN",
+            "good"
+          )
+
+          +
+
+          metric(
+            "LimitOrder",
+            "0x4C / 'L'"
+          )
+
+          +
+
+          metric(
+            "Payload Size",
+            "31 BYTES"
+          )
+
+          +
+
+          metric(
+            "Messages",
+            seedMessages
+          )
+
+          +
+
+          metric(
+            "Transport",
+            "RAKE TCP",
+            "warn"
+          );
+
+      }
+
+
+      else {
+
+        telemetryDiv.innerHTML =
+
+          metric(
+            "Protocol",
+            "RAKE",
+            "info"
+          )
+
+          +
+
+          metric(
+            "Role",
+            "SESSION / FRAME"
+          )
+
+          +
+
+          metric(
+            "Sockets",
+            "TCP / UDP"
+          )
+
+          +
+
+          metric(
+            "Scenarios",
+            rakeScenarioCount
+          )
+
+          +
+
+          metric(
+            "Frame Bytes",
+            "NOT EMITTED",
+            "warn"
+          )
+
+          +
+
+          metric(
+            "Spec State",
+            "NEEDS FULL DOC",
+            "warn"
+          );
+
+      }
+    }
+
+
+    /* =========================================================
+       FIX TIMESTAMP
+       ========================================================= */
+
+    function fixTimestamp() {
+
+      const d =
+        new Date();
+
+
+      const yyyy =
+        d.getUTCFullYear();
+
+
+      const mm =
+        String(
+          d.getUTCMonth() + 1
+        ).padStart(2, "0");
+
+
+      const dd =
+        String(
+          d.getUTCDate()
+        ).padStart(2, "0");
+
+
+      const hh =
+        String(
+          d.getUTCHours()
+        ).padStart(2, "0");
+
+
+      const mi =
+        String(
+          d.getUTCMinutes()
+        ).padStart(2, "0");
+
+
+      const ss =
+        String(
+          d.getUTCSeconds()
+        ).padStart(2, "0");
+
+
+      const ms =
+        String(
+          d.getUTCMilliseconds()
+        ).padStart(3, "0");
+
+
+      return (
+        `${yyyy}${mm}${dd}-` +
+        `${hh}:${mi}:${ss}.${ms}`
+      );
+    }
+
+
+    /* =========================================================
+       FIX NEW LIMIT ORDER
+       ========================================================= */
+
+    function emitFIXLimitOrder() {
+
+      fixClOrd++;
+
+      fixOrderId++;
+
+      fixExecId++;
+
+      fixMessages += 2;
+
+
+      const clOrdId =
+        `PARC${fixClOrd}`;
+
+
+      const timestamp =
+        fixTimestamp();
+
+
+      /*
+       * Member → Exchange
+       *
+       * Deterministic lab fixture:
+       *
+       * Symbol       = PARC
+       * Side         = BUY (1)
+       * Price        = 25.00
+       * Qty          = 100
+       * TIF          = DAY (0)
+       * Capacity     = AGENCY (A)
+       * MPID fixture = PARC
+       *
+       * Optional behavioral fields are explicitly supplied so
+       * the simulator does not depend upon unknown TXSE port
+       * defaults.
+       */
+
+      const request = [
+
+        "35=D",
+
+        `60=${timestamp}`,
+
+        "40=2",
+
+        `11=${clOrdId}`,
+
+        "55=PARC",
+
+        "54=1",
+
+        "114=N",
+
+        "44=25.00",
+
+        "38=100",
+
+        "59=0",
+
+        "9005=N",
+
+        "528=A",
+
+        "109=PARC",
+
+        "9004=P1",
+
+        "8001=0",
+
+        "2964=1",
+
+        "8000=0"
+
+      ].join("|") + "|";
+
+
+      /*
+       * Exchange → Member
+       *
+       * ExecutionReportNew:
+       *
+       * MsgType    = 8
+       * ExecType   = NEW (0)
+       * OrdStatus  = NEW (0)
+       */
+
+      const response = [
+
+        "35=8",
+
+        `60=${fixTimestamp()}`,
+
+        "150=0",
+
+        "39=0",
+
+        "40=2",
+
+        `11=${clOrdId}`,
+
+        `37=${fixOrderId}`,
+
+        `17=${fixExecId}`,
+
+        "55=PARC",
+
+        "54=1",
+
+        "114=N",
+
+        "44=25.00",
+
+        "38=100",
+
+        "59=0",
+
+        "9005=N",
+
+        "528=A",
+
+        "109=PARC",
+
+        "9004=P1",
+
+        "8001=0",
+
+        "2964=1",
+
+        "8000=0",
+
+        "151=100",
+
+        "14=0"
+
+      ].join("|") + "|";
+
+
+      logMessage(`
+        <span class="rec-info">
+          [MEMBER → EXCHANGE]
+          [FIX APP]
+          [NewLimitOrderSingle]
+        </span>
+
+        <br>
+
+        <span class="wire">
+          ${request}
+        </span>
+      `);
+
+
+      logMessage(`
+        <span class="rec-ok">
+          [EXCHANGE → MEMBER]
+          [FIX APP]
+          [ExecutionReportNew]
+        </span>
+
+        <span class="rec-dim">
+          application-field view
+        </span>
+
+        <br>
+
+        <span class="wire">
+          ${response}
+        </span>
+      `);
+
+
+      renderTelemetry();
+    }
+
+
+    /* =========================================================
+       FIX REJECTION
+       ========================================================= */
+
+    function emitFIXReject() {
+
+      fixClOrd++;
+
+      fixExecId++;
+
+      fixMessages += 2;
+
+
+      const clOrdId =
+        `PARC${fixClOrd}`;
+
+
+      const request = [
+
+        "35=D",
+
+        `60=${fixTimestamp()}`,
+
+        "40=2",
+
+        `11=${clOrdId}`,
+
+        "55=UNKNOWN",
+
+        "54=1",
+
+        "114=N",
+
+        "44=25.00",
+
+        "38=100",
+
+        "59=0",
+
+        "9005=N",
+
+        "528=A",
+
+        "109=PARC",
+
+        "9004=P1",
+
+        "8001=0",
+
+        "2964=1",
+
+        "8000=0"
+
+      ].join("|") + "|";
+
+
+      /*
+       * ExecutionReportRejected:
+       *
+       * ExecType     = REJECTED (8)
+       * OrdStatus    = REJECTED (8)
+       * OrdRejReason = UNKNOWN_SYMBOL (1)
+       */
+
+      const response = [
+
+        "35=8",
+
+        `60=${fixTimestamp()}`,
+
+        "150=8",
+
+        "39=8",
+
+        "40=2",
+
+        `11=${clOrdId}`,
+
+        `17=${fixExecId}`,
+
+        "54=1",
+
+        "114=N",
+
+        "44=25.00",
+
+        "38=100",
+
+        "59=0",
+
+        "9005=N",
+
+        "528=A",
+
+        "151=0",
+
+        "14=0",
+
+        "103=1"
+
+      ].join("|") + "|";
+
+
+      logMessage(`
+        <span class="rec-info">
+          [MEMBER → EXCHANGE]
+          [FIX APP]
+          [NewLimitOrderSingle]
+        </span>
+
+        <br>
+
+        <span class="wire">
+          ${request}
+        </span>
+      `);
+
+
+      logMessage(`
+        <span class="rec-drop">
+          [EXCHANGE → MEMBER]
+          [FIX APP]
+          [ExecutionReportRejected]
+        </span>
+
+        <span class="rec-dim">
+          OrdRejReason=1 / UNKNOWN_SYMBOL
+        </span>
+
+        <br>
+
+        <span class="wire">
+          ${response}
+        </span>
+      `);
+
+
+      renderTelemetry();
+    }
+
+
+    /* =========================================================
+       FIX SESSION CONFORMANCE BOUNDARY
+       ========================================================= */
+
+    function explainFIXSessionGap() {
+
+      logMessage(`
+
+        <span class="rec-warn">
+          [CONFORMANCE BOUNDARY]
+          [FIX SESSION]
+        </span>
+
+        Sequence-number management, heartbeat behavior,
+        resend processing, message framing, standard header/trailer
+        fields, connection monitoring, termination, and session
+        validation belong to the separate TXSE FIX Session Protocol.
+
+        This simulator will not fabricate a
+        "TXSE-conformant" session message until that specification
+        is loaded.
+
+      `);
+    }
+
+
+    /* =========================================================
+       HEX UTILITY
+       ========================================================= */
+
+    function toHex(buffer) {
+
+      return Array
+        .from(
+          new Uint8Array(buffer)
+        )
+        .map(
+          byte =>
+            byte
+              .toString(16)
+              .padStart(2, "0")
+              .toUpperCase()
+        )
+        .join(" ");
+    }
+
+
+    /* =========================================================
+       SEED PRICE ENCODING
+       ========================================================= */
+
+    function scaledPrice(price) {
+
+      /*
+       * TXSE SEED prices use an implied scale
+       * of 100,000,000.
+       */
+
+      return BigInt(
+        Math.round(
+          price * 100000000
+        )
+      );
+    }
+
+
+    /* =========================================================
+       SEED LIMIT ORDER BITFIELD
+       ========================================================= */
+
+    function seedLimitBitFields({
+      side = 0,
+      tif = 4,
+      capacity = 1,
+      isLocateRequired = false,
+      isIso = false,
+      isHidden = false,
+      isPostOnly = false,
+      cancelAtEntryIfCrossed = false
+    } = {}) {
+
+      let bits = 0;
+
+
+      /*
+       * bits 0-2
+       * Side
+       *
+       * 0 = BUY
+       */
+
+      bits |=
+        (side & 0x7);
+
+
+      /*
+       * bit 3
+       * Locate required
+       */
+
+      bits |=
+        (isLocateRequired ? 1 : 0) << 3;
+
+
+      /*
+       * bits 4-7
+       * TimeInForce
+       *
+       * 4 = DAY
+       */
+
+      bits |=
+        (tif & 0xF) << 4;
+
+
+      /*
+       * bits 8-10
+       * OrderCapacity
+       *
+       * 1 = AGENCY
+       */
+
+      bits |=
+        (capacity & 0x7) << 8;
+
+
+      /*
+       * bit 11
+       * ISO
+       */
+
+      bits |=
+        (isIso ? 1 : 0) << 11;
+
+
+      /*
+       * bit 12
+       * Hidden
+       */
+
+      bits |=
+        (isHidden ? 1 : 0) << 12;
+
+
+      /*
+       * bit 13
+       * Post Only
+       */
+
+      bits |=
+        (isPostOnly ? 1 : 0) << 13;
+
+
+      /*
+       * bit 14
+       * Cancel at entry if crossed
+       */
+
+      bits |=
+        (cancelAtEntryIfCrossed ? 1 : 0) << 14;
+
+
+      return bits;
+    }
+
+
+    /* =========================================================
+       BUILD SEED LIMIT ORDER
+       ========================================================= */
+
+    function buildSEEDLimitOrder({
+      clOrdId,
+      qty = 100,
+      symbolId = 1,
+      price = 25.00
+    } = {}) {
+
+      /*
+       * TXSE SEED LimitOrder base payload
+       *
+       * Offset  Size
+       * 0       1    messageType
+       * 1       4    presenceBits
+       * 5       8    clOrdId
+       * 13      4    orderQty
+       * 17      4    limitOrderBitFields
+       * 21      2    symbolId
+       * 23      8    price
+       *
+       * Total = 31 bytes
+       */
+
+      const buffer =
+        new ArrayBuffer(31);
+
+
+      const view =
+        new DataView(buffer);
+
+
+      const bitFields =
+        seedLimitBitFields();
+
+
+      /*
+       * 'L' / 0x4C
+       */
+
+      view.setUint8(
+        0,
+        0x4C
+      );
+
+
+      /*
+       * No optional fields
+       */
+
+      view.setInt32(
+        1,
+        0,
+        true
+      );
+
+
+      /*
+       * Client order ID
+       */
+
+      view.setBigInt64(
+        5,
+        clOrdId,
+        true
+      );
+
+
+      /*
+       * Quantity
+       */
+
+      view.setInt32(
+        13,
+        qty,
+        true
+      );
+
+
+      /*
+       * Order bitfield
+       */
+
+      view.setInt32(
+        17,
+        bitFields,
+        true
+      );
+
+
+      /*
+       * Simulator fixture symbolId
+       */
+
+      view.setInt16(
+        21,
+        symbolId,
+        true
+      );
+
+
+      /*
+       * Scaled price
+       */
+
+      view.setBigInt64(
+        23,
+        scaledPrice(price),
+        true
+      );
+
+
+      return {
+        buffer,
+        bitFields
+      };
+    }
+
+
+    /* =========================================================
+       BUILD SEED LIMIT ORDER ACCEPTED
+       ========================================================= */
+
+    function buildSEEDLimitOrderAccepted({
+      clOrdId,
+      orderId,
+      qty = 100,
+      symbolId = 1,
+      price = 25.00
+    } = {}) {
+
+      /*
+       * Base payload = 47 bytes.
+       */
+
+      const buffer =
+        new ArrayBuffer(47);
+
+
+      const view =
+        new DataView(buffer);
+
+
+      const bitFields =
+        seedLimitBitFields();
+
+
+      /*
+       * Browser timestamps have millisecond precision.
+       * Convert that simulator timestamp to the nanosecond unit
+       * required by the SEED field representation.
+       *
+       * This is NOT claiming nanosecond clock precision.
+       */
+
+      const transactTimeNs =
+        BigInt(Date.now()) *
+        1000000n;
+
+
+      /*
+       * messageType:
+       * 'I' / 0x49
+       */
+
+      view.setUint8(
+        0,
+        0x49
+      );
+
+
+      /*
+       * presenceBits:
+       * no optional fields
+       */
+
+      view.setInt32(
+        1,
+        0,
+        true
+      );
+
+
+      /*
+       * transactTime
+       */
+
+      view.setBigInt64(
+        5,
+        transactTimeNs,
+        true
+      );
+
+
+      /*
+       * exchange orderId
+       */
+
+      view.setBigInt64(
+        13,
+        orderId,
+        true
+      );
+
+
+      /*
+       * clOrdId
+       */
+
+      view.setBigInt64(
+        21,
+        clOrdId,
+        true
+      );
+
+
+      /*
+       * orderQty
+       */
+
+      view.setInt32(
+        29,
+        qty,
+        true
+      );
+
+
+      /*
+       * limitOrderBitFields
+       */
+
+      view.setInt32(
+        33,
+        bitFields,
+        true
+      );
+
+
+      /*
+       * symbolId
+       */
+
+      view.setInt16(
+        37,
+        symbolId,
+        true
+      );
+
+
+      /*
+       * price
+       */
+
+      view.setBigInt64(
+        39,
+        scaledPrice(price),
+        true
+      );
+
+
+      return {
+        buffer,
+        transactTimeNs,
+        bitFields
+      };
+    }
+
+
+    /* =========================================================
+       EMIT ONE SEED LIMIT ORDER
+       ========================================================= */
+
+    function emitSEEDLimitOrder() {
+
+      seedClOrd += 1n;
+
+      seedOrderId += 1n;
+
+      seedMessages += 2;
+
+
+      const request =
+        buildSEEDLimitOrder({
+          clOrdId: seedClOrd
+        });
+
+
+      const response =
+        buildSEEDLimitOrderAccepted({
+          clOrdId: seedClOrd,
+          orderId: seedOrderId
+        });
+
+
+      logMessage(`
+
+        <span class="rec-seed">
+
+          [MEMBER → EXCHANGE]
+          [SEED]
+          [LimitOrder 'L'/0x4C]
+
+        </span>
+
+        <br>
+
+        <span class="wire">
+          ${toHex(request.buffer)}
+        </span>
+
+        <br>
+
+        <span class="rec-dim">
+
+          DECODED:
+
+          messageType='L'
+
+          | presenceBits=0x00000000
+
+          | clOrdId=${seedClOrd}
+
+          | orderQty=100
+
+          | limitOrderBitFields=
+          0x${request.bitFields
+            .toString(16)
+            .toUpperCase()
+            .padStart(8, "0")}
+
+          | symbolId=1
+
+          | price=25.00000000
+
+        </span>
+
+      `);
+
+
+      logMessage(`
+
+        <span class="rec-ok">
+
+          [EXCHANGE → MEMBER]
+          [SEED]
+          [LimitOrderAccepted 'I'/0x49]
+
+        </span>
+
+        <br>
+
+        <span class="wire">
+          ${toHex(response.buffer)}
+        </span>
+
+        <br>
+
+        <span class="rec-dim">
+
+          DECODED:
+
+          messageType='I'
+
+          | presenceBits=0x00000000
+
+          | transactTime=
+          ${response.transactTimeNs}ns
+
+          | orderId=${seedOrderId}
+
+          | clOrdId=${seedClOrd}
+
+          | orderQty=100
+
+          | limitOrderBitFields=
+          0x${response.bitFields
+            .toString(16)
+            .toUpperCase()
+            .padStart(8, "0")}
+
+          | symbolId=1
+
+          | price=25.00000000
+
+        </span>
+
+      `);
+
+
+      renderTelemetry();
+    }
+
+
+    /* =========================================================
+       SEED BURST
+       ========================================================= */
+
+    function emitSEEDBurst() {
+
+      logMessage(`
+
+        <span class="rec-info">
+          [SEED BURST]
+        </span>
+
+        Encoding 10 independent
+        31-byte LimitOrder payloads...
+
+      `);
+
+
+      for (
+        let i = 0;
+        i < 10;
+        i++
+      ) {
+
+        seedClOrd += 1n;
+
+        seedMessages += 1;
+
+
+        const request =
+          buildSEEDLimitOrder({
+
+            clOrdId:
+              seedClOrd,
+
+            price:
+              25 + i / 100
+
+          });
+
+
+        logMessage(`
+
+          <span class="rec-seed">
+
+            [SEED 'L']
+            [clOrdId=${seedClOrd}]
+
+          </span>
+
+          <span class="wire">
+            ${toHex(request.buffer)}
+          </span>
+
+        `);
+      }
+
+
+      renderTelemetry();
+    }
+
+
+    /* =========================================================
+       RAKE ROLE
+       ========================================================= */
+
+    function showRAKERole() {
+
+      rakeScenarioCount++;
+
+
+      logMessage(`
+
+        <span class="rec-rake">
+          [RAKE ARCHITECTURE MODEL]
+        </span>
+
+        SEED payload
+
+        →
+
+        RAKE framing/session layer
+
+        →
+
+        TCP socket
+
+        →
+
+        simulated exchange endpoint.
+
+        <span class="rec-dim">
+
+          No RAKE frame bytes are emitted because the complete
+          framing field layout has not yet been loaded.
+
+        </span>
+
+      `);
+
+
+      renderTelemetry();
+    }
+
+
+    /* =========================================================
+       RAKE CONFORMANCE BOUNDARY
+       ========================================================= */
+
+    function showRAKEBoundary() {
+
+      rakeScenarioCount++;
+
+
+      logMessage(`
+
+        <span class="rec-warn">
+          [CONFORMANCE BOUNDARY]
+          [RAKE]
+        </span>
+
+        Public TXSE material confirms RAKE is payload-agnostic
+        and uses TCP/UDP, and SEED delegates framing/session behavior
+        to a higher-level protocol such as RAKE TCP.
+
+        Exact frame headers, sequencing, login/session state,
+        recovery, and socket behavior must come from the RAKE
+        technical specification before this tab can be called
+        wire-compatible.
+
+      `);
+
+
+      renderTelemetry();
+    }
+
+
+    /* =========================================================
+       INITIAL RENDER
+       ========================================================= */
+
+    renderInterface();
+  </script>
+
+</body>
+</html>
