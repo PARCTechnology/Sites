@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PARC Labs | TXSE Protocol Simulation Research</title>
+
+  <title>PARC Labs | Deterministic Stream & Protocol Research</title>
 
   <style>
     * {
@@ -202,13 +203,34 @@
 
 
     /* =========================================================
-       LAB STATUS
+       LAB STATUS / RESEARCH HYPOTHESIS
        ========================================================= */
 
     .lab-status-note {
       background: rgba(56, 189, 248, 0.04);
 
       border-left: 3px solid var(--cyan);
+      border-radius: 4px;
+
+      padding: 12px 14px;
+
+      margin-bottom: 16px;
+
+      color: var(--text-muted);
+
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .lab-status-note strong {
+      color: var(--cyan);
+    }
+
+    .research-hypothesis {
+      background: rgba(168, 85, 247, 0.04);
+
+      border-left: 3px solid var(--purple);
+
       border-radius: 4px;
 
       padding: 12px 14px;
@@ -221,8 +243,8 @@
       line-height: 1.6;
     }
 
-    .lab-status-note strong {
-      color: var(--cyan);
+    .research-hypothesis strong {
+      color: #c084fc;
     }
 
 
@@ -319,6 +341,31 @@
     .coverage-chip.roadmap {
       border-color: rgba(56, 189, 248, 0.45);
       color: #7dd3fc;
+    }
+
+
+    /* =========================================================
+       REFERENCE IMPLEMENTATION DISCLOSURE
+       ========================================================= */
+
+    .reference-note {
+      background: #08101d;
+
+      border: 1px solid var(--border-primary);
+      border-radius: 8px;
+
+      padding: 14px 16px;
+
+      margin-bottom: 28px;
+
+      color: var(--text-muted);
+
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .reference-note strong {
+      color: var(--text-secondary);
     }
 
 
@@ -744,7 +791,7 @@
     >
 
       <a href="https://parctechnology.com">
-        ← Back to Commercial Gateway (PARCTechnology.com)
+        ← Back to PARC Technology
       </a>
 
       <div class="nav-status">
@@ -755,7 +802,7 @@
         ></span>
 
         <span>
-          SPEC-DRIVEN SIMULATION • TXSE PUBLIC SPEC BASELINE
+          SYNTHETIC SIMULATION • PUBLIC-SPEC RESEARCH MODE
         </span>
 
       </div>
@@ -776,16 +823,17 @@
       <h1>PARC Labs</h1>
 
       <div class="subhead">
-        TXSE Protocol Modeling, Order-State Research &amp;
-        Stream Reconciliation
+        Deterministic Protocol Adaptation, Stream Reconciliation
+        &amp; Recovery-State Research
       </div>
 
 
       <p class="lead">
-        PARC Labs is an independently developed simulation environment
-        for studying exchange protocol behavior, binary message encoding,
-        order-state transitions, session framing, and market-data
-        workflows using publicly available technical specifications.
+        PARC Labs is an independently developed applied-systems
+        research environment for studying deterministic protocol
+        transformation, high-volume event processing, sequence
+        recovery, back-pressure, and stream reconciliation across
+        heterogeneous financial-market interfaces.
       </p>
 
 
@@ -797,15 +845,33 @@
 
         <strong>Current Lab Status:</strong>
 
-        This environment is not connected to, sponsored by, or certified
-        by the Texas Stock Exchange. FIX and SEED application-message
-        behavior is modeled from public TXSE specifications.
+        This environment uses synthetic data and publicly available
+        protocol specifications for research and benchmarking.
 
-        RAKE is represented only at the session/framing role level until
-        its complete framing specification is loaded into the simulator.
+        No live exchange, broker-dealer, market-data, clearing,
+        customer, or production systems are connected to this
+        simulator.
 
-        The PARC symbol and simulator identifiers shown below are local
-        laboratory fixtures and do not represent live TXSE instruments.
+        Venue-specific protocols may be modeled as reference
+        implementations, but PARC Labs' core research architecture
+        is designed to remain venue-agnostic.
+
+      </div>
+
+
+      <!-- ====================================================
+           RESEARCH HYPOTHESIS
+           ==================================================== -->
+
+      <div class="research-hypothesis">
+
+        <strong>Research Hypothesis:</strong>
+
+        PARC Labs is investigating whether memory-conscious,
+        software-defined stream processing can provide bounded,
+        repeatable transformation and recovery behavior across
+        heterogeneous high-volume event streams on commodity
+        Linux infrastructure.
 
       </div>
 
@@ -819,13 +885,14 @@
         <article class="research-item">
 
           <h3>
-            01. FIX 5.0 SP2
+            01. Tag-Oriented Order Entry
           </h3>
 
           <p>
-            Order-entry and drop-copy application messages modeled
-            using TXSE-defined FIX tags, message types, enumerations,
-            and exchange-specific fields.
+            Application-message modeling for structured financial
+            workflows, including order entry, acknowledgments,
+            rejections, and execution state using FIX-compatible
+            representations.
           </p>
 
         </article>
@@ -834,13 +901,14 @@
         <article class="research-item">
 
           <h3>
-            02. SEED Binary Order Entry
+            02. Binary Venue Protocols
           </h3>
 
           <p>
-            Little-endian binary payload construction using TXSE
-            field offsets, presence bits, fixed-width integers,
-            bitfields, and scaled prices.
+            Packed binary payload research focused on field offsets,
+            presence maps, fixed-width integers, scaled numeric
+            values, cache-conscious decoding, and zero-copy
+            transformation.
           </p>
 
         </article>
@@ -849,13 +917,13 @@
         <article class="research-item">
 
           <h3>
-            03. RAKE Session &amp; Framing
+            03. Session &amp; Recovery State
           </h3>
 
           <p>
-            Transport/session research for the payload-agnostic
-            TCP/UDP framing layer used with protocols such as SEED
-            and TXSE market-data feeds.
+            Research into framing, sequencing, retransmission,
+            gap isolation, concurrent stream recovery, and
+            non-blocking reconciliation across transport sessions.
           </p>
 
         </article>
@@ -873,28 +941,47 @@
       >
 
         <span class="coverage-chip ready">
-          FIX APP LAYER • MODELED
+          TAGGED APP MODEL • ACTIVE
         </span>
 
         <span class="coverage-chip ready">
-          SEED PAYLOAD • MODELED
+          BINARY PAYLOAD MODEL • ACTIVE
         </span>
 
         <span class="coverage-chip partial">
-          FIX SESSION • SPEC REQUIRED
+          SESSION RECOVERY • RESEARCH
         </span>
 
         <span class="coverage-chip partial">
-          RAKE FRAMING • SPEC REQUIRED
+          BACK-PRESSURE • RESEARCH
         </span>
 
         <span class="coverage-chip roadmap">
-          FEED • ROADMAP
+          MARKET DATA • ROADMAP
         </span>
 
         <span class="coverage-chip roadmap">
-          BALE • ROADMAP
+          MULTI-VENUE • ROADMAP
         </span>
+
+      </div>
+
+
+      <!-- ====================================================
+           REFERENCE IMPLEMENTATION NOTE
+           ==================================================== -->
+
+      <div class="reference-note">
+
+        <strong>Current Reference Implementations:</strong>
+
+        The simulator currently uses FIX-style application messaging
+        and selected publicly documented SEED and RAKE concepts as
+        reference models for exercising PARC Labs' broader protocol
+        adaptation and reconciliation architecture.
+
+        These reference models do not indicate exchange affiliation,
+        certification, production compatibility, or live connectivity.
 
       </div>
 
@@ -914,14 +1001,14 @@
             class="sim-title"
             id="testbed-title"
           >
-            PROTOCOL TESTBED // SPECIFICATION-DRIVEN SIMULATOR
+            PROTOCOL TESTBED // DETERMINISTIC STREAM SIMULATOR
           </span>
 
           <span
             class="active-target"
             id="active-target"
           >
-            SIMULATED ADAPTER: FIX 5.0 SP2 ORDER ENTRY
+            REFERENCE ADAPTER: FIX APPLICATION MODEL
           </span>
 
         </div>
@@ -934,7 +1021,7 @@
         <div
           class="proto-tabs"
           role="tablist"
-          aria-label="Protocol adapters"
+          aria-label="Protocol reference adapters"
         >
 
           <button
@@ -944,7 +1031,7 @@
             aria-selected="true"
             onclick="switchProto('FIX', this)"
           >
-            FIX 5.0 SP2
+            FIX Reference
           </button>
 
 
@@ -955,7 +1042,7 @@
             aria-selected="false"
             onclick="switchProto('SEED', this)"
           >
-            SEED Binary
+            Binary Venue (SEED Ref.)
           </button>
 
 
@@ -966,7 +1053,7 @@
             aria-selected="false"
             onclick="switchProto('RAKE', this)"
           >
-            RAKE Session
+            Session Layer (RAKE Ref.)
           </button>
 
         </div>
@@ -1021,7 +1108,20 @@
               [SIMULATOR INITIALIZED]
             </span>
 
-            Public-spec research mode active.
+            Synthetic research mode active.
+
+          </div>
+
+
+          <div class="terminal-line">
+
+            <span class="rec-dim">
+              [DATA NOTICE]
+            </span>
+
+            All messages, identifiers, symbols, timestamps,
+            responses, and execution states shown below are
+            synthetic laboratory fixtures.
 
           </div>
 
@@ -1032,15 +1132,15 @@
               [FORMAT NOTE]
             </span>
 
-            FIX output below is an application-layer tag/value view;
-            the display character
+            FIX-style output below is an application-layer tag/value
+            view; the display character
 
             <span class="wire">|</span>
 
             stands in for FIX SOH.
 
-            SEED output is shown as raw payload hex plus a decoded
-            field view.
+            Binary reference output is shown as payload hex plus a
+            decoded field view.
 
           </div>
 
@@ -1146,7 +1246,7 @@
             [LOG CLEARED]
           </span>
 
-          Ready for the next specification-driven scenario.
+          Ready for the next synthetic research scenario.
 
         </div>
       `;
@@ -1189,10 +1289,10 @@
 
       logMessage(`
         <span class="rec-info">
-          [ADAPTER SWITCH]
+          [REFERENCE ADAPTER SWITCH]
         </span>
 
-        ${proto} simulator selected.
+        ${proto} reference model selected.
       `);
     }
 
@@ -1246,15 +1346,16 @@
       if (currentProto === "FIX") {
 
         wireNote.innerHTML = `
-          <strong>Display mode:</strong>
-          TXSE FIX application-layer fields.
+          <strong>Reference mode:</strong>
+          FIX-style application-layer fields are shown as a
+          structured tag/value representation.
 
           <span class="wire">|</span>
           is used in place of the non-printing SOH delimiter.
 
-          Session header/trailer fields are intentionally not invented
-          here; those should be added only from the TXSE FIX Session
-          Protocol specification.
+          Session-level behavior is modeled separately so the
+          application layer can be studied without implying
+          production session conformance.
         `;
 
       }
@@ -1262,14 +1363,18 @@
       else if (currentProto === "SEED") {
 
         wireNote.innerHTML = `
-          <strong>Display mode:</strong>
-          SEED payload bytes plus decoded fields.
+          <strong>Reference mode:</strong>
+          Binary payload bytes plus decoded fields.
+
+          This test fixture uses publicly documented SEED concepts
+          as a reference implementation for studying packed binary
+          transformation.
 
           Numeric fields are written little-endian.
 
           Prices use an implied scale of 100,000,000.
 
-          Timestamps are represented as nanoseconds since Unix epoch.
+          Timestamps are represented in nanosecond units.
         `;
 
       }
@@ -1277,13 +1382,14 @@
       else {
 
         wireNote.innerHTML = `
-          <strong>Display mode:</strong>
-          RAKE architecture placeholder.
+          <strong>Reference mode:</strong>
+          Session/framing architecture placeholder.
 
-          The simulator models RAKE's role as the payload-agnostic
-          TCP/UDP session and framing layer, but it does not emit
-          fabricated RAKE frame bytes without the complete framing
-          specification.
+          The simulator models a payload-agnostic TCP/UDP session
+          and framing role using publicly documented RAKE concepts.
+
+          It does not emit fabricated wire-compatible frame bytes
+          where complete framing behavior has not been modeled.
         `;
 
       }
@@ -1299,7 +1405,7 @@
       if (currentProto === "FIX") {
 
         targetLabel.innerText =
-          "SIMULATED ADAPTER: FIX 5.0 SP2 ORDER ENTRY";
+          "REFERENCE ADAPTER: FIX APPLICATION MODEL";
 
 
         controlsDiv.innerHTML = `
@@ -1309,7 +1415,7 @@
             type="button"
             onclick="emitFIXLimitOrder()"
           >
-            + Emit NewLimitOrderSingle
+            + Emit Synthetic Limit Order
           </button>
 
 
@@ -1327,7 +1433,7 @@
             type="button"
             onclick="explainFIXSessionGap()"
           >
-            Session Gap Scope
+            Session Recovery Scope
           </button>
 
 
@@ -1346,7 +1452,7 @@
       else if (currentProto === "SEED") {
 
         targetLabel.innerText =
-          "SIMULATED ADAPTER: SEED BINARY ORDER ENTRY";
+          "REFERENCE ADAPTER: PACKED BINARY ORDER ENTRY";
 
 
         controlsDiv.innerHTML = `
@@ -1356,7 +1462,7 @@
             type="button"
             onclick="emitSEEDLimitOrder()"
           >
-            + Encode LimitOrder ('L')
+            + Encode Synthetic Binary Order
           </button>
 
 
@@ -1365,7 +1471,7 @@
             type="button"
             onclick="emitSEEDBurst()"
           >
-            Encode 10 LimitOrder Payloads
+            Encode 10-Message Burst
           </button>
 
 
@@ -1384,7 +1490,7 @@
       else {
 
         targetLabel.innerText =
-          "SIMULATED LAYER: RAKE TCP/UDP SESSION & FRAMING";
+          "REFERENCE MODEL: SESSION & FRAMING LAYER";
 
 
         controlsDiv.innerHTML = `
@@ -1394,7 +1500,7 @@
             type="button"
             onclick="showRAKERole()"
           >
-            Show SEED → RAKE → TCP Flow
+            Show Payload → Session → TCP Flow
           </button>
 
 
@@ -1403,7 +1509,7 @@
             type="button"
             onclick="showRAKEBoundary()"
           >
-            Show Conformance Boundary
+            Show Modeling Boundary
           </button>
 
 
@@ -1431,7 +1537,7 @@
         telemetryDiv.innerHTML =
 
           metric(
-            "Protocol",
+            "Reference",
             "FIX 5.0 SP2",
             "info"
           )
@@ -1440,7 +1546,7 @@
 
           metric(
             "Scope",
-            "APPLICATION",
+            "APP MODEL",
             "good"
           )
 
@@ -1461,15 +1567,15 @@
           +
 
           metric(
-            "Session Framing",
-            "PENDING SPEC",
+            "Session Recovery",
+            "RESEARCH",
             "warn"
           )
 
           +
 
           metric(
-            "TXSE Connection",
+            "Live Connection",
             "NONE"
           );
 
@@ -1481,7 +1587,7 @@
         telemetryDiv.innerHTML =
 
           metric(
-            "Protocol",
+            "Reference",
             "SEED",
             "info"
           )
@@ -1497,7 +1603,7 @@
           +
 
           metric(
-            "LimitOrder",
+            "Order Fixture",
             "0x4C / 'L'"
           )
 
@@ -1518,9 +1624,8 @@
           +
 
           metric(
-            "Transport",
-            "RAKE TCP",
-            "warn"
+            "Live Connection",
+            "NONE"
           );
 
       }
@@ -1531,7 +1636,7 @@
         telemetryDiv.innerHTML =
 
           metric(
-            "Protocol",
+            "Reference",
             "RAKE",
             "info"
           )
@@ -1546,7 +1651,7 @@
           +
 
           metric(
-            "Sockets",
+            "Transport",
             "TCP / UDP"
           )
 
@@ -1568,8 +1673,8 @@
           +
 
           metric(
-            "Spec State",
-            "NEEDS FULL DOC",
+            "Scope",
+            "REFERENCE",
             "warn"
           );
 
@@ -1635,7 +1740,7 @@
 
 
     /* =========================================================
-       FIX NEW LIMIT ORDER
+       FIX REFERENCE LIMIT ORDER
        ========================================================= */
 
     function emitFIXLimitOrder() {
@@ -1658,21 +1763,12 @@
 
 
       /*
-       * Member → Exchange
+       * Synthetic client → simulated venue
        *
-       * Deterministic lab fixture:
+       * Deterministic laboratory fixture only.
        *
-       * Symbol       = PARC
-       * Side         = BUY (1)
-       * Price        = 25.00
-       * Qty          = 100
-       * TIF          = DAY (0)
-       * Capacity     = AGENCY (A)
-       * MPID fixture = PARC
-       *
-       * Optional behavioral fields are explicitly supplied so
-       * the simulator does not depend upon unknown TXSE port
-       * defaults.
+       * These values do not represent a live instrument,
+       * member, exchange session, or customer order.
        */
 
       const request = [
@@ -1715,13 +1811,9 @@
 
 
       /*
-       * Exchange → Member
+       * Synthetic simulated venue → client response.
        *
-       * ExecutionReportNew:
-       *
-       * MsgType    = 8
-       * ExecType   = NEW (0)
-       * OrdStatus  = NEW (0)
+       * Application-field research fixture.
        */
 
       const response = [
@@ -1777,9 +1869,9 @@
 
       logMessage(`
         <span class="rec-info">
-          [MEMBER → EXCHANGE]
-          [FIX APP]
-          [NewLimitOrderSingle]
+          [SYNTHETIC CLIENT → VENUE]
+          [FIX REFERENCE]
+          [LIMIT ORDER]
         </span>
 
         <br>
@@ -1792,13 +1884,13 @@
 
       logMessage(`
         <span class="rec-ok">
-          [EXCHANGE → MEMBER]
-          [FIX APP]
-          [ExecutionReportNew]
+          [SIMULATED VENUE → CLIENT]
+          [FIX REFERENCE]
+          [ORDER ACCEPTED]
         </span>
 
         <span class="rec-dim">
-          application-field view
+          synthetic application-field response
         </span>
 
         <br>
@@ -1814,7 +1906,7 @@
 
 
     /* =========================================================
-       FIX REJECTION
+       FIX REFERENCE REJECTION
        ========================================================= */
 
     function emitFIXReject() {
@@ -1869,14 +1961,6 @@
       ].join("|") + "|";
 
 
-      /*
-       * ExecutionReportRejected:
-       *
-       * ExecType     = REJECTED (8)
-       * OrdStatus    = REJECTED (8)
-       * OrdRejReason = UNKNOWN_SYMBOL (1)
-       */
-
       const response = [
 
         "35=8",
@@ -1918,9 +2002,9 @@
 
       logMessage(`
         <span class="rec-info">
-          [MEMBER → EXCHANGE]
-          [FIX APP]
-          [NewLimitOrderSingle]
+          [SYNTHETIC CLIENT → VENUE]
+          [FIX REFERENCE]
+          [LIMIT ORDER]
         </span>
 
         <br>
@@ -1933,13 +2017,13 @@
 
       logMessage(`
         <span class="rec-drop">
-          [EXCHANGE → MEMBER]
-          [FIX APP]
-          [ExecutionReportRejected]
+          [SIMULATED VENUE → CLIENT]
+          [FIX REFERENCE]
+          [ORDER REJECTED]
         </span>
 
         <span class="rec-dim">
-          OrdRejReason=1 / UNKNOWN_SYMBOL
+          synthetic unknown-symbol scenario
         </span>
 
         <br>
@@ -1955,7 +2039,7 @@
 
 
     /* =========================================================
-       FIX SESSION CONFORMANCE BOUNDARY
+       FIX SESSION / RECOVERY RESEARCH BOUNDARY
        ========================================================= */
 
     function explainFIXSessionGap() {
@@ -1963,18 +2047,19 @@
       logMessage(`
 
         <span class="rec-warn">
-          [CONFORMANCE BOUNDARY]
-          [FIX SESSION]
+          [RESEARCH BOUNDARY]
+          [SESSION RECOVERY]
         </span>
 
         Sequence-number management, heartbeat behavior,
-        resend processing, message framing, standard header/trailer
-        fields, connection monitoring, termination, and session
-        validation belong to the separate TXSE FIX Session Protocol.
+        resend processing, connection monitoring, termination,
+        and session-state validation are modeled independently
+        from the application-message layer.
 
-        This simulator will not fabricate a
-        "TXSE-conformant" session message until that specification
-        is loaded.
+        Future research scenarios will inject synthetic sequence
+        gaps, delayed events, duplicates, and retransmissions to
+        evaluate whether an affected session can recover without
+        globally blocking independent concurrent streams.
 
       `);
     }
@@ -2002,14 +2087,14 @@
 
 
     /* =========================================================
-       SEED PRICE ENCODING
+       BINARY REFERENCE PRICE ENCODING
        ========================================================= */
 
     function scaledPrice(price) {
 
       /*
-       * TXSE SEED prices use an implied scale
-       * of 100,000,000.
+       * Current SEED reference fixture uses an implied
+       * scale of 100,000,000.
        */
 
       return BigInt(
@@ -2021,7 +2106,7 @@
 
 
     /* =========================================================
-       SEED LIMIT ORDER BITFIELD
+       SEED REFERENCE LIMIT ORDER BITFIELD
        ========================================================= */
 
     function seedLimitBitFields({
@@ -2038,79 +2123,33 @@
       let bits = 0;
 
 
-      /*
-       * bits 0-2
-       * Side
-       *
-       * 0 = BUY
-       */
-
       bits |=
         (side & 0x7);
 
-
-      /*
-       * bit 3
-       * Locate required
-       */
 
       bits |=
         (isLocateRequired ? 1 : 0) << 3;
 
 
-      /*
-       * bits 4-7
-       * TimeInForce
-       *
-       * 4 = DAY
-       */
-
       bits |=
         (tif & 0xF) << 4;
 
-
-      /*
-       * bits 8-10
-       * OrderCapacity
-       *
-       * 1 = AGENCY
-       */
 
       bits |=
         (capacity & 0x7) << 8;
 
 
-      /*
-       * bit 11
-       * ISO
-       */
-
       bits |=
         (isIso ? 1 : 0) << 11;
 
-
-      /*
-       * bit 12
-       * Hidden
-       */
 
       bits |=
         (isHidden ? 1 : 0) << 12;
 
 
-      /*
-       * bit 13
-       * Post Only
-       */
-
       bits |=
         (isPostOnly ? 1 : 0) << 13;
 
-
-      /*
-       * bit 14
-       * Cancel at entry if crossed
-       */
 
       bits |=
         (cancelAtEntryIfCrossed ? 1 : 0) << 14;
@@ -2121,7 +2160,7 @@
 
 
     /* =========================================================
-       BUILD SEED LIMIT ORDER
+       BUILD BINARY REFERENCE LIMIT ORDER
        ========================================================= */
 
     function buildSEEDLimitOrder({
@@ -2132,7 +2171,11 @@
     } = {}) {
 
       /*
-       * TXSE SEED LimitOrder base payload
+       * SEED-derived reference payload fixture.
+       *
+       * This implementation is used to study packed binary
+       * decoding and transformation. It is not represented as
+       * production-certified exchange connectivity.
        *
        * Offset  Size
        * 0       1    messageType
@@ -2158,19 +2201,11 @@
         seedLimitBitFields();
 
 
-      /*
-       * 'L' / 0x4C
-       */
-
       view.setUint8(
         0,
         0x4C
       );
 
-
-      /*
-       * No optional fields
-       */
 
       view.setInt32(
         1,
@@ -2179,20 +2214,12 @@
       );
 
 
-      /*
-       * Client order ID
-       */
-
       view.setBigInt64(
         5,
         clOrdId,
         true
       );
 
-
-      /*
-       * Quantity
-       */
 
       view.setInt32(
         13,
@@ -2201,10 +2228,6 @@
       );
 
 
-      /*
-       * Order bitfield
-       */
-
       view.setInt32(
         17,
         bitFields,
@@ -2212,20 +2235,12 @@
       );
 
 
-      /*
-       * Simulator fixture symbolId
-       */
-
       view.setInt16(
         21,
         symbolId,
         true
       );
 
-
-      /*
-       * Scaled price
-       */
 
       view.setBigInt64(
         23,
@@ -2242,7 +2257,7 @@
 
 
     /* =========================================================
-       BUILD SEED LIMIT ORDER ACCEPTED
+       BUILD BINARY REFERENCE ACCEPTED RESPONSE
        ========================================================= */
 
     function buildSEEDLimitOrderAccepted({
@@ -2252,10 +2267,6 @@
       symbolId = 1,
       price = 25.00
     } = {}) {
-
-      /*
-       * Base payload = 47 bytes.
-       */
 
       const buffer =
         new ArrayBuffer(47);
@@ -2270,11 +2281,12 @@
 
 
       /*
-       * Browser timestamps have millisecond precision.
-       * Convert that simulator timestamp to the nanosecond unit
-       * required by the SEED field representation.
+       * Browser clock precision is milliseconds.
        *
-       * This is NOT claiming nanosecond clock precision.
+       * The value is converted into nanosecond units for the
+       * synthetic reference field representation.
+       *
+       * This does not claim nanosecond source-clock precision.
        */
 
       const transactTimeNs =
@@ -2282,21 +2294,11 @@
         1000000n;
 
 
-      /*
-       * messageType:
-       * 'I' / 0x49
-       */
-
       view.setUint8(
         0,
         0x49
       );
 
-
-      /*
-       * presenceBits:
-       * no optional fields
-       */
 
       view.setInt32(
         1,
@@ -2305,20 +2307,12 @@
       );
 
 
-      /*
-       * transactTime
-       */
-
       view.setBigInt64(
         5,
         transactTimeNs,
         true
       );
 
-
-      /*
-       * exchange orderId
-       */
 
       view.setBigInt64(
         13,
@@ -2327,20 +2321,12 @@
       );
 
 
-      /*
-       * clOrdId
-       */
-
       view.setBigInt64(
         21,
         clOrdId,
         true
       );
 
-
-      /*
-       * orderQty
-       */
 
       view.setInt32(
         29,
@@ -2349,10 +2335,6 @@
       );
 
 
-      /*
-       * limitOrderBitFields
-       */
-
       view.setInt32(
         33,
         bitFields,
@@ -2360,20 +2342,12 @@
       );
 
 
-      /*
-       * symbolId
-       */
-
       view.setInt16(
         37,
         symbolId,
         true
       );
 
-
-      /*
-       * price
-       */
 
       view.setBigInt64(
         39,
@@ -2391,7 +2365,7 @@
 
 
     /* =========================================================
-       EMIT ONE SEED LIMIT ORDER
+       EMIT ONE BINARY REFERENCE LIMIT ORDER
        ========================================================= */
 
     function emitSEEDLimitOrder() {
@@ -2420,9 +2394,9 @@
 
         <span class="rec-seed">
 
-          [MEMBER → EXCHANGE]
-          [SEED]
-          [LimitOrder 'L'/0x4C]
+          [SYNTHETIC CLIENT → VENUE]
+          [BINARY REFERENCE]
+          [LIMIT ORDER]
 
         </span>
 
@@ -2465,9 +2439,9 @@
 
         <span class="rec-ok">
 
-          [EXCHANGE → MEMBER]
-          [SEED]
-          [LimitOrderAccepted 'I'/0x49]
+          [SIMULATED VENUE → CLIENT]
+          [BINARY REFERENCE]
+          [ORDER ACCEPTED]
 
         </span>
 
@@ -2516,7 +2490,7 @@
 
 
     /* =========================================================
-       SEED BURST
+       BINARY BURST
        ========================================================= */
 
     function emitSEEDBurst() {
@@ -2524,11 +2498,11 @@
       logMessage(`
 
         <span class="rec-info">
-          [SEED BURST]
+          [SYNTHETIC BURST TEST]
         </span>
 
         Encoding 10 independent
-        31-byte LimitOrder payloads...
+        31-byte binary order payloads...
 
       `);
 
@@ -2560,7 +2534,7 @@
 
           <span class="rec-seed">
 
-            [SEED 'L']
+            [BINARY ORDER]
             [clOrdId=${seedClOrd}]
 
           </span>
@@ -2578,7 +2552,7 @@
 
 
     /* =========================================================
-       RAKE ROLE
+       SESSION / FRAMING REFERENCE ROLE
        ========================================================= */
 
     function showRAKERole() {
@@ -2589,14 +2563,14 @@
       logMessage(`
 
         <span class="rec-rake">
-          [RAKE ARCHITECTURE MODEL]
+          [SESSION ARCHITECTURE MODEL]
         </span>
 
-        SEED payload
+        Binary application payload
 
         →
 
-        RAKE framing/session layer
+        session / framing layer
 
         →
 
@@ -2604,12 +2578,13 @@
 
         →
 
-        simulated exchange endpoint.
+        simulated venue endpoint.
 
         <span class="rec-dim">
 
-          No RAKE frame bytes are emitted because the complete
-          framing field layout has not yet been loaded.
+          The current reference model uses publicly documented
+          RAKE concepts to illustrate separation between
+          application payloads and transport/session behavior.
 
         </span>
 
@@ -2621,7 +2596,7 @@
 
 
     /* =========================================================
-       RAKE CONFORMANCE BOUNDARY
+       SESSION MODELING BOUNDARY
        ========================================================= */
 
     function showRAKEBoundary() {
@@ -2632,18 +2607,18 @@
       logMessage(`
 
         <span class="rec-warn">
-          [CONFORMANCE BOUNDARY]
-          [RAKE]
+          [MODELING BOUNDARY]
+          [SESSION / FRAMING]
         </span>
 
-        Public TXSE material confirms RAKE is payload-agnostic
-        and uses TCP/UDP, and SEED delegates framing/session behavior
-        to a higher-level protocol such as RAKE TCP.
+        The active reference architecture treats application
+        payloads separately from the payload-agnostic session and
+        framing layer.
 
-        Exact frame headers, sequencing, login/session state,
-        recovery, and socket behavior must come from the RAKE
-        technical specification before this tab can be called
-        wire-compatible.
+        Exact frame headers, sequencing rules, login state,
+        recovery behavior, and socket semantics must be explicitly
+        implemented from the applicable technical specification
+        before a reference adapter can be considered wire-compatible.
 
       `);
 
