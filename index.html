@@ -2098,6 +2098,8 @@ MSFT Order-B: pending
     ];
 
 
+    let causalTimer = null;
+
     let causalStep = 0;
 
     let gapOpen = false;
@@ -2528,7 +2530,7 @@ MSFT Order-B: pending
       resetCausalExperiment();
 
 
-      const timer =
+      causalTimer =
         setInterval(() => {
 
           if (
@@ -2542,7 +2544,8 @@ MSFT Order-B: pending
 
           else {
 
-            clearInterval(timer);
+            clearInterval(causalTimer);
+            causalTimer = null;
 
           }
 
@@ -2551,6 +2554,11 @@ MSFT Order-B: pending
 
 
     function resetCausalExperiment() {
+
+      if (causalTimer) {
+        clearInterval(causalTimer);
+        causalTimer = null;
+      }
 
       causalStep = 0;
 
