@@ -711,6 +711,65 @@
     }
 
     /* =========================================================
+       RANDOMIZED CAUSAL SCENARIO CONTROLS
+       ========================================================= */
+
+    .scenario-toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      margin: 0 0 14px;
+    }
+
+    .scenario-select {
+      width: 100%;
+      min-height: 38px;
+      background: #070d19;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-secondary);
+      border-radius: 5px;
+      padding: 8px 10px;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+      font-size: 11px;
+    }
+
+    .scenario-select:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
+    }
+
+    .scenario-note {
+      color: var(--text-dim);
+      font-size: 10px;
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .state-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 6px;
+      font-size: 10px;
+    }
+
+    .state-table td {
+      padding: 2px 0;
+      vertical-align: top;
+      color: var(--text-muted);
+    }
+
+    .state-table td:first-child {
+      width: 45%;
+      color: var(--text-dim);
+    }
+
+    /* =========================================================
        FOOTER
        ========================================================= */
 
@@ -793,7 +852,8 @@
       }
 
       .telemetry,
-      .lane-grid {
+      .lane-grid,
+      .scenario-toolbar {
         grid-template-columns: 1fr;
       }
 
@@ -1109,7 +1169,9 @@
           reconcile the quarantined branch after missing state is
           restored.
 
-          The first experiment tests correctness rather than claiming
+          Experiment 001 tests correctness across five predefined,
+          auditable synthetic variants. Randomization selects a test
+          fixture; it does not change the dependency rules or imply
           production latency or scalability.
 
         </div>
@@ -1129,148 +1191,88 @@
             CAUSAL RECOVERY TESTBED // EXPERIMENT 001
           </span>
 
-          <span class="active-target">
-            ORTHOGONAL STATE-LANE RECOVERY
+          <span
+            class="active-target"
+            id="scenario-target"
+          >
+            RANDOMIZED ORTHOGONAL STATE-LANE RECOVERY
           </span>
 
         </div>
 
 
-        <div class="wire-note">
+        <div class="scenario-toolbar">
 
-          <strong>Experiment:</strong>
+          <select
+            class="scenario-select"
+            id="scenario-select"
+            aria-label="Causal recovery scenario"
+            onchange="selectCausalScenario(this.value)"
+          ></select>
 
-          Sequence 1002 is intentionally dropped.
+          <button
+            class="sim-btn"
+            type="button"
+            onclick="randomizeCausalScenario()"
+          >
+            Randomize Scenario
+          </button>
 
-          Event 1003 belongs to an independent MSFT / Order-B state
-          lane and may commit if independence is proven.
+        </div>
 
-          Event 1004 belongs to the same AAPL / Order-A state domain
-          as the missing event and must remain quarantined until
-          recovery completes.
-
+        <div class="scenario-note">
+          Randomization selects from five fixed synthetic fixtures so
+          each run remains inspectable and reproducible by scenario ID.
         </div>
 
 
-        <div class="event-sequence">
-
-          <div class="event-card">
-            <span class="event-seq">SEQ 1000</span>
-            <span class="event-main">
-              AAPL<br>
-              Order-A<br>
-              NEW
-            </span>
-          </div>
-
-          <div class="event-card">
-            <span class="event-seq">SEQ 1001</span>
-            <span class="event-main">
-              MSFT<br>
-              Order-B<br>
-              NEW
-            </span>
-          </div>
-
-          <div class="event-card gap">
-            <span class="event-seq">SEQ 1002</span>
-            <span class="event-main">
-              AAPL<br>
-              Order-A<br>
-              FILL<br>
-              <strong>DROPPED</strong>
-            </span>
-          </div>
-
-          <div class="event-card independent">
-            <span class="event-seq">SEQ 1003</span>
-            <span class="event-main">
-              MSFT<br>
-              Order-B<br>
-              FILL<br>
-              INDEPENDENT
-            </span>
-          </div>
-
-          <div class="event-card dependent">
-            <span class="event-seq">SEQ 1004</span>
-            <span class="event-main">
-              AAPL<br>
-              Order-A<br>
-              CANCEL<br>
-              DEPENDENT
-            </span>
-          </div>
-
+        <div class="wire-note" id="scenario-description">
+          Scenario loading...
         </div>
+
+
+        <div
+          class="event-sequence"
+          id="event-sequence"
+          aria-label="Synthetic causal event sequence"
+        ></div>
 
 
         <div class="telemetry" id="causal-telemetry">
 
           <div class="metric">
-            <span class="metric-label">
-              Experiment
-            </span>
-            <span class="metric-value info">
-              001
-            </span>
+            <span class="metric-label">Scenario</span>
+            <span class="metric-value info" id="scenario-id">S1</span>
           </div>
 
           <div class="metric">
-            <span class="metric-label">
-              Gap
-            </span>
-            <span class="metric-value warn">
-              SEQ 1002
-            </span>
+            <span class="metric-label">Gap</span>
+            <span class="metric-value warn" id="gap-seq">PENDING</span>
           </div>
 
           <div class="metric">
-            <span class="metric-label">
-              Status
-            </span>
-            <span
-              class="metric-value"
-              id="causal-status"
-            >
-              READY
-            </span>
+            <span class="metric-label">Status</span>
+            <span class="metric-value" id="causal-status">READY</span>
           </div>
 
           <div class="metric">
-            <span class="metric-label">
-              Independent Commits
-            </span>
-            <span
-              class="metric-value"
-              id="independent-count"
-            >
-              0
-            </span>
+            <span class="metric-label">Independent Commits</span>
+            <span class="metric-value" id="independent-count">0</span>
           </div>
 
           <div class="metric">
-            <span class="metric-label">
-              Quarantined
-            </span>
-            <span
-              class="metric-value"
-              id="quarantine-count"
-            >
-              0
-            </span>
+            <span class="metric-label">Active Quarantine</span>
+            <span class="metric-value" id="quarantine-count">0</span>
           </div>
 
           <div class="metric">
-            <span class="metric-label">
-              Oracle Match
-            </span>
-            <span
-              class="metric-value"
-              id="oracle-match"
-            >
-              PENDING
-            </span>
+            <span class="metric-label">Total Quarantined</span>
+            <span class="metric-value" id="total-quarantine-count">0</span>
+          </div>
+
+          <div class="metric">
+            <span class="metric-label">Oracle Match</span>
+            <span class="metric-value" id="oracle-match">PENDING</span>
           </div>
 
         </div>
@@ -1278,41 +1280,14 @@
 
         <div class="lane-grid">
 
-          <div
-            class="lane"
-            id="lane-a"
-          >
-
-            <h4>
-              Lane A — AAPL / Order-A
-            </h4>
-
-            <div
-              class="lane-state"
-              id="lane-a-state"
-            >
-              READY
-            </div>
-
+          <div class="lane" id="lane-a">
+            <h4 id="lane-a-title">Lane A</h4>
+            <div class="lane-state" id="lane-a-state">READY</div>
           </div>
 
-
-          <div
-            class="lane"
-            id="lane-b"
-          >
-
-            <h4>
-              Lane B — MSFT / Order-B
-            </h4>
-
-            <div
-              class="lane-state"
-              id="lane-b-state"
-            >
-              READY
-            </div>
-
+          <div class="lane" id="lane-b">
+            <h4 id="lane-b-title">Lane B</h4>
+            <div class="lane-state" id="lane-b-state">READY</div>
           </div>
 
         </div>
@@ -1325,15 +1300,23 @@
             type="button"
             onclick="stepCausalExperiment()"
           >
-            Step Experiment
+            Step Current Scenario
           </button>
 
           <button
             class="sim-btn success"
             type="button"
-            onclick="runCausalExperiment()"
+            onclick="runCausalExperiment(false)"
           >
-            Run Full Experiment
+            Run Current Scenario
+          </button>
+
+          <button
+            class="sim-btn success"
+            type="button"
+            onclick="runCausalExperiment(true)"
+          >
+            Run Random Scenario
           </button>
 
           <button
@@ -1347,10 +1330,7 @@
         </div>
 
 
-        <div
-          class="result-banner"
-          id="causal-result"
-        >
+        <div class="result-banner" id="causal-result">
           Experiment not yet executed.
         </div>
 
@@ -1361,55 +1341,23 @@
           role="log"
           aria-live="polite"
         >
-
           <div class="terminal-line">
-            <span class="rec-info">
-              [CAUSAL TESTBED READY]
-            </span>
-
+            <span class="rec-info">[CAUSAL TESTBED READY]</span>
             Awaiting Experiment 001.
           </div>
-
-          <div class="terminal-line">
-            <span class="rec-dim">
-              [CORRECTNESS BASELINE]
-            </span>
-
-            Final PARC state will be compared against a strict
-            total-order oracle processing
-            1000 → 1001 → 1002 → 1003 → 1004.
-          </div>
-
         </div>
 
 
         <div class="comparison-grid">
 
           <div class="comparison-card">
-
-            <h4>
-              Strict Total-Order Oracle
-            </h4>
-
-            <pre id="oracle-state">
-AAPL Order-A: pending
-MSFT Order-B: pending
-            </pre>
-
+            <h4>Strict Total-Order Oracle</h4>
+            <pre id="oracle-state">Scenario not yet executed.</pre>
           </div>
 
-
           <div class="comparison-card">
-
-            <h4>
-              PARC Experimental State
-            </h4>
-
-            <pre id="parc-state">
-AAPL Order-A: pending
-MSFT Order-B: pending
-            </pre>
-
+            <h4>PARC Experimental State</h4>
+            <pre id="parc-state">Scenario not yet executed.</pre>
           </div>
 
         </div>
@@ -2038,6 +1986,9 @@ MSFT Order-B: pending
     const quarantineCount =
       document.getElementById("quarantine-count");
 
+    const totalQuarantineCount =
+      document.getElementById("total-quarantine-count");
+
     const oracleMatch =
       document.getElementById("oracle-match");
 
@@ -2046,6 +1997,12 @@ MSFT Order-B: pending
 
     const laneBState =
       document.getElementById("lane-b-state");
+
+    const laneATitle =
+      document.getElementById("lane-a-title");
+
+    const laneBTitle =
+      document.getElementById("lane-b-title");
 
     const laneA =
       document.getElementById("lane-a");
@@ -2062,131 +2019,427 @@ MSFT Order-B: pending
     const parcStateView =
       document.getElementById("parc-state");
 
+    const scenarioSelect =
+      document.getElementById("scenario-select");
 
-    const causalEvents = [
+    const scenarioDescription =
+      document.getElementById("scenario-description");
+
+    const scenarioTarget =
+      document.getElementById("scenario-target");
+
+    const scenarioIdView =
+      document.getElementById("scenario-id");
+
+    const gapSeqView =
+      document.getElementById("gap-seq");
+
+    const eventSequenceView =
+      document.getElementById("event-sequence");
+
+
+    /* ---------------------------------------------------------
+       PREDEFINED, AUDITABLE SCENARIO FIXTURES
+       --------------------------------------------------------- */
+
+    const causalScenarios = [
       {
-        seq: 1000,
-        symbol: "AAPL",
-        order: "Order-A",
-        action: "NEW"
+        id: "S1",
+        name: "Cross-Symbol Fill + Cancel",
+        description:
+          "A partial fill is missing on AAPL / Order-A. " +
+          "A full fill on MSFT / Order-B is independent and may " +
+          "commit. A later AAPL cancel is dependent and must wait.",
+        laneA: { symbol: "AAPL", order: "Order-A", qty: 100 },
+        laneB: { symbol: "MSFT", order: "Order-B", qty: 100 },
+        events: [
+          { seq: 1000, symbol: "AAPL", order: "Order-A", action: "NEW", qty: 100 },
+          { seq: 1001, symbol: "MSFT", order: "Order-B", action: "NEW", qty: 100 },
+          { seq: 1002, symbol: "AAPL", order: "Order-A", action: "PARTIAL_FILL", qty: 40, dropped: true },
+          { seq: 1003, symbol: "MSFT", order: "Order-B", action: "FILL", qty: 100 },
+          { seq: 1004, symbol: "AAPL", order: "Order-A", action: "CANCEL" }
+        ]
       },
       {
-        seq: 1001,
-        symbol: "MSFT",
-        order: "Order-B",
-        action: "NEW"
+        id: "S2",
+        name: "Cross-Symbol Partial Fills",
+        description:
+          "A partial fill is missing on NVDA / Order-A. " +
+          "An IBM partial fill is independent and may commit. " +
+          "A later NVDA partial fill is quarantined until recovery.",
+        laneA: { symbol: "NVDA", order: "Order-A", qty: 200 },
+        laneB: { symbol: "IBM", order: "Order-B", qty: 80 },
+        events: [
+          { seq: 2000, symbol: "NVDA", order: "Order-A", action: "NEW", qty: 200 },
+          { seq: 2001, symbol: "IBM", order: "Order-B", action: "NEW", qty: 80 },
+          { seq: 2002, symbol: "NVDA", order: "Order-A", action: "PARTIAL_FILL", qty: 75, dropped: true },
+          { seq: 2003, symbol: "IBM", order: "Order-B", action: "PARTIAL_FILL", qty: 30 },
+          { seq: 2004, symbol: "NVDA", order: "Order-A", action: "PARTIAL_FILL", qty: 25 }
+        ]
       },
       {
-        seq: 1002,
-        symbol: "AAPL",
-        order: "Order-A",
-        action: "FILL",
-        dropped: true
+        id: "S3",
+        name: "Independent Cancel During Recovery",
+        description:
+          "A partial fill is missing on AMD / Order-A. " +
+          "An ORCL cancel belongs to the independent lane and may " +
+          "commit while AMD recovery remains active.",
+        laneA: { symbol: "AMD", order: "Order-A", qty: 150 },
+        laneB: { symbol: "ORCL", order: "Order-B", qty: 90 },
+        events: [
+          { seq: 3000, symbol: "AMD", order: "Order-A", action: "NEW", qty: 150 },
+          { seq: 3001, symbol: "ORCL", order: "Order-B", action: "NEW", qty: 90 },
+          { seq: 3002, symbol: "AMD", order: "Order-A", action: "PARTIAL_FILL", qty: 50, dropped: true },
+          { seq: 3003, symbol: "ORCL", order: "Order-B", action: "CANCEL" },
+          { seq: 3004, symbol: "AMD", order: "Order-A", action: "CANCEL" }
+        ]
       },
       {
-        seq: 1003,
-        symbol: "MSFT",
-        order: "Order-B",
-        action: "FILL"
+        id: "S4",
+        name: "Independent Partial Fill + Dependent Completion",
+        description:
+          "A partial fill is missing on JPM / Order-A. " +
+          "A BAC partial fill may commit independently. A later JPM " +
+          "fill remains dependent on the missing JPM state.",
+        laneA: { symbol: "JPM", order: "Order-A", qty: 120 },
+        laneB: { symbol: "BAC", order: "Order-B", qty: 120 },
+        events: [
+          { seq: 4000, symbol: "JPM", order: "Order-A", action: "NEW", qty: 120 },
+          { seq: 4001, symbol: "BAC", order: "Order-B", action: "NEW", qty: 120 },
+          { seq: 4002, symbol: "JPM", order: "Order-A", action: "PARTIAL_FILL", qty: 20, dropped: true },
+          { seq: 4003, symbol: "BAC", order: "Order-B", action: "PARTIAL_FILL", qty: 60 },
+          { seq: 4004, symbol: "JPM", order: "Order-A", action: "FILL", qty: 100 }
+        ]
       },
       {
-        seq: 1004,
-        symbol: "AAPL",
-        order: "Order-A",
-        action: "CANCEL"
+        id: "S5",
+        name: "Independent Full Fill + Dependent Partial Fill",
+        description:
+          "A META partial fill is missing. An INTC full fill is " +
+          "independent and may commit. A later META partial fill is " +
+          "quarantined and replayed after the missing event returns.",
+        laneA: { symbol: "META", order: "Order-A", qty: 75 },
+        laneB: { symbol: "INTC", order: "Order-B", qty: 50 },
+        events: [
+          { seq: 5000, symbol: "META", order: "Order-A", action: "NEW", qty: 75 },
+          { seq: 5001, symbol: "INTC", order: "Order-B", action: "NEW", qty: 50 },
+          { seq: 5002, symbol: "META", order: "Order-A", action: "PARTIAL_FILL", qty: 25, dropped: true },
+          { seq: 5003, symbol: "INTC", order: "Order-B", action: "FILL", qty: 50 },
+          { seq: 5004, symbol: "META", order: "Order-A", action: "PARTIAL_FILL", qty: 10 }
+        ]
       }
     ];
 
 
+    let currentScenarioIndex = 0;
+    let currentScenario = causalScenarios[currentScenarioIndex];
+    let causalEvents = currentScenario.events;
+    let missingEvent = causalEvents.find(event => event.dropped);
+
     let causalTimer = null;
-
     let causalStep = 0;
-
     let gapOpen = false;
-
     let independentCommitted = 0;
-
+    let totalQuarantined = 0;
     let quarantined = [];
+    let experimentComplete = false;
+
+    let parcState = {};
+    let oracleState = {};
 
 
-    let parcState = {
-      "AAPL:Order-A": "NONE",
-      "MSFT:Order-B": "NONE"
-    };
-
-
-    let oracleState = {
-      "AAPL:Order-A": "NONE",
-      "MSFT:Order-B": "NONE"
-    };
-
-
-    function causalLog(html) {
-
-      const line =
-        document.createElement("div");
-
-      line.className =
-        "terminal-line";
-
-      line.innerHTML =
-        html;
-
-      causalTerminal.appendChild(line);
-
-      causalTerminal.scrollTop =
-        causalTerminal.scrollHeight;
+    function emptyOrderState() {
+      return {
+        status: "NONE",
+        orderQty: 0,
+        filledQty: 0,
+        leavesQty: 0,
+        canceledQty: 0
+      };
     }
 
 
-    function applyEvent(state, event) {
+    function stateKey(symbol, order) {
+      return `${symbol}:${order}`;
+    }
 
-      const key =
-        `${event.symbol}:${event.order}`;
+
+    function initializeStateForScenario() {
+      const aKey =
+        stateKey(currentScenario.laneA.symbol, currentScenario.laneA.order);
+
+      const bKey =
+        stateKey(currentScenario.laneB.symbol, currentScenario.laneB.order);
+
+      parcState = {
+        [aKey]: emptyOrderState(),
+        [bKey]: emptyOrderState()
+      };
+
+      oracleState = {
+        [aKey]: emptyOrderState(),
+        [bKey]: emptyOrderState()
+      };
+    }
+
+
+    function causalLog(html) {
+      const line = document.createElement("div");
+      line.className = "terminal-line";
+      line.innerHTML = html;
+      causalTerminal.appendChild(line);
+      causalTerminal.scrollTop = causalTerminal.scrollHeight;
+    }
+
+
+    /* ---------------------------------------------------------
+       PARC EXPERIMENTAL STATE MACHINE
+       --------------------------------------------------------- */
+
+    function applyParcEvent(state, event) {
+      const key = stateKey(event.symbol, event.order);
+      const orderState = state[key];
+
+      if (!orderState) {
+        throw new Error(`Unknown PARC state domain: ${key}`);
+      }
 
       if (event.action === "NEW") {
-        state[key] = "OPEN";
+        if (orderState.status !== "NONE") {
+          throw new Error(`Invalid NEW transition for ${key}`);
+        }
+
+        orderState.status = "OPEN";
+        orderState.orderQty = event.qty;
+        orderState.filledQty = 0;
+        orderState.leavesQty = event.qty;
+        orderState.canceledQty = 0;
+        return;
       }
 
-      else if (event.action === "FILL") {
-        state[key] = "FILLED";
+      if (
+        event.action === "PARTIAL_FILL" ||
+        event.action === "FILL"
+      ) {
+        if (
+          orderState.status !== "OPEN" &&
+          orderState.status !== "PARTIALLY_FILLED"
+        ) {
+          throw new Error(`Invalid fill transition for ${key}`);
+        }
+
+        if (
+          !event.qty ||
+          event.qty <= 0 ||
+          event.qty > orderState.leavesQty
+        ) {
+          throw new Error(`Invalid fill quantity for ${key}`);
+        }
+
+        orderState.filledQty += event.qty;
+        orderState.leavesQty -= event.qty;
+
+        orderState.status =
+          orderState.leavesQty === 0
+            ? "FILLED"
+            : "PARTIALLY_FILLED";
+
+        return;
       }
 
-      else if (event.action === "CANCEL") {
-        state[key] = "CANCELLED";
+      if (event.action === "CANCEL") {
+        if (
+          orderState.status !== "OPEN" &&
+          orderState.status !== "PARTIALLY_FILLED"
+        ) {
+          throw new Error(`Invalid CANCEL transition for ${key}`);
+        }
+
+        orderState.canceledQty = orderState.leavesQty;
+        orderState.leavesQty = 0;
+        orderState.status = "CANCELLED";
+        return;
       }
+
+      throw new Error(`Unsupported PARC action: ${event.action}`);
+    }
+
+
+    /* ---------------------------------------------------------
+       INDEPENDENT STRICT TOTAL-ORDER ORACLE
+       --------------------------------------------------------- */
+
+    function applyOracleEvent(state, event) {
+      const key = `${event.symbol}:${event.order}`;
+      const s = state[key];
+
+      if (!s) {
+        throw new Error(`Unknown oracle state domain: ${key}`);
+      }
+
+      switch (event.action) {
+        case "NEW":
+          if (s.status !== "NONE") {
+            throw new Error(`Oracle rejected duplicate NEW for ${key}`);
+          }
+          s.status = "OPEN";
+          s.orderQty = event.qty;
+          s.filledQty = 0;
+          s.leavesQty = event.qty;
+          s.canceledQty = 0;
+          break;
+
+        case "PARTIAL_FILL":
+        case "FILL":
+          if (!["OPEN", "PARTIALLY_FILLED"].includes(s.status)) {
+            throw new Error(`Oracle rejected fill state for ${key}`);
+          }
+          if (!Number.isFinite(event.qty) || event.qty <= 0 || event.qty > s.leavesQty) {
+            throw new Error(`Oracle rejected fill quantity for ${key}`);
+          }
+          s.filledQty = s.filledQty + event.qty;
+          s.leavesQty = s.orderQty - s.filledQty - s.canceledQty;
+          s.status = s.leavesQty === 0 ? "FILLED" : "PARTIALLY_FILLED";
+          break;
+
+        case "CANCEL":
+          if (!["OPEN", "PARTIALLY_FILLED"].includes(s.status)) {
+            throw new Error(`Oracle rejected cancel state for ${key}`);
+          }
+          s.canceledQty = s.leavesQty;
+          s.leavesQty = 0;
+          s.status = "CANCELLED";
+          break;
+
+        default:
+          throw new Error(`Unsupported oracle action: ${event.action}`);
+      }
+    }
+
+
+    function sameStateDomain(event, referenceEvent) {
+      return (
+        event.symbol === referenceEvent.symbol &&
+        event.order === referenceEvent.order
+      );
     }
 
 
     function isIndependentFromGap(event) {
-
       /*
-       * Experiment 001:
+       * Experiment 001 deliberately uses an order-local state model.
+       * There are no account-level, portfolio-level, risk-level,
+       * symbol-wide, or cross-instrument constraints in these fixtures.
        *
-       * Independence is intentionally narrow.
-       *
-       * Only a different symbol + different order domain
-       * is considered independent.
-       *
-       * No account-level, portfolio-level, risk-level,
-       * or cross-instrument coupling exists in this toy model.
+       * The classifier derives the recovery domain from the actual
+       * missing event rather than from hard-coded symbols.
        */
+      return !sameStateDomain(event, missingEvent);
+    }
+
+
+    function formatAction(event) {
+      if (event.action === "PARTIAL_FILL") {
+        return `PARTIAL_FILL (${event.qty})`;
+      }
+
+      if (event.action === "FILL") {
+        return `FILL (${event.qty})`;
+      }
+
+      if (event.action === "NEW") {
+        return `NEW (${event.qty})`;
+      }
+
+      return event.action;
+    }
+
+
+    function renderScenarioFixture() {
+      missingEvent =
+        currentScenario.events.find(event => event.dropped);
+
+      causalEvents = currentScenario.events;
+
+      scenarioIdView.innerText = currentScenario.id;
+      gapSeqView.innerText = `SEQ ${missingEvent.seq}`;
+      scenarioTarget.innerText = currentScenario.name.toUpperCase();
+
+      scenarioDescription.innerHTML = `
+        <strong>${currentScenario.id} — ${currentScenario.name}:</strong>
+        ${currentScenario.description}
+        <br><br>
+        <span class="rec-dim">
+          Independence is evaluated against the state domain derived
+          from missing SEQ ${missingEvent.seq}: ${missingEvent.symbol} /
+          ${missingEvent.order}.
+        </span>
+      `;
+
+      laneATitle.innerText =
+        `Lane A — ${currentScenario.laneA.symbol} / ${currentScenario.laneA.order}`;
+
+      laneBTitle.innerText =
+        `Lane B — ${currentScenario.laneB.symbol} / ${currentScenario.laneB.order}`;
+
+      eventSequenceView.innerHTML =
+        currentScenario.events.map(event => {
+          let className = "event-card";
+          let relation = "PRE-GAP";
+
+          if (event.dropped) {
+            className += " gap";
+            relation = "DROPPED";
+          }
+          else if (event.seq > missingEvent.seq) {
+            if (isIndependentFromGap(event)) {
+              className += " independent";
+              relation = "INDEPENDENT";
+            }
+            else {
+              className += " dependent";
+              relation = "DEPENDENT";
+            }
+          }
+
+          return `
+            <div class="${className}">
+              <span class="event-seq">SEQ ${event.seq}</span>
+              <span class="event-main">
+                ${event.symbol}<br>
+                ${event.order}<br>
+                ${formatAction(event)}<br>
+                <strong>${relation}</strong>
+              </span>
+            </div>
+          `;
+        }).join("");
+    }
+
+
+    function orderStateText(state, lane) {
+      const key = stateKey(lane.symbol, lane.order);
+      const s = state[key];
 
       return (
-        event.symbol !== "AAPL" &&
-        event.order !== "Order-A"
+        `Status: ${s.status}\n` +
+        `Order Qty: ${s.orderQty}\n` +
+        `Filled Qty: ${s.filledQty}\n` +
+        `Leaves Qty: ${s.leavesQty}\n` +
+        `Canceled Qty: ${s.canceledQty}`
       );
     }
 
 
     function updateCausalUI() {
-
       causalStatus.innerText =
-        gapOpen
-          ? "RECOVERY ACTIVE"
-          : causalStep >= causalEvents.length
-            ? "COMPLETE"
-            : "RUNNING";
+        experimentComplete
+          ? "COMPLETE"
+          : gapOpen
+            ? "RECOVERY ACTIVE"
+            : causalStep === 0
+              ? "READY"
+              : "RUNNING";
 
       independentCount.innerText =
         independentCommitted;
@@ -2194,136 +2447,157 @@ MSFT Order-B: pending
       quarantineCount.innerText =
         quarantined.length;
 
+      totalQuarantineCount.innerText =
+        totalQuarantined;
+
+      const aKey =
+        stateKey(currentScenario.laneA.symbol, currentScenario.laneA.order);
+
+      const bKey =
+        stateKey(currentScenario.laneB.symbol, currentScenario.laneB.order);
 
       laneAState.innerText =
-        `Canonical state: ${parcState["AAPL:Order-A"]}` +
-        (
-          gapOpen
-            ? "\nRecovery dependency: OPEN"
-            : ""
-        );
-
+        orderStateText(parcState, currentScenario.laneA) +
+        (gapOpen ? "\nRecovery dependency: OPEN" : "");
 
       laneBState.innerText =
-        `Canonical state: ${parcState["MSFT:Order-B"]}` +
-        (
-          independentCommitted > 0
-            ? "\nIndependent commit observed"
-            : ""
-        );
-
+        orderStateText(parcState, currentScenario.laneB) +
+        (independentCommitted > 0 ? "\nIndependent commit observed" : "");
 
       laneA.classList.toggle(
         "blocked",
-        gapOpen
+        gapOpen && sameStateDomain(missingEvent, {
+          symbol: currentScenario.laneA.symbol,
+          order: currentScenario.laneA.order
+        })
       );
-
 
       laneB.classList.toggle(
         "committed",
         independentCommitted > 0
       );
 
-
       parcStateView.textContent =
-        `AAPL Order-A: ${parcState["AAPL:Order-A"]}\n` +
-        `MSFT Order-B: ${parcState["MSFT:Order-B"]}`;
+        `${currentScenario.laneA.symbol} ${currentScenario.laneA.order}\n` +
+        `${orderStateText(parcState, currentScenario.laneA)}\n\n` +
+        `${currentScenario.laneB.symbol} ${currentScenario.laneB.order}\n` +
+        `${orderStateText(parcState, currentScenario.laneB)}`;
+
+      /* Keep variables referenced so browser diagnostics remain clear. */
+      void aKey;
+      void bKey;
     }
 
 
     function buildOracle() {
-
-      oracleState = {
-        "AAPL:Order-A": "NONE",
-        "MSFT:Order-B": "NONE"
-      };
+      initializeOracleOnly();
 
       causalEvents.forEach(event => {
-        applyEvent(oracleState, event);
+        applyOracleEvent(oracleState, event);
       });
 
       oracleStateView.textContent =
-        `AAPL Order-A: ${oracleState["AAPL:Order-A"]}\n` +
-        `MSFT Order-B: ${oracleState["MSFT:Order-B"]}`;
+        `${currentScenario.laneA.symbol} ${currentScenario.laneA.order}\n` +
+        `${orderStateText(oracleState, currentScenario.laneA)}\n\n` +
+        `${currentScenario.laneB.symbol} ${currentScenario.laneB.order}\n` +
+        `${orderStateText(oracleState, currentScenario.laneB)}`;
+    }
+
+
+    function initializeOracleOnly() {
+      const aKey =
+        stateKey(currentScenario.laneA.symbol, currentScenario.laneA.order);
+
+      const bKey =
+        stateKey(currentScenario.laneB.symbol, currentScenario.laneB.order);
+
+      oracleState = {
+        [aKey]: emptyOrderState(),
+        [bKey]: emptyOrderState()
+      };
+    }
+
+
+    function statesEqual(a, b) {
+      const keysA = Object.keys(a).sort();
+      const keysB = Object.keys(b).sort();
+
+      if (keysA.join("|") !== keysB.join("|")) {
+        return false;
+      }
+
+      return keysA.every(key => {
+        const x = a[key];
+        const y = b[key];
+
+        return (
+          x.status === y.status &&
+          x.orderQty === y.orderQty &&
+          x.filledQty === y.filledQty &&
+          x.leavesQty === y.leavesQty &&
+          x.canceledQty === y.canceledQty
+        );
+      });
     }
 
 
     function stepCausalExperiment() {
-
-      if (causalStep >= causalEvents.length) {
-
-        finalizeCausalExperiment();
+      if (experimentComplete) {
         return;
       }
 
+      if (causalStep >= causalEvents.length) {
+        recoverMissingEvent();
+        return;
+      }
 
-      const event =
-        causalEvents[causalStep];
+      const event = causalEvents[causalStep];
 
-
-      if (event.seq === 1002) {
-
+      if (event.dropped) {
         gapOpen = true;
 
         causalLog(`
           <span class="rec-drop">
-            [SEQ 1002 DROPPED]
+            [SEQ ${event.seq} DROPPED]
           </span>
-
-          AAPL / Order-A FILL unavailable.
-
-          Recovery branch opened.
+          ${event.symbol} / ${event.order} / ${formatAction(event)} unavailable.
+          Recovery branch opened from the missing event's state domain.
         `);
 
         causalStep++;
-
         updateCausalUI();
-
         return;
       }
 
-
       if (!gapOpen) {
-
-        applyEvent(
-          parcState,
-          event
-        );
+        try {
+          applyParcEvent(parcState, event);
+        }
+        catch (error) {
+          failCausalExperiment(error.message);
+          return;
+        }
 
         causalLog(`
           <span class="rec-ok">
             [SEQ ${event.seq} COMMITTED]
           </span>
-
-          ${event.symbol}
-          /
-          ${event.order}
-          /
-          ${event.action}
+          ${event.symbol} / ${event.order} / ${formatAction(event)}
         `);
 
         causalStep++;
-
         updateCausalUI();
-
         return;
       }
 
-
-      /*
-       * Gap exists.
-       *
-       * Classify the incoming event.
-       */
-
-      if (
-        isIndependentFromGap(event)
-      ) {
-
-        applyEvent(
-          parcState,
-          event
-        );
+      if (isIndependentFromGap(event)) {
+        try {
+          applyParcEvent(parcState, event);
+        }
+        catch (error) {
+          failCausalExperiment(error.message);
+          return;
+        }
 
         independentCommitted++;
 
@@ -2331,328 +2605,296 @@ MSFT Order-B: pending
           <span class="rec-ok">
             [SEQ ${event.seq} INDEPENDENT]
           </span>
-
-          Dependency classifier permits commit.
-
-          ${event.symbol}
-          /
-          ${event.order}
-          /
-          ${event.action}
-
-          proceeds while recovery remains active.
+          Dependency classifier permits commit for
+          ${event.symbol} / ${event.order} / ${formatAction(event)}
+          while recovery remains active.
         `);
-
       }
-
       else {
-
         quarantined.push(event);
+        totalQuarantined++;
 
         causalLog(`
           <span class="rec-warn">
             [SEQ ${event.seq} QUARANTINED]
           </span>
-
-          ${event.symbol}
-          /
-          ${event.order}
-          /
-          ${event.action}
-
-          depends on the recovery-affected state domain.
+          ${event.symbol} / ${event.order} / ${formatAction(event)}
+          intersects the recovery-affected state domain.
         `);
-
       }
 
-
       causalStep++;
-
       updateCausalUI();
 
-
-      if (
-        causalStep >=
-        causalEvents.length
-      ) {
-
+      if (causalStep >= causalEvents.length) {
         recoverMissingEvent();
       }
     }
 
 
     function recoverMissingEvent() {
+      if (!gapOpen || experimentComplete) {
+        finalizeCausalExperiment();
+        return;
+      }
 
       causalLog(`
         <span class="rec-info">
           [RECOVERY RECEIVED]
         </span>
-
-        Resent SEQ 1002 restored.
-
-        Applying missing AAPL / Order-A FILL.
+        Resent SEQ ${missingEvent.seq} restored.
+        Applying ${missingEvent.symbol} / ${missingEvent.order} /
+        ${formatAction(missingEvent)}.
       `);
 
-
-      const missingEvent =
-        causalEvents.find(
-          event =>
-            event.seq === 1002
-        );
-
-
-      applyEvent(
-        parcState,
-        missingEvent
-      );
-
-
-      causalLog(`
-        <span class="rec-info">
-          [REPLAY QUARANTINED BRANCH]
-        </span>
-
-        ${quarantined.length}
-        dependent event(s) scheduled for deterministic replay.
-      `);
-
-
-      quarantined.forEach(event => {
-
-        applyEvent(
-          parcState,
-          event
-        );
+      try {
+        applyParcEvent(parcState, missingEvent);
 
         causalLog(`
-          <span class="rec-ok">
-            [REPLAYED SEQ ${event.seq}]
+          <span class="rec-info">
+            [REPLAY QUARANTINED BRANCH]
           </span>
-
-          ${event.symbol}
-          /
-          ${event.order}
-          /
-          ${event.action}
+          ${quarantined.length} dependent event(s) scheduled for
+          deterministic replay.
         `);
 
-      });
+        quarantined.forEach(event => {
+          applyParcEvent(parcState, event);
 
+          causalLog(`
+            <span class="rec-ok">
+              [REPLAYED SEQ ${event.seq}]
+            </span>
+            ${event.symbol} / ${event.order} / ${formatAction(event)}
+          `);
+        });
+      }
+      catch (error) {
+        failCausalExperiment(error.message);
+        return;
+      }
 
       gapOpen = false;
-
       quarantined = [];
-
       updateCausalUI();
-
       finalizeCausalExperiment();
     }
 
 
     function finalizeCausalExperiment() {
+      if (experimentComplete) {
+        return;
+      }
 
-      buildOracle();
-
+      try {
+        buildOracle();
+      }
+      catch (error) {
+        failCausalExperiment(`Oracle error: ${error.message}`);
+        return;
+      }
 
       const matches =
-        JSON.stringify(parcState) ===
-        JSON.stringify(oracleState);
-
+        statesEqual(parcState, oracleState);
 
       oracleMatch.innerText =
-        matches
-          ? "PASS"
-          : "FAIL";
-
+        matches ? "PASS" : "FAIL";
 
       oracleMatch.className =
         matches
           ? "metric-value good"
           : "metric-value warn";
 
-
-      causalStatus.innerText =
-        "COMPLETE";
-
+      causalStatus.innerText = "COMPLETE";
+      experimentComplete = true;
 
       if (matches) {
-
         causalResult.className =
           "result-banner pass";
 
-
         causalResult.innerHTML = `
-          <strong>Experiment 001 passed.</strong>
-
-          PARC's experimental state converged to the same final
-          canonical state as the strict total-order oracle while
-          permitting the independent MSFT event to commit during
-          the AAPL recovery gap.
+          <strong>${currentScenario.id} passed.</strong>
+          PARC converged to the same canonical order state as the
+          independently implemented strict total-order oracle while
+          permitting ${independentCommitted} independent event(s) to
+          commit during recovery. Total quarantined events:
+          ${totalQuarantined}.
         `;
-
 
         causalLog(`
           <span class="rec-ok">
             [CONVERGENCE VERIFIED]
           </span>
-
-          Experimental PARC state matches strict total-order oracle.
+          PARC state matches the strict total-order oracle across
+          status, order quantity, filled quantity, leaves quantity,
+          and canceled quantity.
         `);
-
       }
-
       else {
-
         causalResult.className =
           "result-banner";
 
-
         causalResult.innerHTML = `
-          State convergence failed.
-          The experimental classifier or replay path requires review.
+          <strong>${currentScenario.id} failed convergence.</strong>
+          The dependency classifier, replay path, or state machine
+          requires review.
         `;
-
 
         causalLog(`
           <span class="rec-drop">
             [CONVERGENCE FAILURE]
           </span>
-
-          PARC final state differs from oracle.
+          PARC final state differs from the strict total-order oracle.
         `);
-
       }
     }
 
 
-    function runCausalExperiment() {
-
-      resetCausalExperiment();
-
-
-      causalTimer =
-        setInterval(() => {
-
-          if (
-            causalStep <
-            causalEvents.length
-          ) {
-
-            stepCausalExperiment();
-
-          }
-
-          else {
-
-            clearInterval(causalTimer);
-            causalTimer = null;
-
-          }
-
-        }, 650);
-    }
-
-
-    function resetCausalExperiment() {
-
+    function failCausalExperiment(message) {
       if (causalTimer) {
         clearInterval(causalTimer);
         causalTimer = null;
       }
 
+      experimentComplete = true;
+      causalStatus.innerText = "ERROR";
+      oracleMatch.innerText = "ERROR";
+      oracleMatch.className = "metric-value warn";
+      causalResult.className = "result-banner";
+      causalResult.innerHTML = `<strong>Experiment halted.</strong> ${message}`;
+
+      causalLog(`
+        <span class="rec-drop">[STATE MACHINE ERROR]</span>
+        ${message}
+      `);
+    }
+
+
+    function runCausalExperiment(randomizeFirst = false) {
+      if (randomizeFirst) {
+        randomizeCausalScenario(false);
+      }
+      else {
+        resetCausalExperiment();
+      }
+
+      causalTimer =
+        setInterval(() => {
+          if (!experimentComplete) {
+            stepCausalExperiment();
+          }
+          else {
+            clearInterval(causalTimer);
+            causalTimer = null;
+          }
+        }, 650);
+    }
+
+
+    function populateScenarioSelect() {
+      scenarioSelect.innerHTML =
+        causalScenarios.map((scenario, index) => `
+          <option value="${index}">
+            ${scenario.id} — ${scenario.name}
+          </option>
+        `).join("");
+    }
+
+
+    function selectCausalScenario(value) {
+      const index = Number(value);
+
+      if (
+        !Number.isInteger(index) ||
+        index < 0 ||
+        index >= causalScenarios.length
+      ) {
+        return;
+      }
+
+      currentScenarioIndex = index;
+      currentScenario = causalScenarios[index];
+      scenarioSelect.value = String(index);
+      resetCausalExperiment();
+    }
+
+
+    function randomizeCausalScenario(resetOnly = true) {
+      let nextIndex = currentScenarioIndex;
+
+      while (
+        causalScenarios.length > 1 &&
+        nextIndex === currentScenarioIndex
+      ) {
+        nextIndex =
+          Math.floor(Math.random() * causalScenarios.length);
+      }
+
+      currentScenarioIndex = nextIndex;
+      currentScenario = causalScenarios[nextIndex];
+      scenarioSelect.value = String(nextIndex);
+      resetCausalExperiment();
+
+      if (resetOnly) {
+        causalLog(`
+          <span class="rec-info">[SCENARIO RANDOMIZED]</span>
+          Selected ${currentScenario.id} — ${currentScenario.name}.
+        `);
+      }
+    }
+
+
+    function resetCausalExperiment() {
+      if (causalTimer) {
+        clearInterval(causalTimer);
+        causalTimer = null;
+      }
+
+      causalEvents = currentScenario.events;
+      missingEvent = causalEvents.find(event => event.dropped);
+
       causalStep = 0;
-
       gapOpen = false;
-
       independentCommitted = 0;
-
+      totalQuarantined = 0;
       quarantined = [];
+      experimentComplete = false;
 
+      initializeStateForScenario();
+      renderScenarioFixture();
 
-      parcState = {
-        "AAPL:Order-A": "NONE",
-        "MSFT:Order-B": "NONE"
-      };
+      causalStatus.innerText = "READY";
+      independentCount.innerText = "0";
+      quarantineCount.innerText = "0";
+      totalQuarantineCount.innerText = "0";
+      oracleMatch.innerText = "PENDING";
+      oracleMatch.className = "metric-value";
 
+      laneA.classList.remove("blocked");
+      laneB.classList.remove("committed");
 
-      oracleState = {
-        "AAPL:Order-A": "NONE",
-        "MSFT:Order-B": "NONE"
-      };
-
-
-      causalStatus.innerText =
-        "READY";
-
-
-      independentCount.innerText =
-        "0";
-
-
-      quarantineCount.innerText =
-        "0";
-
-
-      oracleMatch.innerText =
-        "PENDING";
-
-
-      oracleMatch.className =
-        "metric-value";
-
-
-      laneA.classList.remove(
-        "blocked"
-      );
-
-
-      laneB.classList.remove(
-        "committed"
-      );
-
-
-      laneAState.innerText =
-        "READY";
-
-
-      laneBState.innerText =
-        "READY";
-
-
-      oracleStateView.textContent =
-        "AAPL Order-A: pending\nMSFT Order-B: pending";
-
-
-      parcStateView.textContent =
-        "AAPL Order-A: pending\nMSFT Order-B: pending";
-
-
-      causalResult.className =
-        "result-banner";
-
-
+      causalResult.className = "result-banner";
       causalResult.innerText =
-        "Experiment not yet executed.";
-
+        `${currentScenario.id} ready. Experiment not yet executed.`;
 
       causalTerminal.innerHTML = `
         <div class="terminal-line">
-          <span class="rec-info">
-            [CAUSAL TESTBED RESET]
-          </span>
-
-          Experiment 001 ready.
+          <span class="rec-info">[CAUSAL TESTBED RESET]</span>
+          ${currentScenario.id} — ${currentScenario.name} ready.
         </div>
 
         <div class="terminal-line">
-          <span class="rec-dim">
-            [CORRECTNESS BASELINE]
-          </span>
-
-          Final PARC state will be compared against
-          strict total-order execution.
+          <span class="rec-dim">[CORRECTNESS BASELINE]</span>
+          Final PARC state will be compared against an independently
+          implemented strict total-order oracle using the complete
+          sequence, including missing SEQ ${missingEvent.seq}.
         </div>
       `;
+
+      oracleStateView.textContent =
+        "Strict total-order oracle will execute at completion.";
+
+      updateCausalUI();
     }
 
 
@@ -2661,6 +2903,8 @@ MSFT Order-B: pending
        ========================================================= */
 
     renderInterface();
+    populateScenarioSelect();
+    scenarioSelect.value = String(currentScenarioIndex);
     resetCausalExperiment();
   </script>
 
