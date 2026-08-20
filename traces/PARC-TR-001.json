@@ -1,0 +1,47 @@
+{
+  "$schema": "https://parctechnology.com/schemas/parc-trace-v1.json",
+  "trace_id": "PARC-TR-004",
+  "name": "Cross-Symbol Fill with Dependent Cancel and Shared Risk Limit",
+  "description": "Tests lane independence when two symbols execute concurrently, but symbol A experiences a dropped partial fill followed by a dependent cancel.",
+  "metadata": {
+    "protocol": "FIX-5.0SP2",
+    "version": "1.0.0",
+    "target_metric": "Correctness & State Convergence"
+  },
+  "canonical_stream": [
+    { "seq": 1000, "symbol": "AAPL", "order_id": "ORD-A1", "acct": "ACC-01", "action": "NEW", "qty": 100, "price": 150.00 },
+    { "seq": 1001, "symbol": "MSFT", "order_id": "ORD-B1", "acct": "ACC-01", "action": "NEW", "qty": 100, "price": 300.00 },
+    { "seq": 1002, "symbol": "AAPL", "order_id": "ORD-A1", "acct": "ACC-01", "action": "PARTIAL_FILL", "qty": 40, "price": 150.00 },
+    { "seq": 1003, "symbol": "MSFT", "order_id": "ORD-B1", "acct": "ACC-01", "action": "FILL", "qty": 100, "price": 300.00 },
+    { "seq": 1004, "symbol": "AAPL", "order_id": "ORD-A1", "acct": "ACC-01", "action": "CANCEL" }
+  ],
+  "fault_injections": [
+    {
+      "type": "PACKET_DROP",
+      "target_seq": 1002,
+      "retransmit_at_seq": 1004,
+      "delivery_mode": "OUT_OF_BAND_GAP_FILL"
+    }
+  ],
+  "expected_behavior": {
+    "quarantined_seqs": [1004],
+    "independent_committed_seqs": [1003],
+    "replayed_seqs": [1004],
+    "final_canonical_state": {
+      "AAPL:ORD-A1": {
+        "status": "CANCELLED",
+        "order_qty": 100,
+        "filled_qty": 40,
+        "leaves_qty": 0,
+        "canceled_qty": 60
+      },
+      "MSFT:ORD-B1": {
+        "status": "FILLED",
+        "order_qty": 100,
+        "filled_qty": 100,
+        "leaves_qty": 0,
+        "canceled_qty": 0
+      }
+    }
+  }
+}
