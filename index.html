@@ -43,18 +43,31 @@
     body {
       background: var(--bg-primary);
       color: #e2e8f0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
       min-height: 100vh;
+
       padding: 40px 20px;
+
       display: flex;
       justify-content: center;
     }
 
-    button, a {
+    button,
+    a {
       -webkit-tap-highlight-color: transparent;
     }
 
-    button:focus-visible, a:focus-visible {
+    button:focus-visible,
+    a:focus-visible {
       outline: 2px solid var(--cyan);
       outline-offset: 3px;
     }
@@ -91,7 +104,14 @@
       align-items: center;
       gap: 7px;
       color: var(--text-muted);
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+
       font-size: 12px;
       white-space: nowrap;
     }
@@ -192,58 +212,8 @@
     }
 
     /* =========================================================
-       RESEARCH AREAS & ARCHITECTURE
+       RESEARCH AREAS
        ========================================================= */
-
-    .arch-flow {
-      background: #040813;
-      border: 1px solid var(--border-primary);
-      border-radius: 8px;
-      padding: 20px;
-      margin: 24px 0;
-      font-family: "SFMono-Regular", Consolas, monospace;
-    }
-
-    .arch-flow-title {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--cyan);
-      letter-spacing: 0.5px;
-      margin-bottom: 14px;
-      text-transform: uppercase;
-    }
-
-    .arch-layers {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .arch-layer {
-      background: #0a1120;
-      border: 1px solid var(--border-secondary);
-      border-radius: 6px;
-      padding: 12px 10px;
-    }
-
-    .arch-layer-num {
-      color: var(--purple);
-      font-size: 10px;
-      margin-bottom: 4px;
-    }
-
-    .arch-layer-name {
-      color: var(--text-primary);
-      font-size: 11px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .arch-layer-desc {
-      color: var(--text-dim);
-      font-size: 10px;
-      line-height: 1.45;
-    }
 
     .research-grid {
       display: grid;
@@ -261,7 +231,14 @@
 
     .research-item h3 {
       color: var(--cyan);
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+
       font-size: 13px;
       margin-bottom: 8px;
     }
@@ -289,7 +266,12 @@
       color: var(--text-muted);
       border-radius: 999px;
       padding: 5px 9px;
-      font-family: "SFMono-Regular", Consolas, monospace;
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
       font-size: 10px;
       letter-spacing: 0.25px;
     }
@@ -338,7 +320,14 @@
       border-radius: 8px;
       padding: 20px;
       margin: 30px 0 16px;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+
       box-shadow: inset 0 0 28px rgba(0, 0, 0, 0.2);
     }
 
@@ -450,9 +439,17 @@
       overflow-wrap: anywhere;
     }
 
-    .good { color: var(--green) !important; }
-    .info { color: var(--cyan) !important; }
-    .warn { color: var(--yellow) !important; }
+    .good {
+      color: var(--green) !important;
+    }
+
+    .info {
+      color: var(--cyan) !important;
+    }
+
+    .warn {
+      color: var(--yellow) !important;
+    }
 
     /* =========================================================
        BUTTONS
@@ -517,14 +514,37 @@
       overflow-wrap: anywhere;
     }
 
-    .rec-ok { color: var(--green); }
-    .rec-info { color: var(--cyan); }
-    .rec-seed { color: var(--purple); }
-    .rec-rake { color: var(--orange); }
-    .rec-warn { color: var(--yellow); }
-    .rec-drop { color: var(--red); }
-    .rec-dim { color: var(--text-dim); }
-    .wire { color: #dbeafe; }
+    .rec-ok {
+      color: var(--green);
+    }
+
+    .rec-info {
+      color: var(--cyan);
+    }
+
+    .rec-seed {
+      color: var(--purple);
+    }
+
+    .rec-rake {
+      color: var(--orange);
+    }
+
+    .rec-warn {
+      color: var(--yellow);
+    }
+
+    .rec-drop {
+      color: var(--red);
+    }
+
+    .rec-dim {
+      color: var(--text-dim);
+    }
+
+    .wire {
+      color: #dbeafe;
+    }
 
     /* =========================================================
        CAUSAL RESEARCH SECTION
@@ -538,7 +558,10 @@
 
     .research-kicker {
       color: var(--purple);
-      font-family: "SFMono-Regular", Consolas, monospace;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
       font-size: 10px;
       letter-spacing: 1px;
       margin-bottom: 9px;
@@ -633,7 +656,6 @@
       font-size: 11px;
       line-height: 1.55;
       min-height: 54px;
-      white-space: pre-wrap;
     }
 
     .lane.blocked {
@@ -689,7 +711,7 @@
     }
 
     /* =========================================================
-       SCENARIO TOOLBAR
+       RANDOMIZED CAUSAL SCENARIO CONTROLS
        ========================================================= */
 
     .scenario-toolbar {
@@ -708,7 +730,12 @@
       border: 1px solid var(--border-secondary);
       border-radius: 5px;
       padding: 8px 10px;
-      font-family: "SFMono-Regular", Consolas, monospace;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
       font-size: 11px;
     }
 
@@ -723,6 +750,333 @@
       line-height: 1.55;
       margin-bottom: 14px;
     }
+
+    .state-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 6px;
+      font-size: 10px;
+    }
+
+    .state-table td {
+      padding: 2px 0;
+      vertical-align: top;
+      color: var(--text-muted);
+    }
+
+    .state-table td:first-child {
+      width: 45%;
+      color: var(--text-dim);
+    }
+
+
+
+    /* =========================================================
+       DETERMINISTIC CAUSAL DATA FLOW ARCHITECTURE
+       Responsive, bounded layout: no absolute-positioned labels.
+       ========================================================= */
+
+    .architecture-section {
+      width: 100%;
+      max-width: 100%;
+      margin: 6px 0 30px;
+      padding: 22px;
+      background: #020617;
+      border: 1px solid var(--border-primary);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .architecture-title {
+      color: var(--cyan);
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+
+    .architecture-primary-flow {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1fr)
+        30px
+        minmax(0, 1.12fr)
+        30px
+        minmax(0, 1.12fr);
+      align-items: stretch;
+      gap: 10px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .arch-node {
+      min-width: 0;
+      min-height: 132px;
+      padding: 20px 14px;
+      border-radius: 8px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .arch-node strong {
+      display: block;
+      font-size: clamp(11px, 1.45vw, 14px);
+      line-height: 1.3;
+      margin-bottom: 9px;
+    }
+
+    .arch-node span {
+      display: block;
+      color: var(--text-secondary);
+      font-size: clamp(9px, 1.2vw, 11px);
+      line-height: 1.45;
+    }
+
+    .arch-node small {
+      display: block;
+      color: var(--text-muted);
+      font-size: clamp(8px, 1.05vw, 10px);
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+
+    .arch-blue {
+      background: #08111f;
+      border: 1px solid rgba(56, 189, 248, 0.75);
+    }
+
+    .arch-blue strong {
+      color: var(--cyan);
+    }
+
+    .arch-purple {
+      background: rgba(88, 28, 135, 0.28);
+      border: 1px solid rgba(168, 85, 247, 0.85);
+    }
+
+    .arch-purple strong,
+    .arch-purple small {
+      color: #c084fc;
+    }
+
+    .arch-green {
+      background: rgba(6, 78, 59, 0.58);
+      border: 1px solid rgba(16, 185, 129, 0.9);
+    }
+
+    .arch-green strong {
+      color: #86efac;
+    }
+
+    .arch-orange {
+      background: rgba(124, 45, 18, 0.52);
+      border: 1px solid rgba(249, 115, 22, 0.95);
+    }
+
+    .arch-orange strong {
+      color: var(--orange-light);
+    }
+
+    .arch-arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 0;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+      font-size: 25px;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    .cyan-arrow {
+      color: var(--cyan);
+    }
+
+    .architecture-split {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+      position: relative;
+    }
+
+    .architecture-split::before {
+      content: "CLASSIFIER OUTCOMES";
+      grid-column: 1 / -1;
+      display: block;
+      color: var(--text-dim);
+      text-align: center;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+      font-size: 9px;
+      letter-spacing: 0.8px;
+      margin-bottom: -2px;
+    }
+
+    .branch-card {
+      min-width: 0;
+      padding: 14px;
+      border: 1px solid var(--border-primary);
+      border-radius: 8px;
+      background: #050b15;
+    }
+
+    .branch-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+    }
+
+    .branch-heading strong {
+      font-size: 11px;
+      line-height: 1.3;
+    }
+
+    .branch-heading span {
+      color: var(--text-muted);
+      font-size: 9px;
+      text-align: right;
+      line-height: 1.3;
+    }
+
+    .branch-card.independent .branch-heading strong {
+      color: #86efac;
+    }
+
+    .branch-card.entangled .branch-heading strong {
+      color: var(--orange-light);
+    }
+
+    .branch-arrow {
+      text-align: center;
+      font-size: 22px;
+      line-height: 1;
+      margin: 2px 0 8px;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+    }
+
+    .branch-card.independent .branch-arrow {
+      color: var(--green);
+    }
+
+    .branch-card.entangled .branch-arrow {
+      color: var(--orange);
+    }
+
+    .architecture-split .arch-node {
+      min-height: 122px;
+    }
+
+    .merge-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      margin: 16px 0 2px;
+    }
+
+    .merge-line {
+      border-top: 1px dashed rgba(56, 189, 248, 0.65);
+    }
+
+    .merge-label {
+      max-width: 100%;
+      padding: 6px 10px;
+      color: var(--cyan);
+      background: #08101d;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 5px;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-align: center;
+      white-space: normal;
+    }
+
+    .architecture-caption {
+      color: var(--text-dim);
+      font-size: 10px;
+      line-height: 1.55;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .architecture-primary-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .arch-arrow.horizontal {
+        transform: rotate(90deg);
+        height: 26px;
+      }
+
+      .architecture-split {
+        grid-template-columns: 1fr;
+      }
+
+      .architecture-split::before {
+        grid-column: 1;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .architecture-section {
+        padding: 18px 14px;
+      }
+
+      .branch-heading {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .branch-heading span {
+        text-align: left;
+      }
+
+      .merge-row {
+        grid-template-columns: 1fr;
+      }
+
+      .merge-line {
+        display: none;
+      }
+    }
+
 
     /* =========================================================
        FOOTER
@@ -749,29 +1103,86 @@
        ========================================================= */
 
     @media (max-width: 760px) {
-      body { padding: 24px 14px; }
-      .lab-card { padding: 26px 20px; }
-      .research-grid, .comparison-grid, .arch-layers { grid-template-columns: 1fr; }
-      .event-sequence { grid-template-columns: 1fr; }
-      .telemetry { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .top-nav { align-items: flex-start; }
-      .nav-status { white-space: normal; text-align: right; }
+      body {
+        padding: 24px 14px;
+      }
+
+      .lab-card {
+        padding: 26px 20px;
+      }
+
+      .research-grid,
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .event-sequence {
+        grid-template-columns: 1fr;
+      }
+
+      .telemetry {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .top-nav {
+        align-items: flex-start;
+      }
+
+      .nav-status {
+        white-space: normal;
+        text-align: right;
+      }
     }
 
     @media (max-width: 560px) {
-      .top-nav, .sim-header, .lab-footer { flex-direction: column; align-items: flex-start; }
-      .nav-status, .active-target { text-align: left; }
-      .proto-tab { flex: 1 1 auto; }
-      .sim-controls { flex-direction: column; }
-      .sim-btn { width: 100%; text-align: left; }
-      .telemetry, .lane-grid, .scenario-toolbar { grid-template-columns: 1fr; }
-      .sim-terminal { height: 330px; }
+      .top-nav,
+      .sim-header,
+      .lab-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-status,
+      .active-target {
+        text-align: left;
+      }
+
+      .proto-tab {
+        flex: 1 1 auto;
+      }
+
+      .sim-controls {
+        flex-direction: column;
+      }
+
+      .sim-btn {
+        width: 100%;
+        text-align: left;
+      }
+
+      .telemetry,
+      .lane-grid,
+      .scenario-toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .sim-terminal {
+        height: 330px;
+      }
     }
 
     @media (max-width: 400px) {
-      .telemetry { grid-template-columns: 1fr; }
-      .lab-card { padding: 22px 16px; }
-      .sim-box { padding: 16px; }
+      .telemetry {
+        grid-template-columns: 1fr;
+      }
+
+      .lab-card {
+        padding: 22px 16px;
+      }
+
+      .sim-box {
+        padding: 16px;
+      }
     }
   </style>
 </head>
@@ -781,323 +1192,620 @@
   <main class="wrapper">
 
     <nav class="top-nav" aria-label="Laboratory navigation">
-      <a href="https://parctechnology.com">← Back to PARC Technology</a>
+
+      <a href="https://parctechnology.com">
+        ← Back to PARC Technology
+      </a>
+
       <div class="nav-status">
         <span class="status-dot" aria-hidden="true"></span>
-        <span>SYNTHETIC SIMULATION • PUBLIC-SPEC RESEARCH MODE</span>
+
+        <span>
+          SYNTHETIC SIMULATION • PUBLIC-SPEC RESEARCH MODE
+        </span>
       </div>
+
     </nav>
+
 
     <section class="lab-card">
 
-      <div class="lab-badge">APPLIED SYSTEMS LAB • R&amp;D ARM</div>
+      <div class="lab-badge">
+        APPLIED SYSTEMS LAB • R&amp;D ARM
+      </div>
 
       <h1>PARC Labs</h1>
 
       <div class="subhead">
-        Deterministic Protocol Adaptation, Stream Reconciliation &amp; Recovery-State Research
+        Deterministic Protocol Adaptation, Stream Reconciliation
+        &amp; Recovery-State Research
       </div>
 
       <p class="lead">
-        PARC Labs is an independently developed applied-systems research environment for studying deterministic protocol transformation, high-volume event processing, sequence recovery, back-pressure, and stream reconciliation across heterogeneous financial-market interfaces.
+        PARC Labs is an independently developed applied-systems
+        research environment for studying deterministic protocol
+        transformation, high-volume event processing, sequence
+        recovery, back-pressure, and stream reconciliation across
+        heterogeneous financial-market interfaces.
       </p>
 
       <div class="lab-status-note">
+
         <strong>Current Lab Status:</strong>
-        This environment uses synthetic data and publicly available protocol specifications for research and benchmarking. No live exchange, broker-dealer, market-data, clearing, customer, or production systems are connected to this simulator. Venue-specific protocols may be modeled as reference implementations, but PARC Labs' core research architecture is designed to remain venue-agnostic.
+
+        This environment uses synthetic data and publicly available
+        protocol specifications for research and benchmarking.
+
+        No live exchange, broker-dealer, market-data, clearing,
+        customer, or production systems are connected to this simulator.
+
+        Venue-specific protocols may be modeled as reference
+        implementations, but PARC Labs' core research architecture
+        is designed to remain venue-agnostic.
+
       </div>
 
       <div class="research-hypothesis">
+
         <strong>Research Hypothesis — Protocol Adaptation:</strong>
-        PARC Labs is investigating whether memory-conscious, software-defined stream processing can provide bounded, repeatable transformation and recovery behavior across heterogeneous high-volume event streams on commodity Linux infrastructure.
+
+        PARC Labs is investigating whether memory-conscious,
+        software-defined stream processing can provide bounded,
+        repeatable transformation and recovery behavior across
+        heterogeneous high-volume event streams on commodity
+        Linux infrastructure.
+
       </div>
 
-      <!-- =====================================================
-           4-LAYER APPLIED SYSTEMS ARCHITECTURE
-           ===================================================== -->
-
-      <div class="arch-flow">
-        <div class="arch-flow-title">PARC Core Architecture // Stream Reconciliation Pipeline</div>
-        <div class="arch-layers">
-          <div class="arch-layer">
-            <div class="arch-layer-num">LAYER 01</div>
-            <div class="arch-layer-name">Zero-Copy Ingest</div>
-            <div class="arch-layer-desc">Bitmask header parsing without heap allocation or intermediary object creation.</div>
-          </div>
-          <div class="arch-layer">
-            <div class="arch-layer-num">LAYER 02</div>
-            <div class="arch-layer-name">Causal Classifier</div>
-            <div class="arch-layer-desc">Derives independent causal equivalence classes from wire domain tuples.</div>
-          </div>
-          <div class="arch-layer">
-            <div class="arch-layer-num">LAYER 03</div>
-            <div class="arch-layer-name">Lane Isolation</div>
-            <div class="arch-layer-desc">Memory-pinned ring buffer isolates gaps while unaffected state commits lock-free.</div>
-          </div>
-          <div class="arch-layer">
-            <div class="arch-layer-num">LAYER 04</div>
-            <div class="arch-layer-name">Oracle Verifier</div>
-            <div class="arch-layer-desc">Independent state oracle verifies strict total-order convergence in bounded time.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- =====================================================
-           DATA FLOW ARCHITECTURE DIAGRAM (SVG)
-           ===================================================== -->
-
-      <div class="arch-flow" style="margin-top: 0;">
-        <div class="arch-flow-title">Deterministic Causal Data Flow Architecture</div>
-        
-        <div style="width: 100%; overflow-x: auto; padding-top: 8px;">
-          <svg viewBox="0 0 880 320" width="100%" height="100%" style="min-width: 700px; display: block; font-family: 'SFMono-Regular', Consolas, Menlo, monospace;">
-            <defs>
-              <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8" />
-              </marker>
-              <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981" />
-              </marker>
-              <marker id="arrow-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f97316" />
-              </marker>
-            </defs>
-
-            <!-- Inbound Stream -->
-            <rect x="20" y="125" width="140" height="70" rx="6" fill="#0b1120" stroke="#1e293b" stroke-width="1.5" />
-            <text x="90" y="152" fill="#38bdf8" font-size="11" font-weight="700" text-anchor="middle">INBOUND FEED</text>
-            <text x="90" y="172" fill="#64748b" font-size="9.5" text-anchor="middle">TCP / Binary Structs</text>
-
-            <!-- Connection 1 -->
-            <line x1="160" y1="160" x2="210" y2="160" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arrow)" />
-
-            <!-- Layer 1: Zero Copy Parser -->
-            <rect x="210" y="125" width="160" height="70" rx="6" fill="#0b1120" stroke="#1e293b" stroke-width="1.5" />
-            <text x="290" y="150" fill="#38bdf8" font-size="11" font-weight="700" text-anchor="middle">ZERO-COPY PARSER</text>
-            <text x="290" y="168" fill="#94a3b8" font-size="9" text-anchor="middle">Extract Domain Tuple</text>
-            <text x="290" y="182" fill="#64748b" font-size="8.5" text-anchor="middle">⟨Symbol, ClOrdID, Acct⟩</text>
-
-            <!-- Connection 2 -->
-            <line x1="370" y1="160" x2="420" y2="160" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arrow)" />
-
-            <!-- Layer 2: Classifier Box -->
-            <rect x="420" y="115" width="170" height="90" rx="6" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5" />
-            <text x="505" y="142" fill="#c084fc" font-size="11" font-weight="700" text-anchor="middle">CAUSAL CLASSIFIER</text>
-            <text x="505" y="162" fill="#e2e8f0" font-size="9.5" text-anchor="middle">Sequence Gap Active?</text>
-            <text x="505" y="180" fill="#a855f7" font-size="9" text-anchor="middle">Evaluates Domain Poset</text>
-
-            <!-- Branch A: Independent (Up & Right) -->
-            <path d="M 590 140 L 640 140 L 640 70 L 670 70" fill="none" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow-green)" />
-            <text x="630" y="55" fill="#86efac" font-size="9" font-weight="700">INDEPENDENT</text>
-            <text x="630" y="66" fill="#64748b" font-size="8">Orthogonal Lane</text>
-
-            <!-- Branch B: Entangled (Down & Right) -->
-            <path d="M 590 180 L 640 180 L 640 250 L 670 250" fill="none" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-orange)" />
-            <text x="630" y="275" fill="#fb923c" font-size="9" font-weight="700">ENTANGLED</text>
-            <text x="630" y="286" fill="#64748b" font-size="8">Recovery Domain</text>
-
-            <!-- Layer 3A: Immediate Commit -->
-            <rect x="670" y="40" width="190" height="60" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="1.5" />
-            <text x="765" y="65" fill="#86efac" font-size="11" font-weight="700" text-anchor="middle">LOCK-FREE COMMIT</text>
-            <text x="765" y="83" fill="#a7f3d0" font-size="9" text-anchor="middle">Zero Pipeline Stalls (O(1))</text>
-
-            <!-- Layer 3B: Quarantined Ring Buffer -->
-            <rect x="670" y="220" width="190" height="60" rx="6" fill="#451a03" stroke="#f97316" stroke-width="1.5" />
-            <text x="765" y="245" fill="#fb923c" font-size="11" font-weight="700" text-anchor="middle">QUARANTINE BUFFER</text>
-            <text x="765" y="263" fill="#fed7aa" font-size="9" text-anchor="middle">Replay on Resend Arrival</text>
-
-            <!-- Convergence Dotted Connector -->
-            <path d="M 765 220 L 765 140 L 765 100" fill="none" stroke="#38bdf8" stroke-dasharray="4,4" stroke-width="1.2" />
-            <rect x="715" y="145" width="100" height="24" rx="4" fill="#0b1120" stroke="#1e293b" />
-            <text x="765" y="161" fill="#38bdf8" font-size="8.5" font-weight="700" text-anchor="middle">DETERMINISTIC MERGE</text>
-          </svg>
-        </div>
-      </div>
 
       <div class="research-grid">
+
         <article class="research-item">
           <h3>01. Tag-Oriented Order Entry</h3>
-          <p>Application-message modeling for structured financial workflows, including order entry, acknowledgments, rejections, and execution state using FIX-compatible representations.</p>
+          <p>
+            Application-message modeling for structured financial
+            workflows, including order entry, acknowledgments,
+            rejections, and execution state using FIX-compatible
+            representations.
+          </p>
         </article>
 
         <article class="research-item">
           <h3>02. Binary Venue Protocols</h3>
-          <p>Packed binary payload research focused on field offsets, presence maps, fixed-width integers, scaled numeric values, cache-conscious decoding, and zero-copy transformation.</p>
+          <p>
+            Packed binary payload research focused on field offsets,
+            presence maps, fixed-width integers, scaled numeric
+            values, cache-conscious decoding, and zero-copy
+            transformation.
+          </p>
         </article>
 
         <article class="research-item">
           <h3>03. Session &amp; Recovery State</h3>
-          <p>Research into framing, sequencing, retransmission, gap isolation, concurrent stream recovery, and non-blocking reconciliation across transport sessions.</p>
+          <p>
+            Research into framing, sequencing, retransmission,
+            gap isolation, concurrent stream recovery, and
+            non-blocking reconciliation across transport sessions.
+          </p>
         </article>
+
       </div>
+
 
       <div class="coverage-strip" aria-label="Protocol coverage status">
-        <span class="coverage-chip ready">TAGGED APP MODEL • ACTIVE</span>
-        <span class="coverage-chip ready">BINARY PAYLOAD MODEL • ACTIVE</span>
-        <span class="coverage-chip partial">SESSION RECOVERY • RESEARCH</span>
-        <span class="coverage-chip partial">BACK-PRESSURE • RESEARCH</span>
-        <span class="coverage-chip roadmap">MARKET DATA • ROADMAP</span>
-        <span class="coverage-chip roadmap">MULTI-VENUE • ROADMAP</span>
+
+        <span class="coverage-chip ready">
+          TAGGED APP MODEL • ACTIVE
+        </span>
+
+        <span class="coverage-chip ready">
+          BINARY PAYLOAD MODEL • ACTIVE
+        </span>
+
+        <span class="coverage-chip partial">
+          SESSION RECOVERY • RESEARCH
+        </span>
+
+        <span class="coverage-chip partial">
+          BACK-PRESSURE • RESEARCH
+        </span>
+
+        <span class="coverage-chip roadmap">
+          MARKET DATA • ROADMAP
+        </span>
+
+        <span class="coverage-chip roadmap">
+          MULTI-VENUE • ROADMAP
+        </span>
+
       </div>
 
+
       <div class="reference-note">
+
         <strong>Current Reference Implementations:</strong>
-        The simulator currently uses FIX-style application messaging and selected publicly documented SEED and RAKE concepts as reference models for exercising PARC Labs' broader protocol adaptation and reconciliation architecture. These reference models do not indicate exchange affiliation, certification, production compatibility, or live connectivity.
+
+        The simulator currently uses FIX-style application messaging
+        and selected publicly documented SEED and RAKE concepts as
+        reference models for exercising PARC Labs' broader protocol
+        adaptation and reconciliation architecture.
+
+        These reference models do not indicate exchange affiliation,
+        certification, production compatibility, or live connectivity.
+
       </div>
+
 
       <!-- =====================================================
            PROTOCOL TESTBED
            ===================================================== -->
 
       <section class="sim-box" aria-labelledby="testbed-title">
+
         <div class="sim-header">
-          <span class="sim-title" id="testbed-title">PROTOCOL TESTBED // DETERMINISTIC STREAM SIMULATOR</span>
-          <span class="active-target" id="active-target">REFERENCE ADAPTER: FIX APPLICATION MODEL</span>
+
+          <span class="sim-title" id="testbed-title">
+            PROTOCOL TESTBED // DETERMINISTIC STREAM SIMULATOR
+          </span>
+
+          <span class="active-target" id="active-target">
+            REFERENCE ADAPTER: FIX APPLICATION MODEL
+          </span>
+
         </div>
+
 
         <div class="proto-tabs" role="tablist">
-          <button class="proto-tab active" type="button" role="tab" aria-selected="true" onclick="switchProto('FIX', this)">FIX Reference</button>
-          <button class="proto-tab" type="button" role="tab" aria-selected="false" onclick="switchProto('SEED', this)">Binary Venue (SEED Ref.)</button>
-          <button class="proto-tab" type="button" role="tab" aria-selected="false" onclick="switchProto('RAKE', this)">Session Layer (RAKE Ref.)</button>
+
+          <button
+            class="proto-tab active"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            onclick="switchProto('FIX', this)"
+          >
+            FIX Reference
+          </button>
+
+          <button
+            class="proto-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            onclick="switchProto('SEED', this)"
+          >
+            Binary Venue (SEED Ref.)
+          </button>
+
+          <button
+            class="proto-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            onclick="switchProto('RAKE', this)"
+          >
+            Session Layer (RAKE Ref.)
+          </button>
+
         </div>
+
 
         <div class="wire-note" id="wire-note"></div>
-        <div class="telemetry" id="telemetry" aria-live="polite"></div>
-        <div class="sim-controls" id="controls"></div>
 
-        <div class="sim-terminal" id="terminal" role="log" aria-live="polite">
+        <div
+          class="telemetry"
+          id="telemetry"
+          aria-live="polite"
+        ></div>
+
+        <div
+          class="sim-controls"
+          id="controls"
+        ></div>
+
+        <div
+          class="sim-terminal"
+          id="terminal"
+          role="log"
+          aria-live="polite"
+        >
+
           <div class="terminal-line">
-            <span class="rec-ok">[SIMULATOR INITIALIZED]</span> Synthetic research mode active.
+            <span class="rec-ok">
+              [SIMULATOR INITIALIZED]
+            </span>
+
+            Synthetic research mode active.
           </div>
+
           <div class="terminal-line">
-            <span class="rec-dim">[DATA NOTICE]</span> All messages and execution states below are synthetic laboratory fixtures.
+            <span class="rec-dim">
+              [DATA NOTICE]
+            </span>
+
+            All messages and execution states below are synthetic
+            laboratory fixtures.
           </div>
+
         </div>
+
       </section>
+
 
       <!-- =====================================================
            SECOND RESEARCH CONCEPT
            ===================================================== -->
 
       <section class="research-divider">
-        <div class="research-kicker">EXPERIMENTAL RESEARCH TRACK 02</div>
-        <h2>Causal Recovery &amp; Partial-Order Stream Research</h2>
+
+        <div class="research-kicker">
+          EXPERIMENTAL RESEARCH TRACK 02
+        </div>
+
+        <h2>
+          Causal Recovery &amp; Partial-Order Stream Research
+        </h2>
 
         <p class="causal-copy">
-          In addition to protocol adaptation, PARC Labs is exploring whether a sequence gap must always block an entire stream. The experimental model evaluates whether later events can be classified by state dependency so that provably independent work may continue while only the causally entangled branch is quarantined for recovery.
+          In addition to protocol adaptation, PARC Labs is exploring
+          whether a sequence gap must always block an entire stream.
+          The experimental model evaluates whether later events can
+          be classified by state dependency so that provably
+          independent work may continue while only the causally
+          entangled branch is quarantined for recovery.
         </p>
 
         <div class="causal-rule">
+
           <strong>Experimental Rule:</strong>
-          An event may continue only when the simulator can establish that its local state domain is independent of the missing event under the active experimental model. If independence cannot be established, PARC falls back to conservative blocking.
+
+          An event may continue only when the simulator can establish
+          that its local state domain is independent of the missing
+          event under the active experimental model.
+
+          If independence cannot be established, PARC falls back to
+          conservative blocking.
+
         </div>
 
         <div class="research-hypothesis">
+
           <strong>Research Hypothesis — Causal Recovery:</strong>
-          A cache-bounded dependency classifier may be able to isolate a recovery-affected state branch while allowing independent state lanes to continue processing, then deterministically reconcile the quarantined branch after missing state is restored. Experiment 001 tests correctness across five predefined, auditable synthetic variants.
+
+          A cache-bounded dependency classifier may be able to isolate
+          a recovery-affected state branch while allowing independent
+          state lanes to continue processing, then deterministically
+          reconcile the quarantined branch after missing state is
+          restored.
+
+          Experiment 001 tests correctness across five predefined,
+          auditable synthetic variants. Randomization selects a test
+          fixture; it does not change the dependency rules or imply
+          production latency or scalability.
+
         </div>
+
       </section>
+
+
+
+
+      <!-- =====================================================
+           DETERMINISTIC CAUSAL DATA FLOW ARCHITECTURE
+           ===================================================== -->
+
+      <section
+        class="architecture-section"
+        aria-labelledby="architecture-title"
+      >
+
+        <div
+          class="architecture-title"
+          id="architecture-title"
+        >
+          DETERMINISTIC CAUSAL DATA FLOW ARCHITECTURE
+        </div>
+
+        <div class="architecture-primary-flow">
+
+          <div class="arch-node arch-blue">
+            <strong>INBOUND FEED</strong>
+            <span>TCP / Binary Structs</span>
+          </div>
+
+          <div
+            class="arch-arrow horizontal cyan-arrow"
+            aria-hidden="true"
+          >
+            →
+          </div>
+
+          <div class="arch-node arch-blue">
+            <strong>ZERO-COPY PARSER</strong>
+            <span>Extract Domain Tuple</span>
+            <small>{Symbol, ClOrdID, Acct}</small>
+          </div>
+
+          <div
+            class="arch-arrow horizontal cyan-arrow"
+            aria-hidden="true"
+          >
+            →
+          </div>
+
+          <div class="arch-node arch-purple">
+            <strong>CAUSAL CLASSIFIER</strong>
+            <span>Sequence Gap Active?</span>
+            <small>Evaluates Dependency Domain</small>
+          </div>
+
+        </div>
+
+
+        <div class="architecture-split">
+
+          <div class="branch-card independent">
+
+            <div class="branch-heading">
+              <strong>INDEPENDENT</strong>
+              <span>Orthogonal State Lane</span>
+            </div>
+
+            <div class="branch-arrow" aria-hidden="true">
+              ↓
+            </div>
+
+            <div class="arch-node arch-green">
+              <strong>LOCK-FREE COMMIT TARGET</strong>
+              <span>Independent path continues without recovery blocking</span>
+              <small>O(1) classifier/dispatch target</small>
+            </div>
+
+          </div>
+
+
+          <div class="branch-card entangled">
+
+            <div class="branch-heading">
+              <strong>ENTANGLED</strong>
+              <span>Recovery-Affected Domain</span>
+            </div>
+
+            <div class="branch-arrow" aria-hidden="true">
+              ↓
+            </div>
+
+            <div class="arch-node arch-orange">
+              <strong>QUARANTINE BUFFER</strong>
+              <span>Hold dependent events until recovery completes</span>
+              <small>Replay after missing event is restored</small>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="merge-row" aria-label="Deterministic merge stage">
+          <div class="merge-line" aria-hidden="true"></div>
+          <div class="merge-label">DETERMINISTIC MERGE / CONVERGENCE CHECK</div>
+          <div class="merge-line" aria-hidden="true"></div>
+        </div>
+
+        <p class="architecture-caption">
+          Conceptual research architecture only. The diagram describes the
+          experimental control flow under study; it does not represent measured
+          production latency, exchange certification, or deployed live-market behavior.
+        </p>
+
+      </section>
+
 
       <!-- =====================================================
            CAUSAL RECOVERY TESTBED
            ===================================================== -->
 
       <section class="sim-box">
+
         <div class="sim-header">
-          <span class="sim-title">CAUSAL RECOVERY TESTBED // EXPERIMENT 001</span>
-          <span class="active-target" id="scenario-target">RANDOMIZED ORTHOGONAL STATE-LANE RECOVERY</span>
+
+          <span class="sim-title">
+            CAUSAL RECOVERY TESTBED // EXPERIMENT 001
+          </span>
+
+          <span
+            class="active-target"
+            id="scenario-target"
+          >
+            RANDOMIZED ORTHOGONAL STATE-LANE RECOVERY
+          </span>
+
         </div>
 
+
         <div class="scenario-toolbar">
-          <select class="scenario-select" id="scenario-select" aria-label="Causal recovery scenario" onchange="selectCausalScenario(this.value)"></select>
-          <button class="sim-btn" type="button" onclick="randomizeCausalScenario()">Randomize Scenario</button>
+
+          <select
+            class="scenario-select"
+            id="scenario-select"
+            aria-label="Causal recovery scenario"
+            onchange="selectCausalScenario(this.value)"
+          ></select>
+
+          <button
+            class="sim-btn"
+            type="button"
+            onclick="randomizeCausalScenario()"
+          >
+            Randomize Scenario
+          </button>
+
         </div>
 
         <div class="scenario-note">
-          Randomization selects from five fixed synthetic fixtures so each run remains inspectable and reproducible by scenario ID.
+          Randomization selects from five fixed synthetic fixtures so
+          each run remains inspectable and reproducible by scenario ID.
         </div>
 
-        <div class="wire-note" id="scenario-description">Scenario loading...</div>
 
-        <div class="event-sequence" id="event-sequence" aria-label="Synthetic causal event sequence"></div>
+        <div class="wire-note" id="scenario-description">
+          Scenario loading...
+        </div>
+
+
+        <div
+          class="event-sequence"
+          id="event-sequence"
+          aria-label="Synthetic causal event sequence"
+        ></div>
+
 
         <div class="telemetry" id="causal-telemetry">
+
           <div class="metric">
             <span class="metric-label">Scenario</span>
             <span class="metric-value info" id="scenario-id">S1</span>
           </div>
+
           <div class="metric">
             <span class="metric-label">Gap</span>
             <span class="metric-value warn" id="gap-seq">PENDING</span>
           </div>
+
           <div class="metric">
             <span class="metric-label">Status</span>
             <span class="metric-value" id="causal-status">READY</span>
           </div>
+
           <div class="metric">
             <span class="metric-label">Independent Commits</span>
             <span class="metric-value" id="independent-count">0</span>
           </div>
+
           <div class="metric">
             <span class="metric-label">Active Quarantine</span>
             <span class="metric-value" id="quarantine-count">0</span>
           </div>
+
           <div class="metric">
             <span class="metric-label">Total Quarantined</span>
             <span class="metric-value" id="total-quarantine-count">0</span>
           </div>
+
           <div class="metric">
             <span class="metric-label">Oracle Match</span>
             <span class="metric-value" id="oracle-match">PENDING</span>
           </div>
+
         </div>
 
+
         <div class="lane-grid">
+
           <div class="lane" id="lane-a">
             <h4 id="lane-a-title">Lane A</h4>
             <div class="lane-state" id="lane-a-state">READY</div>
           </div>
+
           <div class="lane" id="lane-b">
             <h4 id="lane-b-title">Lane B</h4>
             <div class="lane-state" id="lane-b-state">READY</div>
           </div>
+
         </div>
+
 
         <div class="sim-controls">
-          <button class="sim-btn accent" type="button" onclick="stepCausalExperiment()">Step Current Scenario</button>
-          <button class="sim-btn success" type="button" onclick="runCausalExperiment(false)">Run Current Scenario</button>
-          <button class="sim-btn success" type="button" onclick="runCausalExperiment(true)">Run Random Scenario</button>
-          <button class="sim-btn" type="button" onclick="resetCausalExperiment()">Reset</button>
+
+          <button
+            class="sim-btn accent"
+            type="button"
+            onclick="stepCausalExperiment()"
+          >
+            Step Current Scenario
+          </button>
+
+          <button
+            class="sim-btn success"
+            type="button"
+            onclick="runCausalExperiment(false)"
+          >
+            Run Current Scenario
+          </button>
+
+          <button
+            class="sim-btn success"
+            type="button"
+            onclick="runCausalExperiment(true)"
+          >
+            Run Random Scenario
+          </button>
+
+          <button
+            class="sim-btn"
+            type="button"
+            onclick="resetCausalExperiment()"
+          >
+            Reset
+          </button>
+
         </div>
 
-        <div class="result-banner" id="causal-result">Experiment not yet executed.</div>
 
-        <div class="sim-terminal" id="causal-terminal" role="log" aria-live="polite">
+        <div class="result-banner" id="causal-result">
+          Experiment not yet executed.
+        </div>
+
+
+        <div
+          class="sim-terminal"
+          id="causal-terminal"
+          role="log"
+          aria-live="polite"
+        >
           <div class="terminal-line">
-            <span class="rec-info">[CAUSAL TESTBED READY]</span> Awaiting Experiment 001.
+            <span class="rec-info">[CAUSAL TESTBED READY]</span>
+            Awaiting Experiment 001.
           </div>
         </div>
 
+
         <div class="comparison-grid">
+
           <div class="comparison-card">
             <h4>Strict Total-Order Oracle</h4>
             <pre id="oracle-state">Scenario not yet executed.</pre>
           </div>
+
           <div class="comparison-card">
             <h4>PARC Experimental State</h4>
             <pre id="parc-state">Scenario not yet executed.</pre>
           </div>
+
         </div>
+
       </section>
 
+
       <footer class="lab-footer">
-        <div>PARC Labs • Independent Applied Systems Research</div>
-        <div>Research Contact: <a href="mailto:labs@parctechnology.com">labs@parctechnology.com</a></div>
+
+        <div>
+          PARC Labs • Independent Applied Systems Research
+        </div>
+
+        <div>
+          Research Contact:
+          <a href="mailto:labs@parctechnology.com">
+            labs@parctechnology.com
+          </a>
+        </div>
+
       </footer>
 
     </section>
 
   </main>
+
 
   <script>
     /* =========================================================
@@ -1105,57 +1813,104 @@
        ========================================================= */
 
     let currentProto = "FIX";
+
     let fixClOrd = 100000;
     let fixOrderId = 700000;
     let fixExecId = 900000;
     let fixMessages = 0;
+
     let seedClOrd = 48002n;
     let seedOrderId = 700002n;
     let seedMessages = 0;
+
     let rakeScenarioCount = 0;
 
-    const terminal = document.getElementById("terminal");
-    const targetLabel = document.getElementById("active-target");
-    const controlsDiv = document.getElementById("controls");
-    const telemetryDiv = document.getElementById("telemetry");
-    const wireNote = document.getElementById("wire-note");
+    const terminal =
+      document.getElementById("terminal");
+
+    const targetLabel =
+      document.getElementById("active-target");
+
+    const controlsDiv =
+      document.getElementById("controls");
+
+    const telemetryDiv =
+      document.getElementById("telemetry");
+
+    const wireNote =
+      document.getElementById("wire-note");
+
 
     function logMessage(html) {
-      const line = document.createElement("div");
-      line.className = "terminal-line";
-      line.innerHTML = html;
+
+      const line =
+        document.createElement("div");
+
+      line.className =
+        "terminal-line";
+
+      line.innerHTML =
+        html;
+
       terminal.appendChild(line);
-      terminal.scrollTop = terminal.scrollHeight;
+
+      terminal.scrollTop =
+        terminal.scrollHeight;
     }
+
 
     function clearLog() {
+
       terminal.innerHTML = `
         <div class="terminal-line">
-          <span class="rec-info">[LOG CLEARED]</span> Ready for the next synthetic research scenario.
+          <span class="rec-info">
+            [LOG CLEARED]
+          </span>
+          Ready for the next synthetic research scenario.
         </div>
       `;
     }
+
 
     function switchProto(proto, button) {
+
       currentProto = proto;
-      document.querySelectorAll(".proto-tab").forEach(tab => {
-        tab.classList.remove("active");
-        tab.setAttribute("aria-selected", "false");
-      });
+
+      document
+        .querySelectorAll(".proto-tab")
+        .forEach(tab => {
+          tab.classList.remove("active");
+          tab.setAttribute("aria-selected", "false");
+        });
+
       button.classList.add("active");
       button.setAttribute("aria-selected", "true");
+
       renderInterface();
-      logMessage(`<span class="rec-info">[REFERENCE ADAPTER SWITCH]</span> ${proto} reference model selected.`);
+
+      logMessage(`
+        <span class="rec-info">
+          [REFERENCE ADAPTER SWITCH]
+        </span>
+        ${proto} reference model selected.
+      `);
     }
 
+
     function metric(label, value, valueClass = "") {
+
       return `
         <div class="metric">
-          <span class="metric-label">${label}</span>
-          <span class="metric-value ${valueClass}">${value}</span>
+          <span class="metric-label">
+            ${label}
+          </span>
+          <span class="metric-value ${valueClass}">
+            ${value}
+          </span>
         </div>
       `;
     }
+
 
     function renderInterface() {
       renderControls();
@@ -1163,50 +1918,150 @@
       renderWireNote();
     }
 
+
     function renderWireNote() {
+
       if (currentProto === "FIX") {
+
         wireNote.innerHTML = `
-          <strong>Reference mode:</strong> FIX-style application-layer fields are shown as a structured tag/value representation. <span class="wire">|</span> is used in place of FIX SOH. Session-level behavior is modeled separately.
+          <strong>Reference mode:</strong>
+          FIX-style application-layer fields are shown as a
+          structured tag/value representation.
+          <span class="wire">|</span>
+          is used in place of FIX SOH.
+          Session-level behavior is modeled separately.
         `;
-      } else if (currentProto === "SEED") {
+
+      }
+
+      else if (currentProto === "SEED") {
+
         wireNote.innerHTML = `
-          <strong>Reference mode:</strong> Binary payload bytes plus decoded fields. This fixture uses publicly documented SEED concepts for packed binary transformation research.
+          <strong>Reference mode:</strong>
+          Binary payload bytes plus decoded fields.
+          This fixture uses publicly documented SEED concepts
+          for packed binary transformation research.
         `;
-      } else {
+
+      }
+
+      else {
+
         wireNote.innerHTML = `
-          <strong>Reference mode:</strong> Session/framing architecture placeholder. The simulator models a payload-agnostic TCP/UDP framing role without claiming production wire compatibility.
+          <strong>Reference mode:</strong>
+          Session/framing architecture placeholder.
+          The simulator models a payload-agnostic TCP/UDP
+          framing role without claiming production wire compatibility.
         `;
+
       }
     }
+
 
     function renderControls() {
+
       if (currentProto === "FIX") {
-        targetLabel.innerText = "REFERENCE ADAPTER: FIX APPLICATION MODEL";
+
+        targetLabel.innerText =
+          "REFERENCE ADAPTER: FIX APPLICATION MODEL";
+
         controlsDiv.innerHTML = `
-          <button class="sim-btn accent" onclick="emitFIXLimitOrder()">+ Emit Synthetic Limit Order</button>
-          <button class="sim-btn danger" onclick="emitFIXReject()">⚠ Simulate Unknown-Symbol Reject</button>
-          <button class="sim-btn" onclick="explainFIXSessionGap()">Session Recovery Scope</button>
-          <button class="sim-btn" onclick="clearLog()">Clear</button>
+          <button
+            class="sim-btn accent"
+            onclick="emitFIXLimitOrder()"
+          >
+            + Emit Synthetic Limit Order
+          </button>
+
+          <button
+            class="sim-btn danger"
+            onclick="emitFIXReject()"
+          >
+            ⚠ Simulate Unknown-Symbol Reject
+          </button>
+
+          <button
+            class="sim-btn"
+            onclick="explainFIXSessionGap()"
+          >
+            Session Recovery Scope
+          </button>
+
+          <button
+            class="sim-btn"
+            onclick="clearLog()"
+          >
+            Clear
+          </button>
         `;
-      } else if (currentProto === "SEED") {
-        targetLabel.innerText = "REFERENCE ADAPTER: PACKED BINARY ORDER ENTRY";
+
+      }
+
+      else if (currentProto === "SEED") {
+
+        targetLabel.innerText =
+          "REFERENCE ADAPTER: PACKED BINARY ORDER ENTRY";
+
         controlsDiv.innerHTML = `
-          <button class="sim-btn accent" onclick="emitSEEDLimitOrder()">+ Encode Synthetic Binary Order</button>
-          <button class="sim-btn" onclick="emitSEEDBurst()">Encode 10-Message Burst</button>
-          <button class="sim-btn" onclick="clearLog()">Clear</button>
+          <button
+            class="sim-btn accent"
+            onclick="emitSEEDLimitOrder()"
+          >
+            + Encode Synthetic Binary Order
+          </button>
+
+          <button
+            class="sim-btn"
+            onclick="emitSEEDBurst()"
+          >
+            Encode 10-Message Burst
+          </button>
+
+          <button
+            class="sim-btn"
+            onclick="clearLog()"
+          >
+            Clear
+          </button>
         `;
-      } else {
-        targetLabel.innerText = "REFERENCE MODEL: SESSION & FRAMING LAYER";
+
+      }
+
+      else {
+
+        targetLabel.innerText =
+          "REFERENCE MODEL: SESSION & FRAMING LAYER";
+
         controlsDiv.innerHTML = `
-          <button class="sim-btn accent" onclick="showRAKERole()">Show Payload → Session → TCP Flow</button>
-          <button class="sim-btn" onclick="showRAKEBoundary()">Show Modeling Boundary</button>
-          <button class="sim-btn" onclick="clearLog()">Clear</button>
+          <button
+            class="sim-btn accent"
+            onclick="showRAKERole()"
+          >
+            Show Payload → Session → TCP Flow
+          </button>
+
+          <button
+            class="sim-btn"
+            onclick="showRAKEBoundary()"
+          >
+            Show Modeling Boundary
+          </button>
+
+          <button
+            class="sim-btn"
+            onclick="clearLog()"
+          >
+            Clear
+          </button>
         `;
       }
     }
 
+
     function renderTelemetry() {
+
       if (currentProto === "FIX") {
+
         telemetryDiv.innerHTML =
           metric("Reference", "FIX 5.0 SP2", "info") +
           metric("Scope", "APP MODEL", "good") +
@@ -1214,7 +2069,11 @@
           metric("Messages", fixMessages) +
           metric("Session Recovery", "RESEARCH", "warn") +
           metric("Live Connection", "NONE");
-      } else if (currentProto === "SEED") {
+
+      }
+
+      else if (currentProto === "SEED") {
+
         telemetryDiv.innerHTML =
           metric("Reference", "SEED", "info") +
           metric("Encoding", "LITTLE-ENDIAN", "good") +
@@ -1222,7 +2081,11 @@
           metric("Payload Size", "31 BYTES") +
           metric("Messages", seedMessages) +
           metric("Live Connection", "NONE");
-      } else {
+
+      }
+
+      else {
+
         telemetryDiv.innerHTML =
           metric("Reference", "RAKE", "info") +
           metric("Role", "SESSION / FRAME") +
@@ -1230,144 +2093,385 @@
           metric("Scenarios", rakeScenarioCount) +
           metric("Frame Bytes", "NOT EMITTED", "warn") +
           metric("Scope", "REFERENCE", "warn");
+
       }
     }
 
+
     function fixTimestamp() {
+
       const d = new Date();
+
       const yyyy = d.getUTCFullYear();
-      const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
-      const dd = String(d.getUTCDate()).padStart(2, "0");
-      const hh = String(d.getUTCHours()).padStart(2, "0");
-      const mi = String(d.getUTCMinutes()).padStart(2, "0");
-      const ss = String(d.getUTCSeconds()).padStart(2, "0");
-      const ms = String(d.getUTCMilliseconds()).padStart(3, "0");
-      return `${yyyy}${mm}${dd}-${hh}:${mi}:${ss}.${ms}`;
+
+      const mm =
+        String(d.getUTCMonth() + 1)
+          .padStart(2, "0");
+
+      const dd =
+        String(d.getUTCDate())
+          .padStart(2, "0");
+
+      const hh =
+        String(d.getUTCHours())
+          .padStart(2, "0");
+
+      const mi =
+        String(d.getUTCMinutes())
+          .padStart(2, "0");
+
+      const ss =
+        String(d.getUTCSeconds())
+          .padStart(2, "0");
+
+      const ms =
+        String(d.getUTCMilliseconds())
+          .padStart(3, "0");
+
+      return (
+        `${yyyy}${mm}${dd}-` +
+        `${hh}:${mi}:${ss}.${ms}`
+      );
     }
 
+
     function emitFIXLimitOrder() {
+
       fixClOrd++;
       fixOrderId++;
       fixExecId++;
       fixMessages += 2;
-      const clOrdId = `PARC${fixClOrd}`;
+
+      const clOrdId =
+        `PARC${fixClOrd}`;
 
       const request = [
-        "35=D", `60=${fixTimestamp()}`, "40=2", `11=${clOrdId}`,
-        "55=PARC", "54=1", "44=25.00", "38=100", "59=0"
+        "35=D",
+        `60=${fixTimestamp()}`,
+        "40=2",
+        `11=${clOrdId}`,
+        "55=PARC",
+        "54=1",
+        "44=25.00",
+        "38=100",
+        "59=0"
       ].join("|") + "|";
 
       const response = [
-        "35=8", `60=${fixTimestamp()}`, "150=0", "39=0",
-        `11=${clOrdId}`, `37=${fixOrderId}`, `17=${fixExecId}`,
-        "55=PARC", "151=100", "14=0"
+        "35=8",
+        `60=${fixTimestamp()}`,
+        "150=0",
+        "39=0",
+        `11=${clOrdId}`,
+        `37=${fixOrderId}`,
+        `17=${fixExecId}`,
+        "55=PARC",
+        "151=100",
+        "14=0"
       ].join("|") + "|";
 
-      logMessage(`<span class="rec-info">[SYNTHETIC CLIENT → VENUE] [FIX REFERENCE]</span><br><span class="wire">${request}</span>`);
-      logMessage(`<span class="rec-ok">[SIMULATED VENUE → CLIENT] [ORDER ACCEPTED]</span><br><span class="wire">${response}</span>`);
+      logMessage(`
+        <span class="rec-info">
+          [SYNTHETIC CLIENT → VENUE]
+          [FIX REFERENCE]
+        </span>
+        <br>
+        <span class="wire">
+          ${request}
+        </span>
+      `);
+
+      logMessage(`
+        <span class="rec-ok">
+          [SIMULATED VENUE → CLIENT]
+          [ORDER ACCEPTED]
+        </span>
+        <br>
+        <span class="wire">
+          ${response}
+        </span>
+      `);
+
       renderTelemetry();
     }
 
+
     function emitFIXReject() {
+
       fixClOrd++;
       fixExecId++;
       fixMessages += 2;
-      const clOrdId = `PARC${fixClOrd}`;
-      logMessage(`<span class="rec-info">[SYNTHETIC CLIENT → VENUE] [UNKNOWN SYMBOL] clOrdId=${clOrdId}</span>`);
-      logMessage(`<span class="rec-drop">[SIMULATED VENUE → CLIENT] [ORDER REJECTED]</span> OrdRejReason=UNKNOWN_SYMBOL`);
+
+      const clOrdId =
+        `PARC${fixClOrd}`;
+
+      logMessage(`
+        <span class="rec-info">
+          [SYNTHETIC CLIENT → VENUE]
+          [UNKNOWN SYMBOL]
+          clOrdId=${clOrdId}
+        </span>
+      `);
+
+      logMessage(`
+        <span class="rec-drop">
+          [SIMULATED VENUE → CLIENT]
+          [ORDER REJECTED]
+        </span>
+        OrdRejReason=UNKNOWN_SYMBOL
+      `);
+
       renderTelemetry();
     }
 
+
     function explainFIXSessionGap() {
+
       logMessage(`
-        <span class="rec-warn">[RESEARCH BOUNDARY] [SESSION RECOVERY]</span> Future scenarios inject synthetic sequence gaps, delayed events, duplicates, and retransmissions to study recovery without globally blocking independent state.
+        <span class="rec-warn">
+          [RESEARCH BOUNDARY]
+          [SESSION RECOVERY]
+        </span>
+
+        Future scenarios inject synthetic sequence gaps,
+        delayed events, duplicates, and retransmissions
+        to study recovery without globally blocking
+        independent state.
       `);
     }
 
+
     function toHex(buffer) {
-      return Array.from(new Uint8Array(buffer)).map(byte => byte.toString(16).padStart(2, "0").toUpperCase()).join(" ");
+
+      return Array
+        .from(new Uint8Array(buffer))
+        .map(
+          byte =>
+            byte
+              .toString(16)
+              .padStart(2, "0")
+              .toUpperCase()
+        )
+        .join(" ");
     }
+
 
     function scaledPrice(price) {
-      return BigInt(Math.round(price * 100000000));
+
+      return BigInt(
+        Math.round(price * 100000000)
+      );
     }
 
-    function buildSEEDLimitOrder({ clOrdId, qty = 100, symbolId = 1, price = 25 } = {}) {
-      const buffer = new ArrayBuffer(31);
-      const view = new DataView(buffer);
+
+    function buildSEEDLimitOrder({
+      clOrdId,
+      qty = 100,
+      symbolId = 1,
+      price = 25
+    } = {}) {
+
+      const buffer =
+        new ArrayBuffer(31);
+
+      const view =
+        new DataView(buffer);
+
       view.setUint8(0, 0x4C);
       view.setInt32(1, 0, true);
       view.setBigInt64(5, clOrdId, true);
       view.setInt32(13, qty, true);
       view.setInt32(17, 0x00000140, true);
       view.setInt16(21, symbolId, true);
-      view.setBigInt64(23, scaledPrice(price), true);
+      view.setBigInt64(
+        23,
+        scaledPrice(price),
+        true
+      );
+
       return buffer;
     }
 
+
     function emitSEEDLimitOrder() {
+
       seedClOrd += 1n;
       seedOrderId += 1n;
       seedMessages += 1;
-      const buffer = buildSEEDLimitOrder({ clOrdId: seedClOrd });
-      logMessage(`<span class="rec-seed">[SYNTHETIC BINARY ORDER] [clOrdId=${seedClOrd}]</span><br><span class="wire">${toHex(buffer)}</span>`);
+
+      const buffer =
+        buildSEEDLimitOrder({
+          clOrdId: seedClOrd
+        });
+
+      logMessage(`
+        <span class="rec-seed">
+          [SYNTHETIC BINARY ORDER]
+          [clOrdId=${seedClOrd}]
+        </span>
+        <br>
+        <span class="wire">
+          ${toHex(buffer)}
+        </span>
+      `);
+
       renderTelemetry();
     }
+
 
     function emitSEEDBurst() {
-      logMessage(`<span class="rec-info">[SYNTHETIC BURST]</span> Encoding 10 binary fixtures.`);
+
+      logMessage(`
+        <span class="rec-info">
+          [SYNTHETIC BURST]
+        </span>
+        Encoding 10 binary fixtures.
+      `);
+
       for (let i = 0; i < 10; i++) {
+
         seedClOrd += 1n;
         seedMessages += 1;
-        const buffer = buildSEEDLimitOrder({ clOrdId: seedClOrd, price: 25 + i / 100 });
-        logMessage(`<span class="rec-seed">[SEQ ${i + 1}]</span> <span class="wire">${toHex(buffer)}</span>`);
+
+        const buffer =
+          buildSEEDLimitOrder({
+            clOrdId: seedClOrd,
+            price: 25 + i / 100
+          });
+
+        logMessage(`
+          <span class="rec-seed">
+            [SEQ ${i + 1}]
+          </span>
+          <span class="wire">
+            ${toHex(buffer)}
+          </span>
+        `);
       }
+
       renderTelemetry();
     }
+
 
     function showRAKERole() {
+
       rakeScenarioCount++;
-      logMessage(`<span class="rec-rake">[SESSION ARCHITECTURE MODEL]</span> binary payload → framing/session layer → TCP → simulated endpoint`);
+
+      logMessage(`
+        <span class="rec-rake">
+          [SESSION ARCHITECTURE MODEL]
+        </span>
+
+        binary payload
+        →
+        framing/session layer
+        →
+        TCP
+        →
+        simulated endpoint
+      `);
+
       renderTelemetry();
     }
 
+
     function showRAKEBoundary() {
+
       rakeScenarioCount++;
-      logMessage(`<span class="rec-warn">[MODELING BOUNDARY]</span> Wire-compatible framing requires implementation of the applicable technical specification.`);
+
+      logMessage(`
+        <span class="rec-warn">
+          [MODELING BOUNDARY]
+        </span>
+
+        Wire-compatible framing requires implementation
+        of the applicable technical specification.
+      `);
+
       renderTelemetry();
     }
+
 
     /* =========================================================
        CAUSAL RECOVERY EXPERIMENT
        ========================================================= */
 
-    const causalTerminal = document.getElementById("causal-terminal");
-    const causalStatus = document.getElementById("causal-status");
-    const independentCount = document.getElementById("independent-count");
-    const quarantineCount = document.getElementById("quarantine-count");
-    const totalQuarantineCount = document.getElementById("total-quarantine-count");
-    const oracleMatch = document.getElementById("oracle-match");
-    const laneAState = document.getElementById("lane-a-state");
-    const laneBState = document.getElementById("lane-b-state");
-    const laneATitle = document.getElementById("lane-a-title");
-    const laneBTitle = document.getElementById("lane-b-title");
-    const laneA = document.getElementById("lane-a");
-    const laneB = document.getElementById("lane-b");
-    const causalResult = document.getElementById("causal-result");
-    const oracleStateView = document.getElementById("oracle-state");
-    const parcStateView = document.getElementById("parc-state");
-    const scenarioSelect = document.getElementById("scenario-select");
-    const scenarioDescription = document.getElementById("scenario-description");
-    const scenarioTarget = document.getElementById("scenario-target");
-    const scenarioIdView = document.getElementById("scenario-id");
-    const gapSeqView = document.getElementById("gap-seq");
-    const eventSequenceView = document.getElementById("event-sequence");
+    const causalTerminal =
+      document.getElementById("causal-terminal");
+
+    const causalStatus =
+      document.getElementById("causal-status");
+
+    const independentCount =
+      document.getElementById("independent-count");
+
+    const quarantineCount =
+      document.getElementById("quarantine-count");
+
+    const totalQuarantineCount =
+      document.getElementById("total-quarantine-count");
+
+    const oracleMatch =
+      document.getElementById("oracle-match");
+
+    const laneAState =
+      document.getElementById("lane-a-state");
+
+    const laneBState =
+      document.getElementById("lane-b-state");
+
+    const laneATitle =
+      document.getElementById("lane-a-title");
+
+    const laneBTitle =
+      document.getElementById("lane-b-title");
+
+    const laneA =
+      document.getElementById("lane-a");
+
+    const laneB =
+      document.getElementById("lane-b");
+
+    const causalResult =
+      document.getElementById("causal-result");
+
+    const oracleStateView =
+      document.getElementById("oracle-state");
+
+    const parcStateView =
+      document.getElementById("parc-state");
+
+    const scenarioSelect =
+      document.getElementById("scenario-select");
+
+    const scenarioDescription =
+      document.getElementById("scenario-description");
+
+    const scenarioTarget =
+      document.getElementById("scenario-target");
+
+    const scenarioIdView =
+      document.getElementById("scenario-id");
+
+    const gapSeqView =
+      document.getElementById("gap-seq");
+
+    const eventSequenceView =
+      document.getElementById("event-sequence");
+
+
+    /* ---------------------------------------------------------
+       PREDEFINED, AUDITABLE SCENARIO FIXTURES
+       --------------------------------------------------------- */
 
     const causalScenarios = [
       {
         id: "S1",
         name: "Cross-Symbol Fill + Cancel",
-        description: "A partial fill is missing on AAPL / Order-A. A full fill on MSFT / Order-B is independent and may commit. A later AAPL cancel is dependent and must wait.",
+        description:
+          "A partial fill is missing on AAPL / Order-A. " +
+          "A full fill on MSFT / Order-B is independent and may " +
+          "commit. A later AAPL cancel is dependent and must wait.",
         laneA: { symbol: "AAPL", order: "Order-A", qty: 100 },
         laneB: { symbol: "MSFT", order: "Order-B", qty: 100 },
         events: [
@@ -1381,7 +2485,10 @@
       {
         id: "S2",
         name: "Cross-Symbol Partial Fills",
-        description: "A partial fill is missing on NVDA / Order-A. An IBM partial fill is independent and may commit. A later NVDA partial fill is quarantined until recovery.",
+        description:
+          "A partial fill is missing on NVDA / Order-A. " +
+          "An IBM partial fill is independent and may commit. " +
+          "A later NVDA partial fill is quarantined until recovery.",
         laneA: { symbol: "NVDA", order: "Order-A", qty: 200 },
         laneB: { symbol: "IBM", order: "Order-B", qty: 80 },
         events: [
@@ -1395,7 +2502,10 @@
       {
         id: "S3",
         name: "Independent Cancel During Recovery",
-        description: "A partial fill is missing on AMD / Order-A. An ORCL cancel belongs to the independent lane and may commit while AMD recovery remains active.",
+        description:
+          "A partial fill is missing on AMD / Order-A. " +
+          "An ORCL cancel belongs to the independent lane and may " +
+          "commit while AMD recovery remains active.",
         laneA: { symbol: "AMD", order: "Order-A", qty: 150 },
         laneB: { symbol: "ORCL", order: "Order-B", qty: 90 },
         events: [
@@ -1409,7 +2519,10 @@
       {
         id: "S4",
         name: "Independent Partial Fill + Dependent Completion",
-        description: "A partial fill is missing on JPM / Order-A. A BAC partial fill may commit independently. A later JPM fill remains dependent on the missing JPM state.",
+        description:
+          "A partial fill is missing on JPM / Order-A. " +
+          "A BAC partial fill may commit independently. A later JPM " +
+          "fill remains dependent on the missing JPM state.",
         laneA: { symbol: "JPM", order: "Order-A", qty: 120 },
         laneB: { symbol: "BAC", order: "Order-B", qty: 120 },
         events: [
@@ -1423,7 +2536,10 @@
       {
         id: "S5",
         name: "Independent Full Fill + Dependent Partial Fill",
-        description: "A META partial fill is missing. An INTC full fill is independent and may commit. A later META partial fill is quarantined and replayed after the missing event returns.",
+        description:
+          "A META partial fill is missing. An INTC full fill is " +
+          "independent and may commit. A later META partial fill is " +
+          "quarantined and replayed after the missing event returns.",
         laneA: { symbol: "META", order: "Order-A", qty: 75 },
         laneB: { symbol: "INTC", order: "Order-B", qty: 50 },
         events: [
@@ -1435,6 +2551,7 @@
         ]
       }
     ];
+
 
     let currentScenarioIndex = 0;
     let currentScenario = causalScenarios[currentScenarioIndex];
@@ -1452,20 +2569,41 @@
     let parcState = {};
     let oracleState = {};
 
+
     function emptyOrderState() {
-      return { status: "NONE", orderQty: 0, filledQty: 0, leavesQty: 0, canceledQty: 0 };
+      return {
+        status: "NONE",
+        orderQty: 0,
+        filledQty: 0,
+        leavesQty: 0,
+        canceledQty: 0
+      };
     }
+
 
     function stateKey(symbol, order) {
       return `${symbol}:${order}`;
     }
 
+
     function initializeStateForScenario() {
-      const aKey = stateKey(currentScenario.laneA.symbol, currentScenario.laneA.order);
-      const bKey = stateKey(currentScenario.laneB.symbol, currentScenario.laneB.order);
-      parcState = { [aKey]: emptyOrderState(), [bKey]: emptyOrderState() };
-      oracleState = { [aKey]: emptyOrderState(), [bKey]: emptyOrderState() };
+      const aKey =
+        stateKey(currentScenario.laneA.symbol, currentScenario.laneA.order);
+
+      const bKey =
+        stateKey(currentScenario.laneB.symbol, currentScenario.laneB.order);
+
+      parcState = {
+        [aKey]: emptyOrderState(),
+        [bKey]: emptyOrderState()
+      };
+
+      oracleState = {
+        [aKey]: emptyOrderState(),
+        [bKey]: emptyOrderState()
+      };
     }
+
 
     function causalLog(html) {
       const line = document.createElement("div");
@@ -1475,13 +2613,24 @@
       causalTerminal.scrollTop = causalTerminal.scrollHeight;
     }
 
+
+    /* ---------------------------------------------------------
+       PARC EXPERIMENTAL STATE MACHINE
+       --------------------------------------------------------- */
+
     function applyParcEvent(state, event) {
       const key = stateKey(event.symbol, event.order);
       const orderState = state[key];
-      if (!orderState) throw new Error(`Unknown PARC state domain: ${key}`);
+
+      if (!orderState) {
+        throw new Error(`Unknown PARC state domain: ${key}`);
+      }
 
       if (event.action === "NEW") {
-        if (orderState.status !== "NONE") throw new Error(`Invalid NEW transition for ${key}`);
+        if (orderState.status !== "NONE") {
+          throw new Error(`Invalid NEW transition for ${key}`);
+        }
+
         orderState.status = "OPEN";
         orderState.orderQty = event.qty;
         orderState.filledQty = 0;
@@ -1490,17 +2639,44 @@
         return;
       }
 
-      if (event.action === "PARTIAL_FILL" || event.action === "FILL") {
-        if (orderState.status !== "OPEN" && orderState.status !== "PARTIALLY_FILLED") throw new Error(`Invalid fill transition for ${key}`);
-        if (!event.qty || event.qty <= 0 || event.qty > orderState.leavesQty) throw new Error(`Invalid fill quantity for ${key}`);
+      if (
+        event.action === "PARTIAL_FILL" ||
+        event.action === "FILL"
+      ) {
+        if (
+          orderState.status !== "OPEN" &&
+          orderState.status !== "PARTIALLY_FILLED"
+        ) {
+          throw new Error(`Invalid fill transition for ${key}`);
+        }
+
+        if (
+          !event.qty ||
+          event.qty <= 0 ||
+          event.qty > orderState.leavesQty
+        ) {
+          throw new Error(`Invalid fill quantity for ${key}`);
+        }
+
         orderState.filledQty += event.qty;
         orderState.leavesQty -= event.qty;
-        orderState.status = orderState.leavesQty === 0 ? "FILLED" : "PARTIALLY_FILLED";
+
+        orderState.status =
+          orderState.leavesQty === 0
+            ? "FILLED"
+            : "PARTIALLY_FILLED";
+
         return;
       }
 
       if (event.action === "CANCEL") {
-        if (orderState.status !== "OPEN" && orderState.status !== "PARTIALLY_FILLED") throw new Error(`Invalid CANCEL transition for ${key}`);
+        if (
+          orderState.status !== "OPEN" &&
+          orderState.status !== "PARTIALLY_FILLED"
+        ) {
+          throw new Error(`Invalid CANCEL transition for ${key}`);
+        }
+
         orderState.canceledQty = orderState.leavesQty;
         orderState.leavesQty = 0;
         orderState.status = "CANCELLED";
@@ -1510,56 +2686,101 @@
       throw new Error(`Unsupported PARC action: ${event.action}`);
     }
 
+
+    /* ---------------------------------------------------------
+       INDEPENDENT STRICT TOTAL-ORDER ORACLE
+       --------------------------------------------------------- */
+
     function applyOracleEvent(state, event) {
       const key = `${event.symbol}:${event.order}`;
       const s = state[key];
-      if (!s) throw new Error(`Unknown oracle state domain: ${key}`);
+
+      if (!s) {
+        throw new Error(`Unknown oracle state domain: ${key}`);
+      }
 
       switch (event.action) {
         case "NEW":
-          if (s.status !== "NONE") throw new Error(`Oracle rejected duplicate NEW for ${key}`);
+          if (s.status !== "NONE") {
+            throw new Error(`Oracle rejected duplicate NEW for ${key}`);
+          }
           s.status = "OPEN";
           s.orderQty = event.qty;
           s.filledQty = 0;
           s.leavesQty = event.qty;
           s.canceledQty = 0;
           break;
+
         case "PARTIAL_FILL":
         case "FILL":
-          if (!["OPEN", "PARTIALLY_FILLED"].includes(s.status)) throw new Error(`Oracle rejected fill state for ${key}`);
-          if (!Number.isFinite(event.qty) || event.qty <= 0 || event.qty > s.leavesQty) throw new Error(`Oracle rejected fill quantity for ${key}`);
+          if (!["OPEN", "PARTIALLY_FILLED"].includes(s.status)) {
+            throw new Error(`Oracle rejected fill state for ${key}`);
+          }
+          if (!Number.isFinite(event.qty) || event.qty <= 0 || event.qty > s.leavesQty) {
+            throw new Error(`Oracle rejected fill quantity for ${key}`);
+          }
           s.filledQty = s.filledQty + event.qty;
           s.leavesQty = s.orderQty - s.filledQty - s.canceledQty;
           s.status = s.leavesQty === 0 ? "FILLED" : "PARTIALLY_FILLED";
           break;
+
         case "CANCEL":
-          if (!["OPEN", "PARTIALLY_FILLED"].includes(s.status)) throw new Error(`Oracle rejected cancel state for ${key}`);
+          if (!["OPEN", "PARTIALLY_FILLED"].includes(s.status)) {
+            throw new Error(`Oracle rejected cancel state for ${key}`);
+          }
           s.canceledQty = s.leavesQty;
           s.leavesQty = 0;
           s.status = "CANCELLED";
           break;
+
         default:
           throw new Error(`Unsupported oracle action: ${event.action}`);
       }
     }
 
+
     function sameStateDomain(event, referenceEvent) {
-      return event.symbol === referenceEvent.symbol && event.order === referenceEvent.order;
+      return (
+        event.symbol === referenceEvent.symbol &&
+        event.order === referenceEvent.order
+      );
     }
 
+
     function isIndependentFromGap(event) {
+      /*
+       * Experiment 001 deliberately uses an order-local state model.
+       * There are no account-level, portfolio-level, risk-level,
+       * symbol-wide, or cross-instrument constraints in these fixtures.
+       *
+       * The classifier derives the recovery domain from the actual
+       * missing event rather than from hard-coded symbols.
+       */
       return !sameStateDomain(event, missingEvent);
     }
 
+
     function formatAction(event) {
-      if (event.action === "PARTIAL_FILL") return `PARTIAL_FILL (${event.qty})`;
-      if (event.action === "FILL") return `FILL (${event.qty})`;
-      if (event.action === "NEW") return `NEW (${event.qty})`;
+      if (event.action === "PARTIAL_FILL") {
+        return `PARTIAL_FILL (${event.qty})`;
+      }
+
+      if (event.action === "FILL") {
+        return `FILL (${event.qty})`;
+      }
+
+      if (event.action === "NEW") {
+        return `NEW (${event.qty})`;
+      }
+
       return event.action;
     }
 
+
     function renderScenarioFixture() {
-      missingEvent = currentScenario.events.find(event => event.dropped);
+      missingEvent =
+        currentScenario.events.find(event => event.dropped);
+
       causalEvents = currentScenario.events;
 
       scenarioIdView.innerText = currentScenario.id;
@@ -1567,88 +2788,170 @@
       scenarioTarget.innerText = currentScenario.name.toUpperCase();
 
       scenarioDescription.innerHTML = `
-        <strong>${currentScenario.id} — ${currentScenario.name}:</strong> ${currentScenario.description}
+        <strong>${currentScenario.id} — ${currentScenario.name}:</strong>
+        ${currentScenario.description}
         <br><br>
-        <span class="rec-dim">Independence is evaluated against the state domain derived from missing SEQ ${missingEvent.seq}: ${missingEvent.symbol} / ${missingEvent.order}.</span>
+        <span class="rec-dim">
+          Independence is evaluated against the state domain derived
+          from missing SEQ ${missingEvent.seq}: ${missingEvent.symbol} /
+          ${missingEvent.order}.
+        </span>
       `;
 
-      laneATitle.innerText = `Lane A — ${currentScenario.laneA.symbol} / ${currentScenario.laneA.order}`;
-      laneBTitle.innerText = `Lane B — ${currentScenario.laneB.symbol} / ${currentScenario.laneB.order}`;
+      laneATitle.innerText =
+        `Lane A — ${currentScenario.laneA.symbol} / ${currentScenario.laneA.order}`;
 
-      eventSequenceView.innerHTML = currentScenario.events.map(event => {
-        let className = "event-card";
-        let relation = "PRE-GAP";
+      laneBTitle.innerText =
+        `Lane B — ${currentScenario.laneB.symbol} / ${currentScenario.laneB.order}`;
 
-        if (event.dropped) {
-          className += " gap";
-          relation = "DROPPED";
-        } else if (event.seq > missingEvent.seq) {
-          if (isIndependentFromGap(event)) {
-            className += " independent";
-            relation = "INDEPENDENT";
-          } else {
-            className += " dependent";
-            relation = "DEPENDENT";
+      eventSequenceView.innerHTML =
+        currentScenario.events.map(event => {
+          let className = "event-card";
+          let relation = "PRE-GAP";
+
+          if (event.dropped) {
+            className += " gap";
+            relation = "DROPPED";
           }
-        }
+          else if (event.seq > missingEvent.seq) {
+            if (isIndependentFromGap(event)) {
+              className += " independent";
+              relation = "INDEPENDENT";
+            }
+            else {
+              className += " dependent";
+              relation = "DEPENDENT";
+            }
+          }
 
-        return `
-          <div class="${className}">
-            <span class="event-seq">SEQ ${event.seq}</span>
-            <span class="event-main">
-              ${event.symbol}<br>${event.order}<br>${formatAction(event)}<br>
-              <strong>${relation}</strong>
-            </span>
-          </div>
-        `;
-      }).join("");
+          return `
+            <div class="${className}">
+              <span class="event-seq">SEQ ${event.seq}</span>
+              <span class="event-main">
+                ${event.symbol}<br>
+                ${event.order}<br>
+                ${formatAction(event)}<br>
+                <strong>${relation}</strong>
+              </span>
+            </div>
+          `;
+        }).join("");
     }
+
 
     function orderStateText(state, lane) {
       const key = stateKey(lane.symbol, lane.order);
       const s = state[key];
-      return `Status: ${s.status}\nOrder Qty: ${s.orderQty}\nFilled Qty: ${s.filledQty}\nLeaves Qty: ${s.leavesQty}\nCanceled Qty: ${s.canceledQty}`;
+
+      return (
+        `Status: ${s.status}\n` +
+        `Order Qty: ${s.orderQty}\n` +
+        `Filled Qty: ${s.filledQty}\n` +
+        `Leaves Qty: ${s.leavesQty}\n` +
+        `Canceled Qty: ${s.canceledQty}`
+      );
     }
+
 
     function updateCausalUI() {
-      causalStatus.innerText = experimentComplete ? "COMPLETE" : gapOpen ? "RECOVERY ACTIVE" : causalStep === 0 ? "READY" : "RUNNING";
-      independentCount.innerText = independentCommitted;
-      quarantineCount.innerText = quarantined.length;
-      totalQuarantineCount.innerText = totalQuarantined;
+      causalStatus.innerText =
+        experimentComplete
+          ? "COMPLETE"
+          : gapOpen
+            ? "RECOVERY ACTIVE"
+            : causalStep === 0
+              ? "READY"
+              : "RUNNING";
 
-      laneAState.innerText = orderStateText(parcState, currentScenario.laneA) + (gapOpen ? "\nRecovery dependency: OPEN" : "");
-      laneBState.innerText = orderStateText(parcState, currentScenario.laneB) + (independentCommitted > 0 ? "\nIndependent commit observed" : "");
+      independentCount.innerText =
+        independentCommitted;
 
-      laneA.classList.toggle("blocked", gapOpen && sameStateDomain(missingEvent, { symbol: currentScenario.laneA.symbol, order: currentScenario.laneA.order }));
-      laneB.classList.toggle("committed", independentCommitted > 0);
+      quarantineCount.innerText =
+        quarantined.length;
+
+      totalQuarantineCount.innerText =
+        totalQuarantined;
+
+      const aKey =
+        stateKey(currentScenario.laneA.symbol, currentScenario.laneA.order);
+
+      const bKey =
+        stateKey(currentScenario.laneB.symbol, currentScenario.laneB.order);
+
+      laneAState.innerText =
+        orderStateText(parcState, currentScenario.laneA) +
+        (gapOpen ? "\nRecovery dependency: OPEN" : "");
+
+      laneBState.innerText =
+        orderStateText(parcState, currentScenario.laneB) +
+        (independentCommitted > 0 ? "\nIndependent commit observed" : "");
+
+      laneA.classList.toggle(
+        "blocked",
+        gapOpen && sameStateDomain(missingEvent, {
+          symbol: currentScenario.laneA.symbol,
+          order: currentScenario.laneA.order
+        })
+      );
+
+      laneB.classList.toggle(
+        "committed",
+        independentCommitted > 0
+      );
 
       parcStateView.textContent =
-        `${currentScenario.laneA.symbol} ${currentScenario.laneA.order}\n${orderStateText(parcState, currentScenario.laneA)}\n\n` +
-        `${currentScenario.laneB.symbol} ${currentScenario.laneB.order}\n${orderStateText(parcState, currentScenario.laneB)}`;
+        `${currentScenario.laneA.symbol} ${currentScenario.laneA.order}\n` +
+        `${orderStateText(parcState, currentScenario.laneA)}\n\n` +
+        `${currentScenario.laneB.symbol} ${currentScenario.laneB.order}\n` +
+        `${orderStateText(parcState, currentScenario.laneB)}`;
+
+      /* Keep variables referenced so browser diagnostics remain clear. */
+      void aKey;
+      void bKey;
     }
 
+
     function buildOracle() {
-      const aKey = stateKey(currentScenario.laneA.symbol, currentScenario.laneA.order);
-      const bKey = stateKey(currentScenario.laneB.symbol, currentScenario.laneB.order);
-      oracleState = { [aKey]: emptyOrderState(), [bKey]: emptyOrderState() };
+      initializeOracleOnly();
 
       causalEvents.forEach(event => {
         applyOracleEvent(oracleState, event);
       });
 
       oracleStateView.textContent =
-        `${currentScenario.laneA.symbol} ${currentScenario.laneA.order}\n${orderStateText(oracleState, currentScenario.laneA)}\n\n` +
-        `${currentScenario.laneB.symbol} ${currentScenario.laneB.order}\n${orderStateText(oracleState, currentScenario.laneB)}`;
+        `${currentScenario.laneA.symbol} ${currentScenario.laneA.order}\n` +
+        `${orderStateText(oracleState, currentScenario.laneA)}\n\n` +
+        `${currentScenario.laneB.symbol} ${currentScenario.laneB.order}\n` +
+        `${orderStateText(oracleState, currentScenario.laneB)}`;
     }
+
+
+    function initializeOracleOnly() {
+      const aKey =
+        stateKey(currentScenario.laneA.symbol, currentScenario.laneA.order);
+
+      const bKey =
+        stateKey(currentScenario.laneB.symbol, currentScenario.laneB.order);
+
+      oracleState = {
+        [aKey]: emptyOrderState(),
+        [bKey]: emptyOrderState()
+      };
+    }
+
 
     function statesEqual(a, b) {
       const keysA = Object.keys(a).sort();
       const keysB = Object.keys(b).sort();
-      if (keysA.join("|") !== keysB.join("|")) return false;
+
+      if (keysA.join("|") !== keysB.join("|")) {
+        return false;
+      }
 
       return keysA.every(key => {
         const x = a[key];
         const y = b[key];
+
         return (
           x.status === y.status &&
           x.orderQty === y.orderQty &&
@@ -1659,8 +2962,11 @@
       });
     }
 
+
     function stepCausalExperiment() {
-      if (experimentComplete) return;
+      if (experimentComplete) {
+        return;
+      }
 
       if (causalStep >= causalEvents.length) {
         recoverMissingEvent();
@@ -1671,9 +2977,15 @@
 
       if (event.dropped) {
         gapOpen = true;
+
         causalLog(`
-          <span class="rec-drop">[SEQ ${event.seq} DROPPED]</span> ${event.symbol} / ${event.order} / ${formatAction(event)} unavailable. Recovery branch opened from the missing event's state domain.
+          <span class="rec-drop">
+            [SEQ ${event.seq} DROPPED]
+          </span>
+          ${event.symbol} / ${event.order} / ${formatAction(event)} unavailable.
+          Recovery branch opened from the missing event's state domain.
         `);
+
         causalStep++;
         updateCausalUI();
         return;
@@ -1682,12 +2994,19 @@
       if (!gapOpen) {
         try {
           applyParcEvent(parcState, event);
-        } catch (error) {
+        }
+        catch (error) {
           failCausalExperiment(error.message);
           return;
         }
 
-        causalLog(`<span class="rec-ok">[SEQ ${event.seq} COMMITTED]</span> ${event.symbol} / ${event.order} / ${formatAction(event)}`);
+        causalLog(`
+          <span class="rec-ok">
+            [SEQ ${event.seq} COMMITTED]
+          </span>
+          ${event.symbol} / ${event.order} / ${formatAction(event)}
+        `);
+
         causalStep++;
         updateCausalUI();
         return;
@@ -1696,20 +3015,33 @@
       if (isIndependentFromGap(event)) {
         try {
           applyParcEvent(parcState, event);
-        } catch (error) {
+        }
+        catch (error) {
           failCausalExperiment(error.message);
           return;
         }
 
         independentCommitted++;
+
         causalLog(`
-          <span class="rec-ok">[SEQ ${event.seq} INDEPENDENT]</span> Dependency classifier permits commit for ${event.symbol} / ${event.order} / ${formatAction(event)} while recovery remains active.
+          <span class="rec-ok">
+            [SEQ ${event.seq} INDEPENDENT]
+          </span>
+          Dependency classifier permits commit for
+          ${event.symbol} / ${event.order} / ${formatAction(event)}
+          while recovery remains active.
         `);
-      } else {
+      }
+      else {
         quarantined.push(event);
         totalQuarantined++;
+
         causalLog(`
-          <span class="rec-warn">[SEQ ${event.seq} QUARANTINED]</span> ${event.symbol} / ${event.order} / ${formatAction(event)} intersects the recovery-affected state domain.
+          <span class="rec-warn">
+            [SEQ ${event.seq} QUARANTINED]
+          </span>
+          ${event.symbol} / ${event.order} / ${formatAction(event)}
+          intersects the recovery-affected state domain.
         `);
       }
 
@@ -1721,6 +3053,7 @@
       }
     }
 
+
     function recoverMissingEvent() {
       if (!gapOpen || experimentComplete) {
         finalizeCausalExperiment();
@@ -1728,20 +3061,37 @@
       }
 
       causalLog(`
-        <span class="rec-info">[RECOVERY RECEIVED]</span> Resent SEQ ${missingEvent.seq} restored. Applying ${missingEvent.symbol} / ${missingEvent.order} / ${formatAction(missingEvent)}.
+        <span class="rec-info">
+          [RECOVERY RECEIVED]
+        </span>
+        Resent SEQ ${missingEvent.seq} restored.
+        Applying ${missingEvent.symbol} / ${missingEvent.order} /
+        ${formatAction(missingEvent)}.
       `);
 
       try {
         applyParcEvent(parcState, missingEvent);
+
         causalLog(`
-          <span class="rec-info">[REPLAY QUARANTINED BRANCH]</span> ${quarantined.length} dependent event(s) scheduled for deterministic replay.
+          <span class="rec-info">
+            [REPLAY QUARANTINED BRANCH]
+          </span>
+          ${quarantined.length} dependent event(s) scheduled for
+          deterministic replay.
         `);
 
         quarantined.forEach(event => {
           applyParcEvent(parcState, event);
-          causalLog(`<span class="rec-ok">[REPLAYED SEQ ${event.seq}]</span> ${event.symbol} / ${event.order} / ${formatAction(event)}`);
+
+          causalLog(`
+            <span class="rec-ok">
+              [REPLAYED SEQ ${event.seq}]
+            </span>
+            ${event.symbol} / ${event.order} / ${formatAction(event)}
+          `);
         });
-      } catch (error) {
+      }
+      catch (error) {
         failCausalExperiment(error.message);
         return;
       }
@@ -1752,38 +3102,75 @@
       finalizeCausalExperiment();
     }
 
+
     function finalizeCausalExperiment() {
-      if (experimentComplete) return;
+      if (experimentComplete) {
+        return;
+      }
 
       try {
         buildOracle();
-      } catch (error) {
+      }
+      catch (error) {
         failCausalExperiment(`Oracle error: ${error.message}`);
         return;
       }
 
-      const matches = statesEqual(parcState, oracleState);
-      oracleMatch.innerText = matches ? "PASS" : "FAIL";
-      oracleMatch.className = matches ? "metric-value good" : "metric-value warn";
+      const matches =
+        statesEqual(parcState, oracleState);
+
+      oracleMatch.innerText =
+        matches ? "PASS" : "FAIL";
+
+      oracleMatch.className =
+        matches
+          ? "metric-value good"
+          : "metric-value warn";
+
       causalStatus.innerText = "COMPLETE";
       experimentComplete = true;
 
       if (matches) {
-        causalResult.className = "result-banner pass";
+        causalResult.className =
+          "result-banner pass";
+
         causalResult.innerHTML = `
-          <strong>${currentScenario.id} passed.</strong> PARC converged to the same canonical order state as the independently implemented strict total-order oracle while permitting ${independentCommitted} independent event(s) to commit during recovery. Total quarantined events: ${totalQuarantined}.
+          <strong>${currentScenario.id} passed.</strong>
+          PARC converged to the same canonical order state as the
+          independently implemented strict total-order oracle while
+          permitting ${independentCommitted} independent event(s) to
+          commit during recovery. Total quarantined events:
+          ${totalQuarantined}.
         `;
+
         causalLog(`
-          <span class="rec-ok">[CONVERGENCE VERIFIED]</span> PARC state matches the strict total-order oracle across status, order quantity, filled quantity, leaves quantity, and canceled quantity.
+          <span class="rec-ok">
+            [CONVERGENCE VERIFIED]
+          </span>
+          PARC state matches the strict total-order oracle across
+          status, order quantity, filled quantity, leaves quantity,
+          and canceled quantity.
         `);
-      } else {
-        causalResult.className = "result-banner";
+      }
+      else {
+        causalResult.className =
+          "result-banner";
+
         causalResult.innerHTML = `
-          <strong>${currentScenario.id} failed convergence.</strong> The dependency classifier, replay path, or state machine requires review.
+          <strong>${currentScenario.id} failed convergence.</strong>
+          The dependency classifier, replay path, or state machine
+          requires review.
         `;
-        causalLog(`<span class="rec-drop">[CONVERGENCE FAILURE]</span> PARC final state differs from the strict total-order oracle.`);
+
+        causalLog(`
+          <span class="rec-drop">
+            [CONVERGENCE FAILURE]
+          </span>
+          PARC final state differs from the strict total-order oracle.
+        `);
       }
     }
+
 
     function failCausalExperiment(message) {
       if (causalTimer) {
@@ -1797,45 +3184,72 @@
       oracleMatch.className = "metric-value warn";
       causalResult.className = "result-banner";
       causalResult.innerHTML = `<strong>Experiment halted.</strong> ${message}`;
-      causalLog(`<span class="rec-drop">[STATE MACHINE ERROR]</span> ${message}`);
+
+      causalLog(`
+        <span class="rec-drop">[STATE MACHINE ERROR]</span>
+        ${message}
+      `);
     }
+
 
     function runCausalExperiment(randomizeFirst = false) {
       if (randomizeFirst) {
         randomizeCausalScenario(false);
-      } else {
+      }
+      else {
         resetCausalExperiment();
       }
 
-      causalTimer = setInterval(() => {
-        if (!experimentComplete) {
-          stepCausalExperiment();
-        } else {
-          clearInterval(causalTimer);
-          causalTimer = null;
-        }
-      }, 650);
+      causalTimer =
+        setInterval(() => {
+          if (!experimentComplete) {
+            stepCausalExperiment();
+          }
+          else {
+            clearInterval(causalTimer);
+            causalTimer = null;
+          }
+        }, 650);
     }
 
+
     function populateScenarioSelect() {
-      scenarioSelect.innerHTML = causalScenarios.map((scenario, index) => `
-        <option value="${index}">${scenario.id} — ${scenario.name}</option>
-      `).join("");
+      scenarioSelect.innerHTML =
+        causalScenarios.map((scenario, index) => `
+          <option value="${index}">
+            ${scenario.id} — ${scenario.name}
+          </option>
+        `).join("");
     }
+
 
     function selectCausalScenario(value) {
       const index = Number(value);
-      if (!Number.isInteger(index) || index < 0 || index >= causalScenarios.length) return;
+
+      if (
+        !Number.isInteger(index) ||
+        index < 0 ||
+        index >= causalScenarios.length
+      ) {
+        return;
+      }
+
       currentScenarioIndex = index;
       currentScenario = causalScenarios[index];
       scenarioSelect.value = String(index);
       resetCausalExperiment();
     }
 
+
     function randomizeCausalScenario(resetOnly = true) {
       let nextIndex = currentScenarioIndex;
-      while (causalScenarios.length > 1 && nextIndex === currentScenarioIndex) {
-        nextIndex = Math.floor(Math.random() * causalScenarios.length);
+
+      while (
+        causalScenarios.length > 1 &&
+        nextIndex === currentScenarioIndex
+      ) {
+        nextIndex =
+          Math.floor(Math.random() * causalScenarios.length);
       }
 
       currentScenarioIndex = nextIndex;
@@ -1844,9 +3258,13 @@
       resetCausalExperiment();
 
       if (resetOnly) {
-        causalLog(`<span class="rec-info">[SCENARIO RANDOMIZED]</span> Selected ${currentScenario.id} — ${currentScenario.name}.`);
+        causalLog(`
+          <span class="rec-info">[SCENARIO RANDOMIZED]</span>
+          Selected ${currentScenario.id} — ${currentScenario.name}.
+        `);
       }
     }
+
 
     function resetCausalExperiment() {
       if (causalTimer) {
@@ -1856,6 +3274,7 @@
 
       causalEvents = currentScenario.events;
       missingEvent = causalEvents.find(event => event.dropped);
+
       causalStep = 0;
       gapOpen = false;
       independentCommitted = 0;
@@ -1877,20 +3296,29 @@
       laneB.classList.remove("committed");
 
       causalResult.className = "result-banner";
-      causalResult.innerText = `${currentScenario.id} ready. Experiment not yet executed.`;
+      causalResult.innerText =
+        `${currentScenario.id} ready. Experiment not yet executed.`;
 
       causalTerminal.innerHTML = `
         <div class="terminal-line">
-          <span class="rec-info">[CAUSAL TESTBED RESET]</span> ${currentScenario.id} — ${currentScenario.name} ready.
+          <span class="rec-info">[CAUSAL TESTBED RESET]</span>
+          ${currentScenario.id} — ${currentScenario.name} ready.
         </div>
+
         <div class="terminal-line">
-          <span class="rec-dim">[CORRECTNESS BASELINE]</span> Final PARC state will be compared against an independently implemented strict total-order oracle using the complete sequence, including missing SEQ ${missingEvent.seq}.
+          <span class="rec-dim">[CORRECTNESS BASELINE]</span>
+          Final PARC state will be compared against an independently
+          implemented strict total-order oracle using the complete
+          sequence, including missing SEQ ${missingEvent.seq}.
         </div>
       `;
 
-      oracleStateView.textContent = "Strict total-order oracle will execute at completion.";
+      oracleStateView.textContent =
+        "Strict total-order oracle will execute at completion.";
+
       updateCausalUI();
     }
+
 
     /* =========================================================
        INITIAL RENDER
