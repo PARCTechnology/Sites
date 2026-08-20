@@ -1,0 +1,21 @@
+name: Run PARC Trace
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-trace:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run PARC trace
+        run: |
+          python3 run_trace.py
