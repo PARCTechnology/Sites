@@ -1,33 +1,121 @@
 {
   "$schema": "https://parctechnology.com/schemas/parc-trace-v1.json",
+
   "trace_id": "PARC-TR-004",
-  "name": "Cross-Symbol Fill with Dependent Cancel and Shared Risk Limit",
-  "description": "Tests lane independence when two symbols execute concurrently, but symbol A experiences a dropped partial fill followed by a dependent cancel.",
+
+  "name": "Cross-Symbol Recovery with Shared Account Risk",
+
+  "description":
+    "Tests conservative causal classification when a missing AAPL partial fill may alter account-level risk state shared by a subsequent MSFT execution.",
+
   "metadata": {
-    "protocol": "FIX-5.0SP2",
+    "protocol": {
+      "application": "FIX-5.0SP2",
+      "session": "FIXT-1.1"
+    },
     "version": "1.0.0",
     "target_metric": "Correctness & State Convergence"
   },
+
+  "dependency_model": {
+    "domains": [
+      "ORDER",
+      "SYMBOL",
+      "ACCOUNT",
+      "RISK_GROUP"
+    ],
+
+    "shared_constraints": [
+      {
+        "type": "ACCOUNT_RISK_LIMIT",
+        "key": "ACC-01",
+        "symbols": ["AAPL", "MSFT"]
+      }
+    ],
+
+    "unknown_dependency_policy": "CONSERVATIVE_BLOCK"
+  },
+
   "canonical_stream": [
-    { "seq": 1000, "symbol": "AAPL", "order_id": "ORD-A1", "acct": "ACC-01", "action": "NEW", "qty": 100, "price": 150.00 },
-    { "seq": 1001, "symbol": "MSFT", "order_id": "ORD-B1", "acct": "ACC-01", "action": "NEW", "qty": 100, "price": 300.00 },
-    { "seq": 1002, "symbol": "AAPL", "order_id": "ORD-A1", "acct": "ACC-01", "action": "PARTIAL_FILL", "qty": 40, "price": 150.00 },
-    { "seq": 1003, "symbol": "MSFT", "order_id": "ORD-B1", "acct": "ACC-01", "action": "FILL", "qty": 100, "price": 300.00 },
-    { "seq": 1004, "symbol": "AAPL", "order_id": "ORD-A1", "acct": "ACC-01", "action": "CANCEL" }
-  ],
-  "fault_injections": [
     {
-      "type": "PACKET_DROP",
-      "target_seq": 1002,
-      "retransmit_at_seq": 1004,
-      "delivery_mode": "OUT_OF_BAND_GAP_FILL"
+      "seq": 1000,
+      "symbol": "AAPL",
+      "order_id": "ORD-A1",
+      "acct": "ACC-01",
+      "action": "NEW",
+      "qty": 100,
+      "price": 150.00
+    },
+
+    {
+      "seq": 1001,
+      "symbol": "MSFT",
+      "order_id": "ORD-B1",
+      "acct": "ACC-01",
+      "action": "NEW",
+      "qty": 100,
+      "price": 300.00
+    },
+
+    {
+      "seq": 1002,
+      "symbol": "AAPL",
+      "order_id": "ORD-A1",
+      "acct": "ACC-01",
+      "action": "PARTIAL_FILL",
+      "qty": 40,
+      "price": 150.00
+    },
+
+    {
+      "seq": 1003,
+      "symbol": "MSFT",
+      "order_id": "ORD-B1",
+      "acct": "ACC-01",
+      "action": "FILL",
+      "qty": 100,
+      "price": 300.00
+    },
+
+    {
+      "seq": 1004,
+      "symbol": "AAPL",
+      "order_id": "ORD-A1",
+      "acct": "ACC-01",
+      "action": "CANCEL"
     }
   ],
+
+  "fault_injections": [
+    {
+      "type": "MESSAGE_DROP",
+      "target_seq": 1002,
+      "retransmit_after_observed_seq": 1004,
+      "recovery_mode": "RETRANSMITTED_APPLICATION_MESSAGE"
+    }
+  ],
+
   "expected_behavior": {
-    "quarantined_seqs": [1004],
-    "independent_committed_seqs": [1003],
-    "replayed_seqs": [1004],
+
+    "quarantined_seqs": [
+      1003,
+      1004
+    ],
+
+    "independent_committed_seqs": [],
+
+    "classification_reason": {
+      "1003": "SHARED_ACCOUNT_RISK_DEPENDENCY",
+      "1004": "DIRECT_ORDER_DEPENDENCY"
+    },
+
+    "replayed_seqs": [
+      1003,
+      1004
+    ],
+
     "final_canonical_state": {
+
       "AAPL:ORD-A1": {
         "status": "CANCELLED",
         "order_qty": 100,
@@ -35,6 +123,7 @@
         "leaves_qty": 0,
         "canceled_qty": 60
       },
+
       "MSFT:ORD-B1": {
         "status": "FILLED",
         "order_qty": 100,
